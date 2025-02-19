@@ -1,6 +1,6 @@
 #Directory definition
 LIBFT_DIR := libft
-MLX_DIR := minilibx
+LIBMLX_DIR := mlx42
 SRC_DIR := src
 OBJ_DIR := obj
 INC_DIR := include
@@ -22,18 +22,22 @@ DEPS := $(OBJECTS:.o=.d)
 CFLAGS += -Wall -Werror -Wextra -MMD -MP -g -I $(INC_DIR)
 
 LIB_NAMES := libft.a \
-			libmlx.a 
-LIBS_TAG := $(patsubst lib%.a, -l%, $(LIB_NAMES))
+			libmlx42.a 
+LIBS_TAG :=  -ldl \
+			 -lglfw \
+			 -pthread \
+			 -lm
+LIBS_TAG += $(patsubst lib%.a, -l%, $(LIB_NAMES))
 
 DEBUG ?=
 
 CUR_DIR := $(shell pwd)
 
 #TARGETS
-all: libft mlx $(OBJECTS) $(NAME) 
+all: libft libmlx $(OBJECTS) $(NAME) 
 
-$(NAME): $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a Makefile $(INCLUDES) $(OBJECTS)
-	cc $(CFLAGS) -L libft $(DEBUG) $(OBJECTS) -o $@ $(LIBS_TAG) $(LIBS_TAG)
+$(NAME): $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES) $(OBJECTS)
+	cc $(CFLAGS) -L libft -L lib $(DEBUG) $(OBJECTS) -o $@ $(LIBS_TAG) $(LIBS_TAG)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)
 	cc $(CFLAGS) $(DEBUG) -c $< -o $@ 
@@ -41,8 +45,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)
 libft: 
 	@$(MAKE) -C $(LIBFT_DIR)
 
-mlx: 
-	@$(MAKE) -C $(MLX_DIR)
+libmlx: 
+	cmake -S $(LIBMLX_DIR) -B $(CUR_DIR)/$(LIB_DIR)
+	@$(MAKE) -C $(CUR_DIR)/$(LIB_DIR)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
@@ -56,13 +61,11 @@ show:
 
 clean: 
 	@$(MAKE) clean -C $(LIBFT_DIR)
-	@$(MAKE) clean -C $(MLX_DIR)
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -rf $(NAME)
 	@$(MAKE) fclean -C $(LIBFT_DIR)
-	@$(MAKE) clean -C $(MLX_DIR)
 
 re: fclean all
 ifneq ($(DEPS), )

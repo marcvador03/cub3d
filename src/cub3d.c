@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/19 15:06:08 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/02/19 15:43:12 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int	main(int argc, char *argv[])
 	}
 	else
 		cub.map_path = argv[1];
-	cub.mlx = mlx_init();
-	cub.win = mlx_new_window(cub.mlx, 1920, 1080, "Cub3D");
+	cub.mlx = mlx_init(1920, 1080, "CUB3D", true);
+	if (cub.mlx == NULL)
+		return (1);
 	mlx_loop(cub.mlx);
+	mlx_terminate(cub.mlx);
 	return (0);
 }
