@@ -1,6 +1,6 @@
 #Directory definition
 LIBFT_DIR := libft
-MLX_DIR := minilibx-linux
+MLX_DIR := minilibx
 SRC_DIR := src
 OBJ_DIR := obj
 INC_DIR := include
@@ -30,9 +30,9 @@ DEBUG ?=
 CUR_DIR := $(shell pwd)
 
 #TARGETS
-all: libft $(OBJECTS) $(NAME) 
+all: libft mlx $(OBJECTS) $(NAME) 
 
-$(NAME): libft/libft.a mlx/libmlx.a Makefile $(INCLUDES) $(OBJECTS)
+$(NAME): $(LIBFT_DIR)/libft.a $(MLX_DIR)/libmlx.a Makefile $(INCLUDES) $(OBJECTS)
 	cc $(CFLAGS) -L libft $(DEBUG) $(OBJECTS) -o $@ $(LIBS_TAG) $(LIBS_TAG)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)

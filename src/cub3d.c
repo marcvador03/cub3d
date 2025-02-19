@@ -6,8 +6,25 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/19 14:47:46 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/02/19 15:06:08 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	main(int argc, char *argv[])
+{
+	t_mlx	cub;
+
+	if (argc != 1)
+	{
+		printf("error in arguments");
+		return (1);
+	}
+	else
+		cub.map_path = argv[1];
+	cub.mlx = mlx_init();
+	cub.win = mlx_new_window(cub.mlx, 1920, 1080, "Cub3D");
+	mlx_loop(cub.mlx);
+	return (0);
+}

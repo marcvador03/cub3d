@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/19 14:52:41 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/02/19 15:06:05 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,12 @@
 
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	char	*map_path;
+}	t_mlx;
 
 #endif
