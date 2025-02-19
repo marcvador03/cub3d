@@ -1,0 +1,9 @@
+.DS_store
+*.o
+*.d
+*.a
+a.out
+minishell
+obj/
+.*.swp
+.*.swo
