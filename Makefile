@@ -9,7 +9,8 @@ LIB_DIR := lib
 #Filenames definition
 NAME := cub3D
 
-SRC_NAMES = cub3d.c
+SRC_NAMES = cub3d.c \
+			hooks.c
 
 INC_NAMES := cub3d.h
 
