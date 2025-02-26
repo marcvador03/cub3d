@@ -10,7 +10,9 @@ LIB_DIR := lib
 NAME := cub3D
 
 SRC_NAMES = cub3d.c \
-			hooks.c
+			hooks.c \
+			render.c \
+			free_utils.c \
 
 INC_NAMES := cub3d.h
 
@@ -24,6 +26,7 @@ CFLAGS += -Wall -Werror -Wextra -MMD -MP -g -I $(INC_DIR)
 
 LIB_NAMES := libft.a \
 			libmlx42.a 
+
 LIBS_TAG :=  -ldl \
 			 -lglfw \
 			 -pthread \

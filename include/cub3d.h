@@ -6,10 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/02/26 11:26:22 by mfleury          ###   ########.fr       */
-=======
->>>>>>> 68fbdfc79cda189ed6356c656aa2b75b4c5d53ae
+/*   Updated: 2025/02/26 19:19:23 by mfleury          ###   ########.fr       */
 /*   Updated: 2025/02/24 11:38:26 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -24,9 +21,11 @@
 # include <sys/types.h>
 # include <sys/time.h>
 # include <limits.h>
+# include <math.h>
 
 # include "../libft/libft.h"
 # include "../mlx42/include/MLX42/MLX42.h"
+# include "textures.h"
 
 typedef struct s_mlx
 {
@@ -42,6 +41,11 @@ typedef struct s_raycast
 	double	dirY;
 	double	planeX;
 	double	planeY;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	deltaDistX;
+	double	deltaDistY;
 
 }	t_raycast;
 
