@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/26 11:24:27 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/02/26 18:37:23 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,32 @@
 # include "../libft/libft.h"
 # include "../mlx42/include/MLX42/MLX42.h"
 
+# include "map_data.h"
+
 typedef struct s_mlx
 {
 	mlx_t	*mlx;
 	char	*map_path;
 }	t_mlx;
 
+// free_utils.c
 void	free_s(void *ptr);
 void	free_d(char **ptr);
+
+// memory_utils.c
+void	*safe_malloc(size_t size);
+
+/* --------------------- parse and map files ---------------------------------*/
+// flood_fill.c
+char	**ft_arr_temp(t_map *map);
+void	ft_flood_fill(char **tab, t_pos *size, t_pos *begin);
+
+// map_conversion.c
+t_pos	*map_size(t_list *map_list);
+char	**map_conversion(t_list *map_list, t_pos *map_size);
+
+// parsing.c
+void	parse_map(t_mlx *cub);
+
 
 #endif
