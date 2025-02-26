@@ -1,47 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/26 16:32:40 by mpietrza         ###   ########.fr       */
+/*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
+/*   Updated: 2025/02/26 18:40:31 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-/**
- * @brief Free a single pointer
- * 
- * @param ptr 
- * @return void 
- */
-void	free_s(void *ptr)
+
+t_list	*parse_map(t_mlx *cub, t_map *map)
 {
-	if (ptr)
+	int		fd;
+	t_list	*map_list;
+	t_list	*temp;
+	char	*line;
+
+	map_list = NULL;
+	fd = open(cub->map_path, O_RDONLY);
+	if (fd < 0)
 	{
-		free(ptr);
-		ptr = NULL;
+		printf("Error\n in opening file");
+		exit (1);
 	}
-}
-
-/**
- * @brief Free a double pointer
- * 
- * @param ptr 
- * @return void 
- */
-void	free_d(char **ptr)
-{
-	int	i;
-
-	i = 0;
-	while (ptr[i] != NULL)
+	while (get_next_line(fd, &line) > 0)
 	{
-		free(ptr[i]);
-		ptr[i++] = NULL;
+		temp = (t_list *)safe_malloc(sizeof(t_list));
+		temp->line = line;
+		temp->next = map_list;
+		map_list = temp;
 	}
-	free_s(ptr);
+	close(fd);
+	return (map_list);
 }
-

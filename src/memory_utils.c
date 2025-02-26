@@ -1,47 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   memory_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/26 16:32:40 by mpietrza         ###   ########.fr       */
+/*   Created: 2025/02/26 18:34:38 by mpietrza          #+#    #+#             */
+/*   Updated: 2025/02/26 18:38:56 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-/**
- * @brief Free a single pointer
- * 
- * @param ptr 
- * @return void 
- */
-void	free_s(void *ptr)
+
+void	*safe_malloc(size_t size)
 {
-	if (ptr)
+	void *ptr;
+
+	ptr = malloc(size);
+	if (!ptr)
 	{
-		free(ptr);
-		ptr = NULL;
+		printf("Error\n in memory allocation");
+		exit(1);
 	}
+	return (ptr);
 }
-
-/**
- * @brief Free a double pointer
- * 
- * @param ptr 
- * @return void 
- */
-void	free_d(char **ptr)
-{
-	int	i;
-
-	i = 0;
-	while (ptr[i] != NULL)
-	{
-		free(ptr[i]);
-		ptr[i++] = NULL;
-	}
-	free_s(ptr);
-}
-
