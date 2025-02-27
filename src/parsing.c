@@ -6,12 +6,19 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/02/26 18:40:31 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:06:37 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief This function will parse the map file and store it in a linked list
+ * 
+ * @param cub
+ * @param map
+ * @return t_list* 
+ */
 t_list	*parse_map(t_mlx *cub, t_map *map)
 {
 	int		fd;
