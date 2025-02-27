@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/26 19:19:23 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/02/27 10:42:11 by mfleury          ###   ########.fr       */
 /*   Updated: 2025/02/24 11:38:26 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -27,6 +27,9 @@
 # include "../mlx42/include/MLX42/MLX42.h"
 # include "textures.h"
 
+# define FALSE 0
+# define TRUE 1
+
 typedef struct s_mlx
 {
 	mlx_t	*mlx;
@@ -46,6 +49,16 @@ typedef struct s_raycast
 	double	rayDirY;
 	double	deltaDistX;
 	double	deltaDistY;
+	int		stepX;
+	int		stepY;
+	double	sideDistX;
+	double	sideDistY;
+	int		mapX;
+	int		mapY;
+	int		hit_flag;
+	int		side_flag;
+	double	perpWallDist;
+	int		lineHeight;
 
 }	t_raycast;
 
