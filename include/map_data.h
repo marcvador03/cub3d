@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:54:18 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/02/26 18:41:17 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:51:32 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ typedef struct s_map
 	int		x;
 	int		y;
 }		t_map;
-
 
 #endif
