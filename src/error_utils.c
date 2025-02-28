@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
+/*   Created: 2025/02/28 12:15:39 by mpietrza          #+#    #+#             */
 /*   Updated: 2025/02/28 12:32:07 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char *argv[])
+/** 
+ * @brief This function will print an error message and exit the program
+ * 
+*/
+void	ftl_err(char msg[1024])
 {
-	t_mlx	cub;
-
-	if (argc != 1)
-		ftl_err("in arguments");
-	else
-		cub.map_path = argv[1];
-	cub.mlx = mlx_init(1920, 1080, "CUB3D", true);
-	if (cub.mlx == NULL)
-		return (1);
-	mlx_loop(cub.mlx);
-	mlx_terminate(cub.mlx);
-	return (0);
+	printf("Error\n %s", msg);
+	exit (1);
 }

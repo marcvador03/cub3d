@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:34:38 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/02/27 16:06:48 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:32:07 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ void	*safe_malloc(size_t size)
 
 	ptr = malloc(size);
 	if (!ptr)
-	{
-		printf("Error\n in memory allocation");
-		exit(1);
-	}
+		ftl_err("in memory allocation");
 	return (ptr);
 }

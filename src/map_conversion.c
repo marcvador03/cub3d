@@ -6,12 +6,18 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/02/26 18:39:51 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:29:04 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+/**
+ * @brief This function will calculate the size of the map
+ * 		  by counting the number of lines and the length of the longest line
+ * 		  after deleting the lines that are not a map data
+ * @param map_list
+ * @return t_pos*
+ */
 t_pos	*map_size(t_list *map_list)
 {
 	t_pos	*map_size;
@@ -31,6 +37,13 @@ t_pos	*map_size(t_list *map_list)
 	return (map_size);
 }
 
+/**
+ * @brief This function will convert the linked list of map data into a 2D array
+ * 
+ * @param map_list
+ * @param map_size
+ * @return char** - map converted to 2D array
+ */
 char	**map_conversion(t_list *map_list, t_pos *map_size)
 {
 	int		y;

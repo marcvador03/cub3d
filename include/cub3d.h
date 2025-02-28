@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/27 16:58:23 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:32:07 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	free_d(char **ptr);
 
 // memory_utils.c
 void	*safe_malloc(size_t size);
+
+// error_utils.c
+void	ftl_err(char msg[1024]);
 
 /* --------------------- parse and map files ---------------------------------*/
 // flood_fill.c
