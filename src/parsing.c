@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/02/28 14:34:54 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:10:27 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ char	*file_path_extractor(char *line, int start)
 	return (path);
 }
 
+static void	skip_empty_space(char *line, int *i)
+{
+	while (line[*i] == ' ' || line[*i] == '\t')
+		*i++;
+}
+
 void	color_extractor(char *line, int color[3])
 {
 	int		i;
@@ -77,21 +83,18 @@ void	color_extractor(char *line, int color[3])
 	
 	i = 2;
 	j = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
+	skip_empty_space(line, &i);
 	while (line[i] && line[i] != '\n')
 	{
 		if (j > 2)
 			ftl_err("incorrect RGB data input");
 		len = 0;
-		while (line[i] >= '0' && line[i] <= '9')
-		{
-			len++;
-			if (len > 3)
-				ftl_err("incorrect RGB data input");
-			temp_color[j] = line[i++];
-		}
+		while (line[i] >= '0' && line[i] <= '9' && len < 3)
+			temp_color[len++] = line[i++];
 		color[j] = atoi(temp_color[j]);
+		if (len == 0 || len > 3)
+			ftl_err("incorrect RGB data input");
+		temp_color[len] = '\0';
 		if (line[i] == ',')
 			i++; //to skip the ',' in RGB
 		j++;
@@ -99,42 +102,32 @@ void	color_extractor(char *line, int color[3])
 	if (j != 3)
 		ftl_err("incorrect RGB data input");
 }
-/*
-void	color_extractor(char *line, int color[3])
+
+
+static int	is_map_line(char *line)
 {
-    int		i;
-    int		j;
-    int		len;
-    char	temp_color[4]; // Increased size to hold up to 3 digits and a null terminator
-    
-    i = 2;
-    j = 0;
-    while (line[i] == ' ' || line[i] == '\t')
-        i++;
-    while (line[i] && line[i] != '\n')
-    {
-        if (j > 2)
-            ftl_err("incorrect RGB data input");
-        len = 0;
-        while (line[i] >= '0' && line[i] <= '9' && len < 3)
-        {
-            temp_color[len++] = line[i++];
-        }
-        if (len == 0 || len > 3)
-            ftl_err("incorrect RGB data input");
-        temp_color[len] = '\0'; // Null-terminate the string
-        color[j] = atoi(temp_color);
-        if (line[i] == ',')
-            i++; // Skip the ',' in RGB
-        j++;
-    }
-    if (j != 3)
-        ftl_err("incorrect RGB data input");
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == '1')
+		return (1);
+	return (0);
 }
+
+static void	ft_lst_delprev(t_list *prev, t_list *current)
+{
+	prev->next = current->next;
+	free(current->line);
+	free(current);
+}
+/*
 */
 void	data_extraction(t_list *line_list)
 {
 	t_list		*temp;
+	t_list		*temp_prev;
 	t_txtr_data	*txtrs;
 
 	temp = line_list;
@@ -149,24 +142,14 @@ void	data_extraction(t_list *line_list)
 		else if (!ft_strncmp(temp->line, "EA ", 3))
 			txtrs->ea_txtr = file_path_extractor(temp->line, 3);
 		else if (!ft_strncmp(temp->line, "F ", 2))
-			txtrs->f_clr = color_extractor(temp->line, 2);
+			color_extractor(temp->line, txtrs->f_clr);
 		else if (!ft_strncmp(temp->line, "C ", 2))
-			txtrs->c_clr = color_extractor(temp->line, 2);
-
-		else
-		if (temp->line[0] == 'N' && temp->line[1] == 'O')
-			
-		else if (temp->line[0] == 'S' && temp->line[1] == 'O')
-			// txtr_extraction(temp->line);
-		else if (temp->line[0] == 'W' && temp->line[1] == 'E')
-			// txtr_extraction(temp->line);
-		else if (temp->line[0] == 'E' && temp->line[1] == 'A')
-			// txtr_extraction(temp->line);
-		else if (temp->line[0] == 'F')
-			// color_extraction(temp->line);
-		else if (temp->line[0] == 'C')
-			// color_extraction(temp->line);
+			color_extractor(temp->line, txtrs->c_clr);
+		else if (is_map_line(temp->line))
+			temp = temp->next;
+		temp_prev = temp;
 		temp = temp->next;
+		ft_lst_delprev(temp_prev, temp);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/28 12:32:07 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:04:39 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "../libft/libft.h"
 # include "../mlx42/include/MLX42/MLX42.h"
 
+# include "macros.h"
 # include "map_data.h"
 # include "graphic_data.h"
 
