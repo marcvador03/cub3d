@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:38:24 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/27 10:45:53 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/03 17:13:08 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	render_loop(t_mlx *cub)
 	mlx_image_t*	image;
 	t_raycast	r;
 	int			x;
+	int			y;
 	int	testmap[10][15] = 
 	{
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -32,17 +33,18 @@ int	render_loop(t_mlx *cub)
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
 
-	r.posX = 2;
+	r.posX = 2.5;
 	r.posY = 1;
-	r.dirX = -1;
-	r.dirY = 0;
+	r.dirX = 1;
+	r.dirY = 1;
 	r.planeX = 0;
 	r.planeY = 0.66;
+	image = mlx_new_image(cub->mlx, 1080, 1080);
 	x = 0;
 	while (x < 1080)
 	{
-		r.mapX = r.posX;
-		r.mapY = r.posY;
+		r.mapX = (int)r.posX;
+		r.mapY = (int)r.posY;
 		r.cameraX = 2 * (double)x / 1080 - 1;
 		r.rayDirX = r.dirX + r.planeX * r.cameraX;
 		r.rayDirY = r.dirY + r.planeY * r.cameraX;
@@ -93,15 +95,25 @@ int	render_loop(t_mlx *cub)
 				r.hit_flag = TRUE;
 		}
 		if (r.side_flag == FALSE)
-			r.perpWallDist = (r.sideDistX - r.deltaDistX);
+			r.walldist = (r.mapX - r.posX + (1 - r.stepX) / 2) / r.rayDirX;
 		else
-			r.perpWallDist = (r.sideDistY - r.deltaDistY);
-		r.lineHeight = 24 / (int)r.perpWallDist;
+			r.walldist = (r.mapY - r.posY + (1 - r.stepY) / 2) / r.rayDirY;
+		r.lineHeight = (int)(1080 / r.walldist);
+		r.wall_start = -r.lineHeight / 2 + 1080 / 2;
+		if (r.wall_start < 0)
+			r.wall_start = 0;
+		r.wall_end = r.lineHeight / 2 + 1080 / 2;
+		if (r.wall_end < 0)
+			r.wall_end = 0;
+		y = r.wall_start;
+		while (y <= r.wall_end)
+		{
+			mlx_put_pixel(image, x, y++, 0xFFFFFF);
+		}
 		x++;
 	}	
-	image = mlx_new_image(cub->mlx, 204, 204);
-	ft_memset(image->pixels, 0xFFFFFF, image->width * image->height * 4);
-	//mlx_resize_image(image, 204, 204);
+	/*ft_memset(image->pixels, 0xFFFFFF, image->width * image->height * 4);
+	//mlx_resize_image(image, 204, 204);*/
 	if (mlx_image_to_window(cub->mlx, image, 0, 0) < 0)
 		printf("error loading image to window");
 	/*while (1)

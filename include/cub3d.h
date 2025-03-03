@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/27 10:42:11 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/03 16:57:07 by mfleury          ###   ########.fr       */
 /*   Updated: 2025/02/24 11:38:26 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -57,8 +57,10 @@ typedef struct s_raycast
 	int		mapY;
 	int		hit_flag;
 	int		side_flag;
-	double	perpWallDist;
+	double	walldist;
 	int		lineHeight;
+	int		wall_start;
+	int		wall_end;
 
 }	t_raycast;
 
