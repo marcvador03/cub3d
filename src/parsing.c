@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/03 17:10:27 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/03 23:56:51 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @brief This function will parse the map file and store it in a linked list
  * 
  * @param cub
- * @param map
+ * @param map`
  * @return t_list* 
  */
 t_list	*parse_cub_file(t_mlx *cub)
@@ -44,91 +44,17 @@ t_list	*parse_cub_file(t_mlx *cub)
 	return (map_list);
 }
 
-char	*file_path_extractor(char *line, int start)
-{
-	int		i;
-	int		j;
-	char	*path;
-
-	i = start;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	j = i;
-	while (line[j])
-		j++;
-	path = (char *)safe_malloc(sizeof(char) * (j - i + 1));
-	j = 0;
-	while (line[i] && line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-	{
-		path[j] = line[i];
-		i++;
-		j++;
-	}
-	path[j] = '\0';
-	return (path);
-}
-
-static void	skip_empty_space(char *line, int *i)
-{
-	while (line[*i] == ' ' || line[*i] == '\t')
-		*i++;
-}
-
-void	color_extractor(char *line, int color[3])
-{
-	int		i;
-	int		j;
-	int		len;
-	char	temp_color[4];
-	
-	i = 2;
-	j = 0;
-	skip_empty_space(line, &i);
-	while (line[i] && line[i] != '\n')
-	{
-		if (j > 2)
-			ftl_err("incorrect RGB data input");
-		len = 0;
-		while (line[i] >= '0' && line[i] <= '9' && len < 3)
-			temp_color[len++] = line[i++];
-		color[j] = atoi(temp_color[j]);
-		if (len == 0 || len > 3)
-			ftl_err("incorrect RGB data input");
-		temp_color[len] = '\0';
-		if (line[i] == ',')
-			i++; //to skip the ',' in RGB
-		j++;
-	}
-	if (j != 3)
-		ftl_err("incorrect RGB data input");
-}
-
-
-static int	is_map_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	if (line[i] == '1')
-		return (1);
-	return (0);
-}
-
-static void	ft_lst_delprev(t_list *prev, t_list *current)
-{
-	prev->next = current->next;
-	free(current->line);
-	free(current);
-}
-/*
-*/
-void	data_extraction(t_list *line_list)
+/**
+ * @brief This function will extract the data from the linked list
+ * 
+ * @param line_list
+ * @param txtrs
+ * @return void
+ */
+void	data_extraction(t_list *line_list, t_txtr_data *txtrs)	
 {
 	t_list		*temp;
 	t_list		*temp_prev;
-	t_txtr_data	*txtrs;
 
 	temp = line_list;
 	while (temp)
@@ -153,10 +79,23 @@ void	data_extraction(t_list *line_list)
 	}
 }
 
-void	parsing_process(t_mlx *cub, t_txtr_data *txtrs)
+/**
+ * @brief This function will parse the map file and store it in a linked list
+ * 
+ * @param cub
+ * @param txtrs
+ * @return void
+ */
+void	parsing_process(t_mlx *cub)
 {
-	t_list	*map_list;
+	t_list			*map_list;
+	t_graph_data	*g_data;
 
+	g_data = (t_graph_data *)safe_malloc(sizeof(t_graph_data));
+	g_data->txtrs = (t_txtr_data *)safe_malloc(sizeof(t_txtr_data));
 	map_list = parse_cub_file(&cub);
-	// map_conversion(map_list, map_size(map_list));
+	data_extraction(map_list, g_data->txtrs);
+	g_data->map = map_conversion(map_list, map_size(map_list));
+	find_player(g_data->map);
+	ft_lstclear(&map_list, free_s);
 }

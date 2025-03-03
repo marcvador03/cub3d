@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/03 17:04:39 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/03 23:56:36 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include "../mlx42/include/MLX42/MLX42.h"
 
 # include "macros.h"
-# include "map_data.h"
 # include "graphic_data.h"
 
 typedef struct s_mlx
@@ -54,10 +53,19 @@ void	ft_flood_fill(char **tab, t_pos *size, t_pos *begin);
 // map_conversion.c
 t_pos	*map_size(t_list *map_list);
 char	**map_conversion(t_list *map_list, t_pos *map_size);
+void	find_player(t_map *map);
 
 // parsing.c
-void	parse_cub_file(t_mlx *cub);
-void	parsing_process(t_mlx *cub, t_txtr_data txtrs);
+t_list	*parse_cub_file(t_mlx *cub);
+void	data_extraction(t_list *line_list, t_txtr_data *txtrs);
+void	parsing_process(t_mlx *cub);
+
+// parsing_utils.c
+char	*file_path_extractor(char *line, int start);
+void	skip_empty_space(char *line, int *i, bool incl_tab, bool is_ascending);
+void	color_extractor(char *line, int color[3]);
+bool	is_map_line(char *line);
+void	ft_lst_delprev(t_list *prev, t_list *current);
 
 
 #endif

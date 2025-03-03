@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_conversion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/02/28 12:29:04 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/03 23:56:42 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,29 @@ char	**map_conversion(t_list *map_list, t_pos *map_size)
 	}
 	map[y] = NULL;
 	return (map);
+}
+
+void	find_player(t_map *map)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	while (map->arr[x])
+	{
+		y = 0;
+		while (map->arr[x][y])
+		{
+			if (map->arr[x][y] == 'N' || map->arr[x][y] == 'S' || map->arr[x][y] == 'E' || map->arr[x][y] == 'W')
+			{
+				map->player_pos->x = x;
+				map->player_pos->y = y;
+				map->player_dir = map->arr[x][y];
+				map->arr[x][y] = '0';
+				return ;
+			}
+			y++;
+		}
+		x++;
+	}
 }
