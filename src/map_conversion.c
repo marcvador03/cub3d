@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_conversion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/03 23:56:42 by milosz           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:04:56 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_pos	*map_size(t_list *map_list)
 	while (temp)
 	{
 		map_size->y++;
-		if (map_size->x < (int)ft_strlen(temp->line))
-			map_size->x = ft_strlen(temp->line);
+		if (map_size->x < (int)ft_strlen(temp->content))
+			map_size->x = ft_strlen(temp->content);
 		temp = temp->next;
 	}
 	return (map_size);
@@ -55,14 +55,21 @@ char	**map_conversion(t_list *map_list, t_pos *map_size)
 	temp = map_list;
 	while (temp)
 	{
-		map[y] = ft_strdup(temp->line);
+		map[y] = ft_strdup((char *)temp->content);
 		if (!map[y])
 			return (NULL);
-		map[y][ft_strlen(temp->line)] = '\0';
+		map[y][ft_strlen(temp->content)] = '\0';
+		
 		y++;
 		temp = temp->next;
 	}
 	map[y] = NULL;
+	y = 0;
+	while (map[y])
+	{
+		printf("%s\n", map[y]);
+		y++;
+	}
 	return (map);
 }
 

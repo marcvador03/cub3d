@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:21:14 by milosz            #+#    #+#             */
-/*   Updated: 2025/03/03 23:30:07 by milosz           ###   ########.fr       */
+/*   Updated: 2025/03/04 17:06:48 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 /**
  * @brief This function will extract the file path from the line
  * 
- * @param line
- * @param start
+ * @param content void*
+ * @param start int
  * @return char*
  */
-char	*file_path_extractor(char *line, int start)
+char	*file_path_extractor(void *content, int start)
 {
 	int		i;
 	int		j;
+	char	*line;
 	char	*path;
 
+	line = (char *)content;
 	i = start;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
@@ -40,6 +42,7 @@ char	*file_path_extractor(char *line, int start)
 		j++;
 	}
 	path[j] = '\0';
+	printf("Debug: path = %s\n", path);
 	return (path);
 }
 
@@ -50,16 +53,16 @@ char	*file_path_extractor(char *line, int start)
  * @param start
  * @return char* 
  */
-void	skip_empty_space(char *line, int *i, bool incl_tab, bool is_ascending)
+void skip_empty_space(char *line, int *i, bool incl_tab, bool is_ascending)
 {
 	if (incl_tab == true)
 	{
 		while (line[*i] == ' ' || line[*i] == '\t')
-		{	
+		{
 			if (is_ascending == true)
-				*i++;
+				(*i)++;
 			else
-				*i--;
+				(*i)--;
 		}
 	}
 	else
@@ -67,9 +70,9 @@ void	skip_empty_space(char *line, int *i, bool incl_tab, bool is_ascending)
 		while (line[*i] == ' ')
 		{
 			if (is_ascending == true)
-				*i++;
+				(*i)++;
 			else
-				*i--;
+				(*i)--;
 		}
 	}
 }
@@ -81,7 +84,7 @@ void	skip_empty_space(char *line, int *i, bool incl_tab, bool is_ascending)
  * @param color
  * @return void
  */
-void	color_extractor(char *line, int color[3])
+void	color_extractor(char *line, unsigned int color[3])
 {
 	int		i;
 	int		j;
@@ -90,6 +93,7 @@ void	color_extractor(char *line, int color[3])
 	
 	i = 2;
 	j = 0;
+	printf("Debug: color_extractor\n");
 	skip_empty_space(line, &i, true, true);
 	while (line[i] && line[i] != '\n')
 	{
@@ -98,7 +102,7 @@ void	color_extractor(char *line, int color[3])
 		len = 0;
 		while (line[i] >= '0' && line[i] <= '9' && len < 3)
 			temp_color[len++] = line[i++];
-		color[j] = atoi(temp_color[j]);
+		color[j] = atoi(&temp_color[j]);
 		if (len == 0 || len > 3)
 			ftl_err("incorrect RGB data input");
 		temp_color[len] = '\0';
@@ -116,33 +120,29 @@ void	color_extractor(char *line, int color[3])
  * @param line
  * @return bool 
  */
-bool	is_map_line(char *line)
+bool	is_map_line(void *content)
 {
 	int	i;
+	char *line;
 
+	line = (char *)content;
 	i = 0;
-	skip_empty_space(line, i, false, true);
 	while (line[i + 1])
 	{
 		if (line[i] != '1' && line[i] != '0' && line[i] != 'N' && line[i] != 'S'
-				&& line[i] != 'E' && line[i] != 'W' && line[i++] != ' ')
+				&& line[i] != 'E' && line[i] != 'W' && line[i] != ' ')
 			return (false);
+		i++;
 	}
-	if (line[i] != '1' && line[i] && line[i] != ' ' && line[i] != '\n')
+	if (line[i] && line[i] != '1' && line[i] != ' ' && line[i] != '\n')
 		return (false);
 	return (true);
 }
 
-/**
- * @brief This function will delete the previous node in the linked list
- * 
- * @param prev
- * @param current
- * @return void
- */
-void	ft_lst_delprev(t_list *prev, t_list *current)
+bool	gnl_for_loop(int fd, char **line)
 {
-	prev->next = current->next;
-	free(current->line);
-	free(current);
+	*line = get_next_line(fd);
+	if (*line == NULL)
+		return (false);
+	return (true);
 }

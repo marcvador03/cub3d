@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/03 23:56:36 by milosz           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:11:24 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <limits.h>
 
 # include "../libft/libft.h"
+# include "../libft/getnextline/get_next_line.h"
 # include "../mlx42/include/MLX42/MLX42.h"
 
 # include "macros.h"
@@ -43,12 +44,17 @@ void	free_d(char **ptr);
 void	*safe_malloc(size_t size);
 
 // error_utils.c
-void	ftl_err(char msg[1024]);
+void	ftl_err(const char *msg);
 
 /* --------------------- parse and map files ---------------------------------*/
 // flood_fill.c
 char	**ft_arr_temp(t_map *map);
 void	ft_flood_fill(char **tab, t_pos *size, t_pos *begin);
+
+// list_utils.c
+void	ft_lst_print(t_list *list);
+
+
 
 // map_conversion.c
 t_pos	*map_size(t_list *map_list);
@@ -57,15 +63,18 @@ void	find_player(t_map *map);
 
 // parsing.c
 t_list	*parse_cub_file(t_mlx *cub);
-void	data_extraction(t_list *line_list, t_txtr_data *txtrs);
+t_list	*parse_cub_file(t_mlx *cub);
+t_list	*data_extr(t_list *line_list, t_txtr_data *txtrs);
 void	parsing_process(t_mlx *cub);
 
 // parsing_utils.c
-char	*file_path_extractor(char *line, int start);
+char	*file_path_extractor(void *line, int start);
 void	skip_empty_space(char *line, int *i, bool incl_tab, bool is_ascending);
-void	color_extractor(char *line, int color[3]);
-bool	is_map_line(char *line);
-void	ft_lst_delprev(t_list *prev, t_list *current);
+void	color_extractor(char *line, unsigned int color[3]);
+bool	is_map_line(void *content);
+bool	gnl_for_loop(int fd, char **line);
 
+//str_utils.c
+char	*ft_strdup_w_o_nl(char *str);
 
 #endif

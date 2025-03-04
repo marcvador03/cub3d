@@ -9,7 +9,17 @@ LIB_DIR := lib
 #Filenames definition
 NAME := cub3D
 
-SRC_NAMES = cub3d.c
+SRC_NAMES = cub3d.c \
+			error_utils.c \
+			flood_fill.c \
+			free_utils.c \
+			list_utils.c \
+			map_conversion.c \
+			memory_utils.c \
+			parsing_utils.c \
+			parsing.c \
+			str_utils.c
+
 
 INC_NAMES := cub3d.h
 

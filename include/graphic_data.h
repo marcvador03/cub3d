@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic_data.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:42:13 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/03 23:56:54 by milosz           ###   ########.fr       */
+/*   Updated: 2025/03/04 19:11:24 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ typedef struct s_pos
 }				t_pos;
 
 /* struct for list to store the lines read from the file*/
-typedef struct s_list
+/*typedef struct s_list
 {
 	char			*line;
 	struct s_list	*next;
-}				t_list;
+}				t_list;*/
 
 /* struct for creating and managing the map */
 typedef struct s_map
@@ -53,4 +53,5 @@ typedef struct s_graph_data
 	t_txtr_data	*txtrs;
 	t_map		*map;
 }	t_graph_data;
+
 #endif
