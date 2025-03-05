@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/04 19:04:56 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:25:43 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,11 @@ char	**map_conversion(t_list *map_list, t_pos *map_size)
 		if (!map[y])
 			return (NULL);
 		map[y][ft_strlen(temp->content)] = '\0';
-		
 		y++;
 		temp = temp->next;
 	}
 	map[y] = NULL;
 	y = 0;
-	while (map[y])
-	{
-		printf("%s\n", map[y]);
-		y++;
-	}
 	return (map);
 }
 

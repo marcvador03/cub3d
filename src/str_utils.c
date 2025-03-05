@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:09:15 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/04 19:09:41 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:37:29 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,30 @@ char	*ft_strdup_w_o_nl(char *str)
 	}
 	new_str[i] = '\0';
 	return (new_str);
+}
+
+void	ft_arr_print(char **arr)
+{
+	int i;
+
+	i = 0;
+	while (arr[i])
+	{
+		printf("%s\n", arr[i]);
+		i++;
+	}
+}
+
+char	*ft_safe_strdup_w_o_leading_spaces(char *line)
+{
+	int 	i;
+	char	*pure_line;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	pure_line = ft_strdup(&line[i]);
+	if (!pure_line)
+		ftl_err("in deleting empty space");
+	return (pure_line);
 }

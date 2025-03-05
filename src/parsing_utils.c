@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:21:14 by milosz            #+#    #+#             */
-/*   Updated: 2025/03/04 17:06:48 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:36:11 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ char	*file_path_extractor(void *content, int start)
 		j++;
 	}
 	path[j] = '\0';
-	printf("Debug: path = %s\n", path);
 	return (path);
 }
 
@@ -77,6 +76,8 @@ void skip_empty_space(char *line, int *i, bool incl_tab, bool is_ascending)
 	}
 }
 
+
+
 /**
  * @brief This function will extract the RGB data from the line
  * 
@@ -93,7 +94,6 @@ void	color_extractor(char *line, unsigned int color[3])
 	
 	i = 2;
 	j = 0;
-	printf("Debug: color_extractor\n");
 	skip_empty_space(line, &i, true, true);
 	while (line[i] && line[i] != '\n')
 	{
@@ -145,4 +145,32 @@ bool	gnl_for_loop(int fd, char **line)
 	if (*line == NULL)
 		return (false);
 	return (true);
+}
+
+void	map_pos_checker(t_list *line_list)
+{
+	int		is_map;
+	int		isnt_map;
+	t_list	*temp;
+	char	*s_temp;
+	
+	is_map = 0;
+	isnt_map = 0;
+	temp = line_list;
+	while(temp)
+	{
+		s_temp = ft_safe_strdup_w_o_leading_spaces((char *)temp->content);
+		if ((!ft_strncmp(s_temp, "NO ", 3)) || (!ft_strncmp(s_temp, "SO ", 3))
+			|| (!ft_strncmp(s_temp, "WE ", 3)) 
+				|| (!ft_strncmp(s_temp, "EA ", 3))
+					|| (!ft_strncmp(s_temp, "F ", 2))
+					|| (!ft_strncmp(s_temp, "C ", 2)))
+			isnt_map++;
+		if (s_temp[0] == '1')
+			is_map++;
+		free(s_temp);
+		if (isnt_map != 6 && is_map > 0)
+			ftl_err("in the 'cub' file - wrong data or map in the beginning");
+		temp = temp->next;
+	}
 }

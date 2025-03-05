@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/04 19:09:48 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:31:21 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ t_list *parse_cub_file(t_mlx *cub)
 
 void map_actions(t_list *temp, t_list **map_head) 
 {
-	printf("\nDebug: line is: %s", (char *)temp->content);
 	if (is_map_line(temp->content))
 	{
-		printf("Debug: is_map_line\n");
 		t_list *new_node = (t_list *)safe_malloc(sizeof(t_list));
 		new_node->content = ft_strdup_w_o_nl((char *)temp->content);
 		new_node->next = NULL;
@@ -103,26 +101,16 @@ void	parsing_process(t_mlx *cub)
 	t_list			*line_list;
 	t_list			*map_list;
 	t_graph_data	*g_data;
-	t_pos			*map_siz;
 
 	g_data = (t_graph_data *)safe_malloc(sizeof(t_graph_data));
-	printf("Debug 1: mallocked g_data\n");
 	g_data->txtrs = (t_txtr_data *)safe_malloc(sizeof(t_txtr_data));
-	printf("Debug 2: mallocked txtrs\n");
+	g_data->map = (t_map *)safe_malloc(sizeof(t_map));
+	g_data->map->player_pos = (t_pos *)safe_malloc(sizeof(t_pos));
 	line_list = parse_cub_file(cub);
-	printf("Debug 3: parsed cub file\n");
+	map_pos_checker(line_list);
 	map_list = data_extr(line_list, g_data->txtrs);
-	printf("Debug 3a: extracted list is:\n");
 	ft_lstclear(&line_list, free_s);
-	ft_lst_print(map_list);
-	printf("Debug 4: extracted data\n");
-	map_siz = map_size(map_list);
-	printf("Debug 5: got map size\n");
-	printf("Debug 5a: map size is: %d, %d\n", map_siz->x, map_siz->y);
-	g_data->map->arr = map_conversion(map_list, map_siz);
-	printf("Debug 5: converted map\n");
+	g_data->map->arr = map_conversion(map_list, map_size(map_list));
 	find_player(g_data->map);
-	printf("Debug 6: found player\n");
 	ft_lstclear(&map_list, free_s);
-	printf("Debug 7: cleared list\n");
 }

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/04 19:11:24 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:26:55 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,11 @@ void	skip_empty_space(char *line, int *i, bool incl_tab, bool is_ascending);
 void	color_extractor(char *line, unsigned int color[3]);
 bool	is_map_line(void *content);
 bool	gnl_for_loop(int fd, char **line);
+void	map_pos_checker(t_list *line_list);
 
 //str_utils.c
 char	*ft_strdup_w_o_nl(char *str);
+void	ft_arr_print(char **arr);
+char	*ft_safe_strdup_w_o_leading_spaces(char *line);
 
 #endif

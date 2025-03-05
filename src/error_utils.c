@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:15:39 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/04 15:31:07 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:42:52 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,9 @@
 void	ftl_err(const char *msg)
 {
 	printf("Error\n %s\n", msg);
+	//free all the memory
+	//close all the files
+	//close all the windows
+	//exit the program
 	exit (1);
 }
