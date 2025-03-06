@@ -15,6 +15,7 @@ SRC_NAMES = cub3d.c \
 			free_utils.c \
 			list_utils.c \
 			map_conversion.c \
+			map_utils.c \
 			memory_utils.c \
 			parsing_utils.c \
 			parsing.c \

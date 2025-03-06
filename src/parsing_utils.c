@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:21:14 by milosz            #+#    #+#             */
-/*   Updated: 2025/03/05 15:36:11 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:19:21 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ char	*file_path_extractor(void *content, int start)
 
 	line = (char *)content;
 	i = start;
-	while (line[i] == ' ' || line[i] == '\t')
+	while (line[i] == ' ')
 		i++;
 	j = i;
 	while (line[j])
 		j++;
 	path = (char *)safe_malloc(sizeof(char) * (j - i + 1));
 	j = 0;
-	while (line[i] && line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+	while (line[i] && line[i] != ' ' && line[i] != '\n')
 	{
 		path[j] = line[i];
 		i++;
@@ -48,41 +48,27 @@ char	*file_path_extractor(void *content, int start)
 /**
  * @brief This function will extract the file path from the line
  * 
- * @param line
- * @param start
+ * @param line char *
+ * @param i int *
+ * @param is_ascending bool
  * @return char* 
  */
-void skip_empty_space(char *line, int *i, bool incl_tab, bool is_ascending)
+void skip_empty_space(char *line, int *i, bool is_ascending)
 {
-	if (incl_tab == true)
+	while (line[*i] == ' ')
 	{
-		while (line[*i] == ' ' || line[*i] == '\t')
-		{
-			if (is_ascending == true)
-				(*i)++;
-			else
-				(*i)--;
-		}
-	}
-	else
-	{
-		while (line[*i] == ' ')
-		{
-			if (is_ascending == true)
-				(*i)++;
-			else
-				(*i)--;
-		}
+		if (is_ascending == true)
+			(*i)++;
+		else
+			(*i)--;
 	}
 }
-
-
 
 /**
  * @brief This function will extract the RGB data from the line
  * 
- * @param line
- * @param color
+ * @param line char *
+ * @param color unsigned int[3]
  * @return void
  */
 void	color_extractor(char *line, unsigned int color[3])
@@ -94,7 +80,7 @@ void	color_extractor(char *line, unsigned int color[3])
 	
 	i = 2;
 	j = 0;
-	skip_empty_space(line, &i, true, true);
+	skip_empty_space(line, &i, true);
 	while (line[i] && line[i] != '\n')
 	{
 		if (j > 2)
@@ -103,7 +89,7 @@ void	color_extractor(char *line, unsigned int color[3])
 		while (line[i] >= '0' && line[i] <= '9' && len < 3)
 			temp_color[len++] = line[i++];
 		color[j] = atoi(&temp_color[j]);
-		if (len == 0 || len > 3)
+		if (len == 0 || len > 3 || color[j] > 255)
 			ftl_err("incorrect RGB data input");
 		temp_color[len] = '\0';
 		if (line[i] == ',')

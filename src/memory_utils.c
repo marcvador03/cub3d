@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:34:38 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/02/28 12:32:07 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:44:41 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	*safe_malloc(size_t size)
 
 	ptr = malloc(size);
 	if (!ptr)
+	{
+		//free all the data that was allocated before
 		ftl_err("in memory allocation");
+	}
 	return (ptr);
 }
