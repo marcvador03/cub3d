@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:38:24 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/07 20:24:24 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/07 23:21:56 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	render_loop(t_mlx *cub, t_render *r)
 			r->stepX = -1;
 			r->sideDistX = (r->posX - r->mapX) * r->deltaDistX;
 		}
-		if (r->rayDirX >= 0)
+		else
 		{
 			r->stepX = 1;
 			r->sideDistX = (r->mapX + 1.0 - r->posX) * r->deltaDistX;
@@ -48,7 +48,7 @@ int	render_loop(t_mlx *cub, t_render *r)
 			r->stepY = -1;
 			r->sideDistY = (r->posY - r->mapY) * r->deltaDistY;
 		}
-		if (r->rayDirY >= 0)
+		else
 		{
 			r->stepY = 1;
 			r->sideDistY = (r->mapY + 1.0 - r->posY) * r->deltaDistY;
@@ -82,9 +82,14 @@ int	render_loop(t_mlx *cub, t_render *r)
 		r->wall_end = r->lineHeight / 2 + cub->win_h / 2;
 		if (r->wall_end < 0)
 			r->wall_end = 0;
-		y = r->wall_start;
-		while (y < r->wall_end)
-			mlx_put_pixel(cub->image, x, y++, 0xFFFFFF);
+		y = 0;
+		while (y < cub->win_h)
+		{
+			if (y > r->wall_start && y < r->wall_end)
+				mlx_put_pixel(cub->image, cub->win_w - x, y++, 0xFFFFFF);
+			else
+				mlx_put_pixel(cub->image, cub->win_w - x, y++, 0x00000000);
+		}
 		x++;
 	}
 	return (0);
@@ -96,12 +101,12 @@ int	render_init(t_mlx *cub)
 	int	testmap[10][15] = 
 	{
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-		{1,1,0,0,0,0,0,1,1,1,1,1,1,1,1},
+		{1,0,0,0,0,0,0,1,1,1,1,1,1,1,1},
 		{1,1,0,0,0,0,0,0,0,0,0,0,0,1,1},
-		{1,1,0,0,0,0,0,0,0,0,0,0,5,1,1},
-		{1,1,0,0,0,0,0,0,0,0,0,0,0,1,1},
-		{1,1,0,0,0,0,1,1,1,1,1,1,0,1,1},
-		{1,1,0,0,0,0,1,1,1,1,1,1,0,1,1},
+		{1,1,1,0,0,0,0,0,0,0,0,0,5,1,1},
+		{1,1,1,0,0,0,0,0,0,0,0,0,0,1,1},
+		{1,1,0,0,0,0,0,1,1,1,1,1,0,1,1},
+		{1,1,0,0,0,0,0,1,1,1,1,1,0,1,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,0,1,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,0,1,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
@@ -136,8 +141,8 @@ int	render_init(t_mlx *cub)
 	}
 	cub->render->dirX = -1;
 	cub->render->dirY = 0;
-	cub->render->planeX = 0;
-	cub->render->planeY = 0.66;
+	cub->render->planeX = 0.0;
+	cub->render->planeY = 0.5;
 	cub->image = mlx_new_image(cub->mlx, cub->win_w, cub->win_h);
 	if (cub->image == NULL)
 		exit (1);

@@ -41,7 +41,7 @@ CUR_DIR := $(shell pwd)
 #TARGETS
 all: libft libmlx $(OBJECTS) $(NAME) 
 
-$(NAME): $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES) $(OBJECTS)
+$(NAME): $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES) $(OBJECTS) | $(LIB_DIR)
 	cc $(CFLAGS) -L libft -L lib $(DEBUG) $(OBJECTS) -o $@ $(LIBS_TAG) $(LIBS_TAG)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)
@@ -57,6 +57,10 @@ libmlx:
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
+
+$(LIB_DIR):
+	@mkdir $(LIB_DIR)
+
 flags:
 	@echo $(CFLAGS)
 
@@ -71,6 +75,7 @@ clean:
 fclean: clean
 	@rm -rf $(NAME)
 	@$(MAKE) fclean -C $(LIBFT_DIR)
+	@rm -rf $(LIB_DIR)
 
 re: fclean all
 ifneq ($(DEPS), )
