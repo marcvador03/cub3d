@@ -1,7 +1,0 @@
-/home/marc/PROG/cub3d/lib/CMakeFiles/mlx42.dir
-/home/marc/PROG/cub3d/lib/CMakeFiles/edit_cache.dir
-/home/marc/PROG/cub3d/lib/CMakeFiles/rebuild_cache.dir
-/home/marc/PROG/cub3d/lib/CMakeFiles/list_install_components.dir
-/home/marc/PROG/cub3d/lib/CMakeFiles/install.dir
-/home/marc/PROG/cub3d/lib/CMakeFiles/install/local.dir
-/home/marc/PROG/cub3d/lib/CMakeFiles/install/strip.dir

@@ -12,6 +12,7 @@ NAME := cub3D
 SRC_NAMES = cub3d.c \
 			hooks.c \
 			render.c \
+			move.c \
 			free_utils.c \
 
 INC_NAMES := cub3d.h

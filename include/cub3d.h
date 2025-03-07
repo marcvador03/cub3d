@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/03 16:57:07 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/07 15:28:09 by mfleury          ###   ########.fr       */
 /*   Updated: 2025/02/24 11:38:26 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -30,13 +30,7 @@
 # define FALSE 0
 # define TRUE 1
 
-typedef struct s_mlx
-{
-	mlx_t	*mlx;
-	char	*map_path;
-}	t_mlx;
-
-typedef struct s_raycast
+typedef struct s_render
 {
 	double	posX;
 	double 	posY;
@@ -62,7 +56,19 @@ typedef struct s_raycast
 	int		wall_start;
 	int		wall_end;
 
-}	t_raycast;
+}	t_render;
+
+typedef struct s_mlx
+{
+	mlx_t		*mlx;
+	t_render	*render;
+	char		*map_path;
+	int			**map;
+	int			win_w;
+	int			win_h;
+	mlx_image_t	*image;
+}	t_mlx;
+
 
 void	free_s(void *ptr);
 void	free_d(char **ptr);

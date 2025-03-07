@@ -6,13 +6,13 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/02/26 17:06:21 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/07 14:47:19 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	render_loop(t_mlx *cub);
+int	render_init(t_mlx *cub);
 
 int	main(int argc, char *argv[])
 {
@@ -25,12 +25,14 @@ int	main(int argc, char *argv[])
 	}
 	else
 		cub.map_path = argv[1];
-	cub.mlx = mlx_init(1080, 1080, "CUB3D", true);
+	cub.win_w = 1080;
+	cub.win_h = 1080;
+	cub.mlx = mlx_init(cub.win_w, cub.win_h, "CUB3D", true);
 	if (cub.mlx == NULL)
 		return (1);
 	mlx_close_hook(cub.mlx, &hook_close, &cub);
 	mlx_key_hook(cub.mlx, &hook_key, &cub);
-	render_loop(&cub);
+	render_init(&cub);
 	mlx_loop(cub.mlx);
 	mlx_terminate(cub.mlx);
 	return (0);
