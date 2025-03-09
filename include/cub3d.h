@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/06 18:11:05 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:40:44 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ void	ft_flood_fill(char **tab, t_pos *size, t_pos *begin);
 // list_utils.c
 void	ft_lst_print(t_list *list);
 
+// map_checks.c
+t_pos	*map_size(t_list *map_list);
+void	is_map_symbols_correct(char **map);
+void	is_map_closed(char **map, t_pos *map_size);
+
 // map_conversion.c
 char	**map_conversion(t_list *map_list, t_pos *map_size);
 void	find_player(char **arr , t_pos *player_pos, char *player_dir);
-
-// map_utils.c
-t_pos	*map_size(t_list *map_list);
-void	is_map_symbols_correct(char **map, t_pos *map_size);
 
 // parsing.c
 t_list	*parse_cub_file(t_mlx *cub);

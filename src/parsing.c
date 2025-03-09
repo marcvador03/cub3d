@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/06 18:20:47 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:04:50 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param map`
  * @return t_list* 
  */
-t_list *parse_cub_file(t_mlx *cub)
+t_list	*parse_cub_file(t_mlx *cub)
 {
 	int		fd;
 	t_list	*map_list;
@@ -43,7 +43,7 @@ t_list *parse_cub_file(t_mlx *cub)
 	return (map_list);
 }
 
-void map_actions(t_list *temp, t_list **map_head) 
+void	map_actions(t_list *temp, t_list **map_head) 
 {
 	if (is_map_line(temp->content))
 	{
@@ -61,7 +61,7 @@ void map_actions(t_list *temp, t_list **map_head)
  * @param txtrs
  * @return void
  */
-t_list *data_extr(t_list *line_list, t_txtr_data *txtrs)
+t_list	*data_extr(t_list *line_list, t_txtr_data *txtrs)
 {
 	t_list *temp;
 	t_list *map_list;
@@ -111,7 +111,11 @@ void	parsing_process(t_mlx *cub)
 	map_list = data_extr(line_list, g_data->txtrs);
 	ft_lstclear(&line_list, free_s);
 	g_data->map->arr = map_conversion(map_list, map_size(map_list));
+	g_data->map->map_size = map_size(map_list);
+	is_map_closed(g_data->map->arr, g_data->map->map_size);
+	is_map_symbols_correct(g_data->map->arr);
 	find_player(g_data->map->arr, g_data->map->player_pos,
 		&g_data->map->player_dir);
 	ft_lstclear(&map_list, free_s);
+	ft_arr_print(g_data->map->arr);
 }

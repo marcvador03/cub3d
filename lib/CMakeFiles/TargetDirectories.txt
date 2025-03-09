@@ -1,7 +1,7 @@
-/home/mpietrza/sgoinfre/projects/cub3d/lib/CMakeFiles/mlx42.dir
-/home/mpietrza/sgoinfre/projects/cub3d/lib/CMakeFiles/edit_cache.dir
-/home/mpietrza/sgoinfre/projects/cub3d/lib/CMakeFiles/rebuild_cache.dir
-/home/mpietrza/sgoinfre/projects/cub3d/lib/CMakeFiles/list_install_components.dir
-/home/mpietrza/sgoinfre/projects/cub3d/lib/CMakeFiles/install.dir
-/home/mpietrza/sgoinfre/projects/cub3d/lib/CMakeFiles/install/local.dir
-/home/mpietrza/sgoinfre/projects/cub3d/lib/CMakeFiles/install/strip.dir
+/home/milosz/42/cub3d/lib/CMakeFiles/mlx42.dir
+/home/milosz/42/cub3d/lib/CMakeFiles/edit_cache.dir
+/home/milosz/42/cub3d/lib/CMakeFiles/rebuild_cache.dir
+/home/milosz/42/cub3d/lib/CMakeFiles/list_install_components.dir
+/home/milosz/42/cub3d/lib/CMakeFiles/install.dir
+/home/milosz/42/cub3d/lib/CMakeFiles/install/local.dir
+/home/milosz/42/cub3d/lib/CMakeFiles/install/strip.dir
