@@ -11,7 +11,6 @@ NAME := cub3D
 
 SRC_NAMES = cub3d.c \
 			error_utils.c \
-			flood_fill.c \
 			free_utils.c \
 			list_utils.c \
 			map_checks.c \

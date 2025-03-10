@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/09 17:40:44 by milosz           ###   ########.fr       */
+/*   Updated: 2025/03/10 18:40:16 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "../mlx42/include/MLX42/MLX42.h"
 
 # include "macros.h"
-# include "graphic_data.h"
+# include "data.h"
 
 typedef struct s_mlx
 {
@@ -39,47 +39,44 @@ typedef struct s_mlx
 // free_utils.c
 void	free_s(void *ptr);
 void	free_d(char **ptr);
+void	free_data(t_data *data);
 
 // memory_utils.c
-void	*safe_malloc(size_t size);
+void	*safe_malloc(size_t size, t_data *data);
 
 // error_utils.c
-void	ftl_err(const char *msg);
+void	ftl_err(const char *msg, t_data *data);
 
 /* --------------------- parse and map files ---------------------------------*/
-// flood_fill.c
-char	**ft_arr_temp(t_map *map);
-void	ft_flood_fill(char **tab, t_pos *size, t_pos *begin);
 
 // list_utils.c
 void	ft_lst_print(t_list *list);
 
 // map_checks.c
-t_pos	*map_size(t_list *map_list);
-void	is_map_symbols_correct(char **map);
-void	is_map_closed(char **map, t_pos *map_size);
+void	map_size(t_data *data);
+void	is_map_symbols_correct(t_data *data);
+void	is_map_closed(t_data *data);
 
 // map_conversion.c
-char	**map_conversion(t_list *map_list, t_pos *map_size);
+void	map_conversion(t_data *data);
 void	find_player(char **arr , t_pos *player_pos, char *player_dir);
 
 // parsing.c
-t_list	*parse_cub_file(t_mlx *cub);
-t_list	*parse_cub_file(t_mlx *cub);
-t_list	*data_extr(t_list *line_list, t_txtr_data *txtrs);
-void	parsing_process(t_mlx *cub);
+void	parse_cub_file(t_mlx *cub, t_data *data);
+void	data_extr(t_data *data);
+void	parsing_process(t_mlx *cub, t_data *data);
 
 // parsing_utils.c
-char	*file_path_extractor(void *line, int start);
+char	*file_path_extractor(void *line, int start, t_data *data);
 void	skip_empty_space(char *line, int *i, bool is_ascending);
-void	color_extractor(char *line, unsigned int color[3]);
+void	color_extractor(char *line, unsigned int color[3], t_data *data);
 bool	is_map_line(void *content);
 bool	gnl_for_loop(int fd, char **line);
-void	map_pos_checker(t_list *line_list);
+void	map_pos_checker(t_data *data);
 
 //str_utils.c
-char	*ft_strdup_w_o_nl(char *str);
+char	*ft_strdup_w_o_nl(char *str, t_data *data);
 void	ft_arr_print(char **arr);
-char	*ft_safe_strdup_w_o_leading_spaces(char *line);
+char	*ft_safe_strdup_w_o_leading_spaces(char *line, t_data *data);
 
 #endif

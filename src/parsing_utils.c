@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:21:14 by milosz            #+#    #+#             */
-/*   Updated: 2025/03/06 18:19:21 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:55:59 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param start int
  * @return char*
  */
-char	*file_path_extractor(void *content, int start)
+char	*file_path_extractor(void *content, int start, t_data *data)
 {
 	int		i;
 	int		j;
@@ -33,7 +33,7 @@ char	*file_path_extractor(void *content, int start)
 	j = i;
 	while (line[j])
 		j++;
-	path = (char *)safe_malloc(sizeof(char) * (j - i + 1));
+	path = (char *)safe_malloc(sizeof(char) * (j - i + 1), data);
 	j = 0;
 	while (line[i] && line[i] != ' ' && line[i] != '\n')
 	{
@@ -71,7 +71,7 @@ void skip_empty_space(char *line, int *i, bool is_ascending)
  * @param color unsigned int[3]
  * @return void
  */
-void	color_extractor(char *line, unsigned int color[3])
+void	color_extractor(char *line, unsigned int color[3], t_data *data)
 {
 	int		i;
 	int		j;
@@ -84,20 +84,20 @@ void	color_extractor(char *line, unsigned int color[3])
 	while (line[i] && line[i] != '\n')
 	{
 		if (j > 2)
-			ftl_err("incorrect RGB data input");
+			ftl_err("incorrect RGB data input", data);
 		len = 0;
 		while (line[i] >= '0' && line[i] <= '9' && len < 3)
 			temp_color[len++] = line[i++];
 		color[j] = atoi(&temp_color[j]);
 		if (len == 0 || len > 3 || color[j] > 255)
-			ftl_err("incorrect RGB data input");
+			ftl_err("incorrect RGB data input", data);
 		temp_color[len] = '\0';
 		if (line[i] == ',')
 			i++; //to skip the ',' in RGB
 		j++;
 	}
 	if (j != 3)
-		ftl_err("incorrect RGB data input");
+		ftl_err("incorrect RGB data input", data);
 }
 
 /**
@@ -133,7 +133,7 @@ bool	gnl_for_loop(int fd, char **line)
 	return (true);
 }
 
-void	map_pos_checker(t_list *line_list)
+void	map_pos_checker(t_data *data)
 {
 	int		is_map;
 	int		isnt_map;
@@ -142,10 +142,10 @@ void	map_pos_checker(t_list *line_list)
 	
 	is_map = 0;
 	isnt_map = 0;
-	temp = line_list;
+	temp = data->line_list;
 	while(temp)
 	{
-		s_temp = ft_safe_strdup_w_o_leading_spaces((char *)temp->content);
+		s_temp = ft_safe_strdup_w_o_leading_spaces((char *)temp->content, data);
 		if ((!ft_strncmp(s_temp, "NO ", 3)) || (!ft_strncmp(s_temp, "SO ", 3))
 			|| (!ft_strncmp(s_temp, "WE ", 3)) 
 				|| (!ft_strncmp(s_temp, "EA ", 3))
@@ -156,7 +156,7 @@ void	map_pos_checker(t_list *line_list)
 			is_map++;
 		free(s_temp);
 		if (isnt_map != 6 && is_map > 0)
-			ftl_err("in the 'cub' file - wrong data or map in the beginning");
+			ftl_err("in the 'cub' file - wrong data or map in the beginning", data);
 		temp = temp->next;
 	}
 }

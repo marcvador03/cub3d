@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphic_data.h                                     :+:      :+:    :+:   */
+/*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:42:13 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/04 19:11:24 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:11:17 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_DATA_H
 # define GRAPHIC_DATA_H
+
+# include "cub3d.h"
 
 typedef struct s_txtr_data
 {
@@ -30,12 +32,7 @@ typedef struct s_pos
 	int			y;
 }				t_pos;
 
-/* struct for list to store the lines read from the file*/
-/*typedef struct s_list
-{
-	char			*line;
-	struct s_list	*next;
-}				t_list;*/
+
 
 /* struct for creating and managing the map */
 typedef struct s_map
@@ -48,10 +45,12 @@ typedef struct s_map
 	int		y;
 }		t_map;
 
-typedef struct s_graph_data
+typedef struct s_data
 {
 	t_txtr_data	*txtrs;
 	t_map		*map;
-}	t_graph_data;
+	t_list		*line_list;
+	t_list		*map_list;
+}	t_data;
 
 #endif
