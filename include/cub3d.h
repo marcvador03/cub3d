@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/11 13:05:44 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:58:48 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,11 @@ void	is_map_closed(t_data *data);
 
 // map_conversion.c
 void	map_conversion(t_data *data);
-void	find_player(char **arr , t_pos *player_pos, char *player_dir);
+void	find_player(char **arr, t_pos *player_pos, char *player_dir);
 
 // parsing.c
 void	parse_cub_file(t_mlx *cub, t_data *data);
+bool	is_map_line(void *content, bool *map_started);
 void	data_extr(t_data *data);
 void	parsing_process(t_mlx *cub, t_data *data);
 
@@ -70,14 +71,14 @@ void	parsing_process(t_mlx *cub, t_data *data);
 char	*file_path_extractor(void *line, int start, t_data *data);
 void	skip_empty_space(char *line, int *i, bool is_ascending);
 void	color_extractor(char *line, unsigned int color[3], t_data *data);
-bool	is_map_line(void *content);
+
 bool	gnl_for_loop(int fd, char **line);
 void	map_pos_checker(t_data *data);
 
 //str_utils.c
 char	*ft_strdup_w_o_nl(char *str, t_data *data);
 void	ft_arr_print(char **arr);
-char	*ft_safe_strdup_w_o_leading_spaces(char *line, t_data *data);
+char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *data);
 
 // structs_init.c
 void	structs_init(t_data *data);

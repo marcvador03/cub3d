@@ -6,12 +6,19 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:09:15 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/11 12:40:12 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:58:51 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief This function will duplicate a string without the newline character
+ * 
+ * @param str char*
+ * @param data t_data*
+ * @return char* 
+ */
 char	*ft_strdup_w_o_nl(char *str, t_data *data)
 {
 	int		i;
@@ -36,9 +43,15 @@ char	*ft_strdup_w_o_nl(char *str, t_data *data)
 	return (new_str);
 }
 
+/**
+ * @brief This function will print an array of strings
+ * 
+ * @param arr char**
+ * @return void
+ */
 void	ft_arr_print(char **arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (arr[i])
@@ -48,9 +61,16 @@ void	ft_arr_print(char **arr)
 	}
 }
 
-char	*ft_safe_strdup_w_o_leading_spaces(char *line, t_data *data)
+/**
+ * @brief This function will duplicate a string without preceding spaces
+ * 
+ * @param line char*
+ * @param data t_data*
+ * @return char*
+ */
+char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *data)
 {
-	int 	i;
+	int		i;
 	char	*pure_line;
 
 	i = 0;

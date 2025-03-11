@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:21:14 by milosz            #+#    #+#             */
-/*   Updated: 2025/03/11 12:50:16 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:58:48 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
  * 
  * @param content void*
  * @param start int
+ * @param data t_data*
  * @return char*
  */
 char	*file_path_extractor(void *content, int start, t_data *data)
@@ -69,6 +70,7 @@ void	skip_empty_space(char *line, int *i, bool is_ascending)
  * 
  * @param line char *
  * @param color unsigned int[3]
+ * @param data t_data *
  * @return void
  */
 void	color_extractor(char *line, unsigned int color[3], t_data *data)
@@ -101,30 +103,12 @@ void	color_extractor(char *line, unsigned int color[3], t_data *data)
 }
 
 /**
- * @brief This function will check if the line is a map line
+ * @brief this is the extension of get_next_line function
+ * that checks if the line is empty
  * 
- * @param line
- * @return bool 
+ * @param fd int
+ * @param line char**
  */
-bool	is_map_line(void *content)
-{
-	int		i;
-	char	*line;
-
-	line = (char *)content;
-	i = 0;
-	while (line[i + 1])
-	{
-		if (line[i] != '1' && line[i] != '0' && line[i] != 'N' && line[i] != 'S'
-			&& line[i] != 'E' && line[i] != 'W' && line[i] != ' ')
-			return (false);
-		i++;
-	}
-	if (line[i] && line[i] != '1' && line[i] != ' ' && line[i] != '\n')
-		return (false);
-	return (true);
-}
-
 bool	gnl_for_loop(int fd, char **line)
 {
 	*line = get_next_line(fd);
@@ -133,6 +117,13 @@ bool	gnl_for_loop(int fd, char **line)
 	return (true);
 }
 
+/**
+ * @brief This function will check if the map is in the correct position 
+ * in the 'cub' file
+ * 
+ * @param data t_data*
+ * @return void
+ */
 void	map_pos_checker(t_data *data)
 {
 	int		is_map;
@@ -145,7 +136,7 @@ void	map_pos_checker(t_data *data)
 	temp = data->line_list;
 	while (temp)
 	{
-		s_tmp = ft_safe_strdup_w_o_leading_spaces((char *)temp->content, data);
+		s_tmp = ft_safe_strdup_w_o_preceding_spaces((char *)temp->content, data);
 		if ((!ft_strncmp(s_tmp, "NO ", 3)) || (!ft_strncmp(s_tmp, "SO ", 3))
 			|| (!ft_strncmp(s_tmp, "WE ", 3)) || (!ft_strncmp(s_tmp, "EA ", 3))
 			|| (!ft_strncmp(s_tmp, "F ", 2)) || (!ft_strncmp(s_tmp, "C ", 2)))

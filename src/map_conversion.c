@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/11 12:46:05 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:59:23 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	map_conversion(t_data *data)
 	t_pos	*map_size;
 
 	map_size = data->map->map_size;
-	data->map->arr =
-		(char **)safe_malloc((map_size->y + 1) * sizeof(char *), data);
+	data->map->arr
+		= (char **)safe_malloc((map_size->y + 1) * sizeof(char *), data);
 	y = 0;
 	temp = data->map_list;
 	while (temp)
@@ -73,7 +73,7 @@ void	find_player(char **arr, t_pos *player_pos, char *player_dir)
  * @brief This function will calculate the size of the map
  * 		  by counting the number of lines and the length of the longest line
  * 		  after deleting the lines that are not a map data
- * @param map_list
+ * @param data t_data*
  * @return t_pos*
  */
 void	map_size(t_data *data)

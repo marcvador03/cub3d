@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/11 13:05:43 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:56:13 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,22 @@ void	parse_cub_file(t_mlx *cub, t_data *data)
 	close(fd);
 }
 
-void	map_actions(t_list *temp, t_data *data) 
+/**
+ * @brief This function will check if the line is a map line
+ * then store it in the map linked list
+ * 
+ * @param temp t_list*
+ * @param data t_data*
+ * @param map_started bool*
+ * @return bool 
+ */
+static void	map_actions(t_list *temp, t_data *data, bool *map_started)
 {
-	t_list *new_node;
-	t_list **map_head;
-	
+	t_list	*new_node;
+	t_list	**map_head;
+
+	if (!*map_started)
+		return ;
 	map_head = &data->map_list;
 	new_node = (t_list *)safe_malloc(sizeof(t_list), data);
 	new_node->content = ft_strdup_w_o_nl((char *)temp->content, data);
@@ -53,21 +64,49 @@ void	map_actions(t_list *temp, t_data *data)
 }
 
 /**
+ * @brief This function will check if the line is a map line
+ * 
+ * @param line
+ * @return bool 
+ */
+bool	is_map_line(void *content, bool *map_started)
+{
+	int		i;
+	char	*line;
+
+	line = (char *)content;
+	i = 0;
+	while (line[i + 1])
+	{
+		if (line[i] == '1' && !*map_started)
+			*map_started = true;
+		if (line[i] != '1' && line[i] != '0' && line[i] != 'N' && line[i] != 'S'
+			&& line[i] != 'E' && line[i] != 'W' && line[i] != ' ')
+			return (false);
+		i++;
+	}
+	if (line[i] && line[i] != '1' && line[i] != ' ' && line[i] != '\n')
+		return (false);
+	return (true);
+}
+
+/**
  * @brief This function will extract the data from the linked list
  * 
- * @param line_list
- * @param txtrs
+ * @param data
  * @return void
  */
 void	data_extr(t_data *data)
 {
 	t_list	*temp;
+	bool	map_started;
 
+	map_started = false;
 	temp = data->line_list;
 	while (temp)
 	{
-		if (is_map_line(temp->content))
-			map_actions(temp, data);
+		if (is_map_line(temp->content, &map_started))
+			map_actions(temp, data, &map_started);
 		else if (!ft_strncmp((char *)temp->content, "NO ", 3))
 			data->txtrs->no_txtr = file_path_extractor(temp->content, 3, data);
 		else if (!ft_strncmp((char *)temp->content, "SO ", 3))
@@ -84,13 +123,11 @@ void	data_extr(t_data *data)
 	}
 }
 
-
-
 /**
  * @brief This function will parse the map file and store it in a linked list
  * 
  * @param cub
- * @param txtrs
+ * @param data
  * @return void
  */
 void	parsing_process(t_mlx *cub, t_data *data)

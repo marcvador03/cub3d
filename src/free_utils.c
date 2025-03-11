@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/11 13:09:13 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:45:04 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ void	free_d(char **ptr)
 	free_s(ptr);
 }
 
+/**
+ * @brief Free the data structure
+ * 
+ * @param data
+ * @return void 
+ */
 void	free_data(t_data *data)
 {
 	if (data)

@@ -6,12 +6,17 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:59:20 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/11 13:05:55 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:56:51 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+/**
+ * @brief This function will initialize the structs
+ * 
+ * @param data t_data*
+ * @return void
+ */
 void	structs_init(t_data *data)
 {
 	data->txtrs = (t_txtr_data *)safe_malloc(sizeof(t_txtr_data), data);

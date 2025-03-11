@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:40:29 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/11 11:57:45 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:49:54 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @brief Check if map symbols are correct
  * 
- * @param map char**
+ * @param data t_data*
  * @return void
  */
 void	is_map_symbols_correct(t_data *data)
@@ -23,22 +23,21 @@ void	is_map_symbols_correct(t_data *data)
 	int		x;
 	int		y;
 	int		player_count;
-	char	**map;
 
-	map = data->map->arr;
 	y = 0;
 	player_count = 0;
-	while (map[y])
+	while (data->map->arr[y])
 	{
 		x = 0;
-		while (map[y][x])
+		while (data->map->arr[y][x])
 		{
-			if (map[y][x] != ' ' && map[y][x] != '1' && map[y][x] != '0'
-					&& map[y][x] != 'N' && map[y][x] != 'S'
-						&& map[y][x] != 'E' && map[y][x] != 'W')
-				ftl_err("in map symbols", data);
-			else if (map[y][x] == 'N' || map[y][x] == 'S'
-					|| map[y][x] == 'E' || map[y][x] == 'W')
+			if (data->map->arr[y][x] != ' ' && data->map->arr[y][x] != '1'
+				&& data->map->arr[y][x] != '0' && data->map->arr[y][x] != 'N'
+				&& data->map->arr[y][x] != 'S' && data->map->arr[y][x] != 'E'
+				&& data->map->arr[y][x] != 'W')
+				ftl_err("in data->map->arr symbols", data);
+			else if (data->map->arr[y][x] == 'N' || data->map->arr[y][x] == 'S'
+				|| data->map->arr[y][x] == 'E' || data->map->arr[y][x] == 'W')
 				player_count++;
 			x++;
 		}
@@ -102,7 +101,7 @@ void	is_map_closed(t_data *data)
 					|| map[y][x] == 'E' || map[y][x] == 'W')
 				if (is_map_closed_checks(map, data->map->map_size, x, y)
 					== false)
-					ftl_err("in map closed", data);
+					ftl_err("map is not closed", data);
 			x++;
 		}
 		y++;
