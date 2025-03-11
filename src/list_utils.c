@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 15:53:52 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/04 19:11:28 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:56:56 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,3 @@ void	ft_lst_print(t_list *list)
 		temp = temp->next;
 	}
 }
-

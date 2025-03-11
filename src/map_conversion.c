@@ -6,12 +6,11 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/10 18:31:45 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:46:05 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 /**
  * @brief This function will convert the linked list of map data into a 2D array
@@ -23,29 +22,28 @@
 void	map_conversion(t_data *data)
 {
 	int		y;
-	char	**map;
 	t_list	*temp;
-	t_pos *map_size;
+	t_pos	*map_size;
 
 	map_size = data->map->map_size;
-	map = (char **)safe_malloc((map_size->y + 1) * sizeof(char *), data);
+	data->map->arr =
+		(char **)safe_malloc((map_size->y + 1) * sizeof(char *), data);
 	y = 0;
 	temp = data->map_list;
 	while (temp)
 	{
-		map[y] = ft_strdup((char *)temp->content);
-		if (!map[y])
+		data->map->arr[y] = ft_strdup((char *)temp->content);
+		if (!data->map->arr[y])
 			ftl_err("in map conversion", data);
-		map[y][ft_strlen(temp->content)] = '\0';
+		data->map->arr[y][ft_strlen(temp->content)] = '\0';
 		y++;
 		temp = temp->next;
 	}
-	map[y] = NULL;
+	data->map->arr[y] = NULL;
 	y = 0;
-	data->map->arr = map;
 }
 
-void	find_player(char **arr , t_pos *player_pos, char *player_dir)
+void	find_player(char **arr, t_pos *player_pos, char *player_dir)
 {
 	int		x;
 	int		y;
@@ -56,7 +54,8 @@ void	find_player(char **arr , t_pos *player_pos, char *player_dir)
 		y = 0;
 		while (arr[x][y])
 		{
-			if (arr[x][y] == 'N' || arr[x][y] == 'S' || arr[x][y] == 'E' || arr[x][y] == 'W')
+			if (arr[x][y] == 'N' || arr[x][y] == 'S' || arr[x][y] == 'E'
+			|| arr[x][y] == 'W')
 			{
 				player_pos->x = x;
 				player_pos->y = y;
@@ -79,19 +78,16 @@ void	find_player(char **arr , t_pos *player_pos, char *player_dir)
  */
 void	map_size(t_data *data)
 {
-	t_pos	*map_size;
 	t_list	*temp;
 
-	map_size = (t_pos *)safe_malloc(sizeof(t_pos), data);
-	map_size->x = 0;
-	map_size->y = 0;
+	data->map->map_size->x = 0;
+	data->map->map_size->y = 0;
 	temp = data->map_list;
 	while (temp)
 	{
-		map_size->y++;
-		if (map_size->x < (int)ft_strlen(temp->content))
-			map_size->x = ft_strlen(temp->content);
+		data->map->map_size->y++;
+		if (data->map->map_size->x < (int)ft_strlen(temp->content))
+			data->map->map_size->x = ft_strlen(temp->content);
 		temp = temp->next;
 	}
-	data->map->map_size = map_size;
 }

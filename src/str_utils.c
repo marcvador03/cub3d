@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:09:15 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/10 18:54:10 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:40:12 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ char	*ft_safe_strdup_w_o_leading_spaces(char *line, t_data *data)
 	char	*pure_line;
 
 	i = 0;
-	printf("line: %s\n", line);
 	while (line[i] == ' ')
 		i++;
 	pure_line = ft_strdup(&line[i]);

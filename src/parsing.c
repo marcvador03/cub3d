@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/10 18:39:40 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:05:43 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@
 void	parse_cub_file(t_mlx *cub, t_data *data)
 {
 	int		fd;
-	t_list	*map_list;
 	t_list	**head;
 	t_list	*temp;
 	char	*line;
 
-	map_list = NULL;
-	head = &map_list; // Store the address of the head pointer
+	head = &data->line_list; // Store the address of the head pointer
 	fd = open(cub->map_path, O_RDONLY);
 	if (fd < 0)
 		ftl_err("in opening file", data);
@@ -40,18 +38,18 @@ void	parse_cub_file(t_mlx *cub, t_data *data)
 		ft_lstadd_back(head, temp);
 	}
 	close(fd);
-	data->map_list = map_list;
 }
 
-void	map_actions(t_list *temp, t_list **map_head, t_data *data) 
+void	map_actions(t_list *temp, t_data *data) 
 {
-	if (is_map_line(temp->content))
-	{
-		t_list *new_node = (t_list *)safe_malloc(sizeof(t_list), data);
-		new_node->content = ft_strdup_w_o_nl((char *)temp->content, data);
-		new_node->next = NULL;
-		ft_lstadd_back(map_head, new_node);
-	}
+	t_list *new_node;
+	t_list **map_head;
+	
+	map_head = &data->map_list;
+	new_node = (t_list *)safe_malloc(sizeof(t_list), data);
+	new_node->content = ft_strdup_w_o_nl((char *)temp->content, data);
+	new_node->next = NULL;
+	ft_lstadd_back(map_head, new_node);
 }
 
 /**
@@ -63,15 +61,13 @@ void	map_actions(t_list *temp, t_list **map_head, t_data *data)
  */
 void	data_extr(t_data *data)
 {
-	t_list *temp;
-	t_list *map_list;
+	t_list	*temp;
 
 	temp = data->line_list;
-	map_list = NULL;
 	while (temp)
 	{
 		if (is_map_line(temp->content))
-			map_actions(temp, &map_list, data);
+			map_actions(temp, data);
 		else if (!ft_strncmp((char *)temp->content, "NO ", 3))
 			data->txtrs->no_txtr = file_path_extractor(temp->content, 3, data);
 		else if (!ft_strncmp((char *)temp->content, "SO ", 3))
@@ -86,8 +82,9 @@ void	data_extr(t_data *data)
 			color_extractor(temp->content, data->txtrs->c_clr, data);
 		temp = temp->next;
 	}
-    data->map_list = map_list;
 }
+
+
 
 /**
  * @brief This function will parse the map file and store it in a linked list
@@ -98,15 +95,14 @@ void	data_extr(t_data *data)
  */
 void	parsing_process(t_mlx *cub, t_data *data)
 {
-	data->txtrs = (t_txtr_data *)safe_malloc(sizeof(t_txtr_data), data);
-	data->map = (t_map *)safe_malloc(sizeof(t_map), data);
-	data->map->player_pos = (t_pos *)safe_malloc(sizeof(t_pos), data);
+	structs_init(data);
 	parse_cub_file(cub, data);
 	map_pos_checker(data);
 	data_extr(data);
 	ft_lstclear(&data->line_list, free_s);
-	map_size( data);
+	map_size(data);
 	map_conversion(data);
+	ft_arr_print(data->map->arr);
 	is_map_closed(data);
 	is_map_symbols_correct(data);
 	find_player(data->map->arr, data->map->player_pos,

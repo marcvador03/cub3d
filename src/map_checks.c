@@ -6,12 +6,11 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:40:29 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/10 18:30:45 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:57:45 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 /**
  * @brief Check if map symbols are correct
@@ -23,11 +22,12 @@ void	is_map_symbols_correct(t_data *data)
 {
 	int		x;
 	int		y;
-	int		player_count = 0;
+	int		player_count;
 	char	**map;
 
 	map = data->map->arr;
 	y = 0;
+	player_count = 0;
 	while (map[y])
 	{
 		x = 0;
@@ -57,9 +57,9 @@ void	is_map_symbols_correct(t_data *data)
  * @param y int
  * @return void
  */
-static bool is_map_closed_checks(char **map, t_pos *map_size, int x, int y)
+static bool	is_map_closed_checks(char **map, t_pos *map_size, int x, int y)
 {
-	if (x == 0 || x == map_size->x - 1 || y == 0 ||	y == map_size->y - 1) 
+	if (x == 0 || x == map_size->x - 1 || y == 0 || y == map_size->y - 1)
 		return (false);
 	if (map[y - 1][x] == ' ' || map[y + 1][x] == ' '
 			|| map[y][x - 1] == ' ' || map[y][x + 1] == ' '
@@ -101,7 +101,7 @@ void	is_map_closed(t_data *data)
 			if (map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S'
 					|| map[y][x] == 'E' || map[y][x] == 'W')
 				if (is_map_closed_checks(map, data->map->map_size, x, y)
-						== false)
+					== false)
 					ftl_err("in map closed", data);
 			x++;
 		}

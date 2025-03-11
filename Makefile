@@ -18,7 +18,8 @@ SRC_NAMES = cub3d.c \
 			memory_utils.c \
 			parsing_utils.c \
 			parsing.c \
-			str_utils.c
+			str_utils.c\
+			structs_init.c
 			
 INC_NAMES := cub3d.h
 
