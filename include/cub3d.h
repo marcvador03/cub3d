@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/07 15:28:09 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/10 17:31:39 by mfleury          ###   ########.fr       */
 /*   Updated: 2025/02/24 11:38:26 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@
 # define FALSE 0
 # define TRUE 1
 
-typedef struct s_render
+typedef struct s_player
 {
 	double	posX;
 	double 	posY;
@@ -39,6 +39,11 @@ typedef struct s_render
 	double	planeX;
 	double	planeY;
 	double	cameraX;
+
+}	t_player;
+
+typedef struct s_render
+{
 	double	rayDirX;
 	double	rayDirY;
 	double	deltaDistX;
@@ -62,6 +67,7 @@ typedef struct s_mlx
 {
 	mlx_t		*mlx;
 	t_render	*render;
+	t_player	*player;
 	char		*map_path;
 	int			**map;
 	int			win_w;

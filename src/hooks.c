@@ -6,13 +6,13 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:20:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/07 23:41:46 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/11 10:49:49 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	render_loop(t_mlx *cub, t_render *r);
+int	raycast_loop(t_mlx *cub, t_render *r, t_player *p);
 
 void	hook_key(mlx_key_data_t k, void *param)
 {
@@ -25,39 +25,39 @@ void	hook_key(mlx_key_data_t k, void *param)
 		mlx_terminate(cub->mlx);
 	else if (k.key == MLX_KEY_UP && k.action == MLX_PRESS)
 	{
-		cub->render->posX += cub->render->dirX;
-		cub->render->posY += cub->render->dirY;
-		render_loop(cub, cub->render);
+		cub->player->posX += cub->player->dirX;
+		cub->player->posY += cub->player->dirY;
+		raycast_loop(cub, cub->render, cub->player);
 	}
 	else if (k.key == MLX_KEY_DOWN && k.action == MLX_PRESS)
 	{
-		cub->render->posX -= cub->render->dirX;
-		cub->render->posY -= cub->render->dirY;
-		render_loop(cub, cub->render);
+		cub->player->posX -= cub->player->dirX;
+		cub->player->posY -= cub->player->dirY;
+		raycast_loop(cub, cub->render, cub->player);
 	}
 	else if (k.key == MLX_KEY_LEFT && k.action == MLX_PRESS)
 	{
-		x = cub->render->dirX;
-		y = cub->render->dirY;
-		cub->render->dirX = x * cos(-0.5) - y * sin(-0.5);
-		cub->render->dirY = x * sin(-0.5) + y * cos(-0.5);
-		x = cub->render->planeX;
-		y = cub->render->planeY;
-		cub->render->planeX = x * cos(-0.5) - y * sin(-0.5);
-		cub->render->planeY = x * sin(-0.5) + y * cos(-0.5);
-		render_loop(cub, cub->render);
+		x = cub->player->dirX;
+		y = cub->player->dirY;
+		cub->player->dirX = x * cos(-0.5) - y * sin(-0.5);
+		cub->player->dirY = x * sin(-0.5) + y * cos(-0.5);
+		x = cub->player->planeX;
+		y = cub->player->planeY;
+		cub->player->planeX = x * cos(-0.5) - y * sin(-0.5);
+		cub->player->planeY = x * sin(-0.5) + y * cos(-0.5);
+		raycast_loop(cub, cub->render, cub->player);
 	}
 	else if (k.key == MLX_KEY_RIGHT && k.action == MLX_PRESS)
 	{
-		x = cub->render->dirX;
-		y = cub->render->dirY;
-		cub->render->dirX = x * cos(0.5) - y * sin(0.5);
-		cub->render->dirY = x * sin(0.5) + y * cos(0.5);
-		x = cub->render->planeX;
-		y = cub->render->planeY;
-		cub->render->planeX = x * cos(0.5) - y * sin(0.5);
-		cub->render->planeY = x * sin(0.5) + y * cos(0.5);
-		render_loop(cub, cub->render);
+		x = cub->player->dirX;
+		y = cub->player->dirY;
+		cub->player->dirX = x * cos(0.5) - y * sin(0.5);
+		cub->player->dirY = x * sin(0.5) + y * cos(0.5);
+		x = cub->player->planeX;
+		y = cub->player->planeY;
+		cub->player->planeX = x * cos(0.5) - y * sin(0.5);
+		cub->player->planeY = x * sin(0.5) + y * cos(0.5);
+		raycast_loop(cub, cub->render, cub->player);
 	}
 }
 
