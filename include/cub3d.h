@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/10 17:31:39 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/11 20:05:01 by mfleury          ###   ########.fr       */
 /*   Updated: 2025/02/24 11:38:26 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -30,6 +30,17 @@
 # define FALSE 0
 # define TRUE 1
 
+typedef struct	s_render
+{
+	double	wallX;
+	int		pixelX;
+	int		pixelY;
+	double	step;
+	double	pixel_pos;
+	int		color;
+
+}	t_render;
+
 typedef struct s_player
 {
 	double	posX;
@@ -42,7 +53,7 @@ typedef struct s_player
 
 }	t_player;
 
-typedef struct s_render
+typedef struct s_raycast
 {
 	double	rayDirX;
 	double	rayDirY;
@@ -61,18 +72,20 @@ typedef struct s_render
 	int		wall_start;
 	int		wall_end;
 
-}	t_render;
+}	t_raycast;
 
 typedef struct s_mlx
 {
-	mlx_t		*mlx;
-	t_render	*render;
-	t_player	*player;
-	char		*map_path;
-	int			**map;
-	int			win_w;
-	int			win_h;
-	mlx_image_t	*image;
+	mlx_t			*mlx;
+	t_raycast		*raycast;
+	t_player		*player;
+	t_render		*render;
+	char			*map_path;
+	int				**map;
+	int				win_w;
+	int				win_h;
+	mlx_image_t		*image;
+	mlx_texture_t	*texture;
 }	t_mlx;
 
 
