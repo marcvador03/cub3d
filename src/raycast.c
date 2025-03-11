@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:38:24 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/11 10:46:04 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/11 14:30:33 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,8 @@ int	raycast_init(t_mlx *cub)
 	int	j;
 
 	cub->render = (t_render *)ft_calloc(1, sizeof(t_render));
-	if (cub->render == NULL)
+	cub->player = (t_player *)ft_calloc(1, sizeof(t_player));
+	if (cub->render == NULL || cub->player == NULL)
 		exit(1);
 	cub->map = (int **)ft_calloc(10, sizeof(int *));
 	if (cub->map == NULL)
