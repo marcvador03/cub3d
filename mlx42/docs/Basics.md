@@ -58,9 +58,9 @@ regarding the window and looks as follows:
 
 ```c
 /**
- * Main MLX handle, carries important data in regards to the program.
+ * Main MLX handle, carries important d in regards to the program.
  * @param window The window itself.
- * @param context Abstracted opengl data.
+ * @param context Abstracted opengl d.
  * @param width The width of the window.
  * @param height The height of the window.
  * @param delta_time The time difference between the previous frame and the current frame.

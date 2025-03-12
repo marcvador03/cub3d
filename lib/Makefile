@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mpietrza/sgoinfre/projects/cub3d/mlx42
+CMAKE_SOURCE_DIR = /sgoinfre/students/mpietrza/projects/cub3d/mlx42
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mpietrza/sgoinfre/projects/cub3d/lib
+CMAKE_BINARY_DIR = /sgoinfre/students/mpietrza/projects/cub3d/lib
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mpietrza/sgoinfre/projects/cub3d/lib/CMakeFiles /home/mpietrza/sgoinfre/projects/cub3d/lib//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /sgoinfre/students/mpietrza/projects/cub3d/lib/CMakeFiles /sgoinfre/students/mpietrza/projects/cub3d/lib//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mpietrza/sgoinfre/projects/cub3d/lib/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /sgoinfre/students/mpietrza/projects/cub3d/lib/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

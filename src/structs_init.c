@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:59:20 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/11 14:56:51 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:28:05 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 /**
  * @brief This function will initialize the structs
  * 
- * @param data t_data*
+ * @param d t_data*
  * @return void
  */
-void	structs_init(t_data *data)
+void	structs_init(t_data *d)
 {
-	data->txtrs = (t_txtr_data *)safe_malloc(sizeof(t_txtr_data), data);
-	data->txtrs->no_txtr = NULL;
-	data->txtrs->so_txtr = NULL;
-	data->txtrs->we_txtr = NULL;
-	data->txtrs->ea_txtr = NULL;
-	data->map = (t_map *)safe_malloc(sizeof(t_map), data);
-	data->map->player_pos = (t_pos *)safe_malloc(sizeof(t_pos), data);
-	data->map->map_size = (t_pos *)safe_malloc(sizeof(t_pos), data);
-	data->map->arr = NULL;
-	data->line_list = NULL;
-	data->map_list = NULL;
+	d->txs = (t_gr_d *)safe_malloc(sizeof(t_gr_d), d);
+	d->txs->no_tx = NULL;
+	d->txs->so_tx = NULL;
+	d->txs->we_tx = NULL;
+	d->txs->ea_tx = NULL;
+	d->map = (t_map *)safe_malloc(sizeof(t_map), d);
+	d->map->pl_pos = (t_pos *)safe_malloc(sizeof(t_pos), d);
+	d->map->map_size = (t_pos *)safe_malloc(sizeof(t_pos), d);
+	d->map->arr = NULL;
+	d->ln_lst = NULL;
+	d->map_lst = NULL;
 }

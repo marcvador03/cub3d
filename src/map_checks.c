@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:40:29 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/11 14:49:54 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:13:00 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 /**
  * @brief Check if map symbols are correct
  * 
- * @param data t_data*
+ * @param d t_data*
  * @return void
  */
-void	is_map_symbols_correct(t_data *data)
+void	is_map_symbols_correct(t_data *d)
 {
 	int		x;
 	int		y;
@@ -26,25 +26,25 @@ void	is_map_symbols_correct(t_data *data)
 
 	y = 0;
 	player_count = 0;
-	while (data->map->arr[y])
+	while (d->map->arr[y])
 	{
 		x = 0;
-		while (data->map->arr[y][x])
+		while (d->map->arr[y][x])
 		{
-			if (data->map->arr[y][x] != ' ' && data->map->arr[y][x] != '1'
-				&& data->map->arr[y][x] != '0' && data->map->arr[y][x] != 'N'
-				&& data->map->arr[y][x] != 'S' && data->map->arr[y][x] != 'E'
-				&& data->map->arr[y][x] != 'W')
-				ftl_err("in data->map->arr symbols", data);
-			else if (data->map->arr[y][x] == 'N' || data->map->arr[y][x] == 'S'
-				|| data->map->arr[y][x] == 'E' || data->map->arr[y][x] == 'W')
+			if (d->map->arr[y][x] != ' ' && d->map->arr[y][x] != '1'
+				&& d->map->arr[y][x] != '0' && d->map->arr[y][x] != 'N'
+				&& d->map->arr[y][x] != 'S' && d->map->arr[y][x] != 'E'
+				&& d->map->arr[y][x] != 'W')
+				ftl_err("in map symbols", d);
+			else if (d->map->arr[y][x] == 'N' || d->map->arr[y][x] == 'S'
+				|| d->map->arr[y][x] == 'E' || d->map->arr[y][x] == 'W')
 				player_count++;
 			x++;
 		}
 		y++;
 	}
 	if (player_count != 1)
-		ftl_err("in player count", data);
+		ftl_err("in player count", d);
 }
 
 /**
@@ -80,17 +80,17 @@ static bool	is_map_closed_checks(char **map, t_pos *map_size, int x, int y)
  * @param map_size t_pos*
  * @return void
  */
-void	is_map_closed(t_data *data)
+void	is_map_closed(t_data *d)
 {
 	int		x;
 	int		y;
 	char	**map;
 
-	map = data->map->arr;
-	if (!map || !map[0] || !map[0][0] || !data->map->map_size)
-		ftl_err("map is empty", data);
-	if (data->map->map_size->x < 2 || data->map->map_size->y < 2)
-		ftl_err("map is empty or too small", data);
+	map = d->map->arr;
+	if (!map || !map[0] || !map[0][0] || !d->map->map_size)
+		ftl_err("map is empty", d);
+	if (d->map->map_size->x < 2 || d->map->map_size->y < 2)
+		ftl_err("map is empty or too small", d);
 	y = 0;
 	while (map[y])
 	{
@@ -99,9 +99,9 @@ void	is_map_closed(t_data *data)
 		{
 			if (map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S'
 					|| map[y][x] == 'E' || map[y][x] == 'W')
-				if (is_map_closed_checks(map, data->map->map_size, x, y)
+				if (is_map_closed_checks(map, d->map->map_size, x, y)
 					== false)
-					ftl_err("map is not closed", data);
+					ftl_err("map is not closed", d);
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/11 14:58:48 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:21:55 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,17 @@ typedef struct s_mlx
 	char	*map_path;
 }	t_mlx;
 
-
 /* --------------------- utils functions -------------------------------------*/
 // free_utils.c
 void	free_s(void *ptr);
 void	free_d(char **ptr);
-void	free_data(t_data *data);
+void	free_data(t_data *d);
 
 // memory_utils.c
-void	*safe_malloc(size_t size, t_data *data);
+void	*safe_malloc(size_t size, t_data *d);
 
 // error_utils.c
-void	ftl_err(const char *msg, t_data *data);
+void	ftl_err(const char *msg, t_data *d);
 
 /* --------------------- parse and map files ---------------------------------*/
 
@@ -53,34 +52,34 @@ void	ftl_err(const char *msg, t_data *data);
 void	ft_lst_print(t_list *list);
 
 // map_checks.c
-void	map_size(t_data *data);
-void	is_map_symbols_correct(t_data *data);
-void	is_map_closed(t_data *data);
+void	map_size(t_data *d);
+void	is_map_symbols_correct(t_data *d);
+void	is_map_closed(t_data *d);
 
 // map_conversion.c
-void	map_conversion(t_data *data);
-void	find_player(char **arr, t_pos *player_pos, char *player_dir);
+void	map_conversion(t_data *d);
+void	find_player(char **arr, t_pos *pl_pos, char *player_dir);
 
 // parsing.c
-void	parse_cub_file(t_mlx *cub, t_data *data);
+void	parse_cub_file(t_mlx *cub, t_data *d);
 bool	is_map_line(void *content, bool *map_started);
-void	data_extr(t_data *data);
-void	parsing_process(t_mlx *cub, t_data *data);
+void	d_extr(t_data *d);
+void	parsing_process(t_mlx *cub, t_data *d);
 
 // parsing_utils.c
-char	*file_path_extractor(void *line, int start, t_data *data);
+char	*file_path_extractor(void *line, int start, t_data *d);
 void	skip_empty_space(char *line, int *i, bool is_ascending);
-void	color_extractor(char *line, unsigned int color[3], t_data *data);
+void	color_extractor(char *line, unsigned int color[3], t_data *d);
 
 bool	gnl_for_loop(int fd, char **line);
-void	map_pos_checker(t_data *data);
+void	map_pos_checker(t_data *d);
 
 //str_utils.c
-char	*ft_strdup_w_o_nl(char *str, t_data *data);
+char	*ft_strdup_w_o_nl(char *str, t_data *d);
 void	ft_arr_print(char **arr);
-char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *data);
+char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *d);
 
 // structs_init.c
-void	structs_init(t_data *data);
+void	structs_init(t_data *d);
 
 #endif

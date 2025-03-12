@@ -1,5 +1,5 @@
 #Directory definition
-LIBFT_DIR := libft
+LIBFt_dataIR := libft
 LIBMLX_DIR := mlx42
 SRC_DIR := src
 OBJ_DIR := obj
@@ -46,14 +46,14 @@ CUR_DIR := $(shell pwd)
 #TARGETS
 all: libft libmlx $(OBJECTS) $(NAME) 
 
-$(NAME): $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES) $(OBJECTS)
+$(NAME): $(LIBFt_dataIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES) $(OBJECTS)
 	cc $(CFLAGS) -L libft -L lib $(DEBUG) $(OBJECTS) -o $@ $(LIBS_TAG) $(LIBS_TAG)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)
 	cc $(CFLAGS) $(DEBUG) -c $< -o $@ 
 
 libft: 
-	@$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(LIBFt_dataIR)
 
 libmlx: 
 	cmake -S $(LIBMLX_DIR) -B $(CUR_DIR)/$(LIB_DIR)
@@ -70,12 +70,12 @@ show:
 	@echo $(SRC_NAMES)
 
 clean: 
-	@$(MAKE) clean -C $(LIBFT_DIR)
+	@$(MAKE) clean -C $(LIBFt_dataIR)
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -rf $(NAME)
-	@$(MAKE) fclean -C $(LIBFT_DIR)
+	@$(MAKE) fclean -C $(LIBFt_dataIR)
 
 re: fclean all
 ifneq ($(DEPS), )

@@ -86,7 +86,7 @@ TEST_F(Window, MultipleImages)
 }
 
 
-static void ft_draw(void* param)
+static void ft_dataraw(void* param)
 {
 	static char buf[256];
 	static int32_t count = 0;
@@ -127,7 +127,7 @@ TEST_F(Window, stringTortureTest)
 	EXPECT_GE(val_window, 0);
 	ASSERT_EQ(mlx_errno, MLX_SUCCESS);
 
-	bool val_hook = mlx_loop_hook(mlx, ft_draw, mlx);
+	bool val_hook = mlx_loop_hook(mlx, ft_dataraw, mlx);
 	EXPECT_EQ(val_hook, true);
 	ASSERT_EQ(mlx_errno, MLX_SUCCESS);
 	

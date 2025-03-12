@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:09:15 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/11 14:58:51 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:13:00 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
  * @brief This function will duplicate a string without the newline character
  * 
  * @param str char*
- * @param data t_data*
+ * @param d t_data*
  * @return char* 
  */
-char	*ft_strdup_w_o_nl(char *str, t_data *data)
+char	*ft_strdup_w_o_nl(char *str, t_data *d)
 {
 	int		i;
 	int		len;
@@ -32,7 +32,7 @@ char	*ft_strdup_w_o_nl(char *str, t_data *data)
 		len++;
 		i++;
 	}
-	new_str = (char *)safe_malloc((sizeof(char) * (len + 1)), data);
+	new_str = (char *)safe_malloc((sizeof(char) * (len + 1)), d);
 	i = 0;
 	while (str[i] && str[i] != '\n')
 	{
@@ -65,10 +65,10 @@ void	ft_arr_print(char **arr)
  * @brief This function will duplicate a string without preceding spaces
  * 
  * @param line char*
- * @param data t_data*
+ * @param d t_data*
  * @return char*
  */
-char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *data)
+char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *d)
 {
 	int		i;
 	char	*pure_line;
@@ -78,6 +78,6 @@ char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *data)
 		i++;
 	pure_line = ft_strdup(&line[i]);
 	if (!pure_line)
-		ftl_err("in deleting empty space", data);
+		ftl_err("in deleting empty space", d);
 	return (pure_line);
 }

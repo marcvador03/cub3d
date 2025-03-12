@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_xpm42.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 03:42:29 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/06/27 19:58:33 by lde-la-h      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_xpm42.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 03:42:29 by W2Wizard          #+#    #+#             */
+/*   Updated: 2025/03/12 12:12:29 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static bool mlx_insert_xpm_entry(xpm_t* xpm, char* line, uint32_t* ctable, size_
 }
 
 /**
- * Retrieves the pixel data line by line and then processes each pixel
+ * Retrieves the pixel d line by line and then processes each pixel
  * by hashing the characters and looking it up from the color table.
  * 
  * @param xpm The XPM.
@@ -93,7 +93,7 @@ static bool mlx_insert_xpm_entry(xpm_t* xpm, char* line, uint32_t* ctable, size_
  * @param s Size of the hash table.
  * @return True or false depending on if it successfully parsed the line.
  */
-static bool mlx_read_data(xpm_t* xpm, FILE* file, uint32_t* ctable, size_t s)
+static bool mlx_read_d(xpm_t* xpm, FILE* file, uint32_t* ctable, size_t s)
 {
 	size_t line_len;
 	char* line = NULL;
@@ -143,7 +143,7 @@ static bool mlx_read_table(xpm_t* xpm, FILE* file)
 			return (free(line), false);
 	}
 	free(line);
-	return (mlx_read_data(xpm, file, ctable, (sizeof(ctable) / BPP)));
+	return (mlx_read_d(xpm, file, ctable, (sizeof(ctable) / BPP)));
 }
 
 /**

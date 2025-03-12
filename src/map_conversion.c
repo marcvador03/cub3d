@@ -6,44 +6,53 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/11 14:59:23 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:18:02 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /**
- * @brief This function will convert the linked list of map data into a 2D array
+ * @brief This function will convert the linked list of map d into a 2D array
  * 
- * @param map_list
+ * @param map_lst
  * @param map_size
  * @return char** - map converted to 2D array
  */
-void	map_conversion(t_data *data)
+void	map_conversion(t_data *d)
 {
 	int		y;
 	t_list	*temp;
 	t_pos	*map_size;
 
-	map_size = data->map->map_size;
-	data->map->arr
-		= (char **)safe_malloc((map_size->y + 1) * sizeof(char *), data);
+	map_size = d->map->map_size;
+	d->map->arr
+		= (char **)safe_malloc((map_size->y + 1) * sizeof(char *), d);
 	y = 0;
-	temp = data->map_list;
+	temp = d->map_lst;
 	while (temp)
 	{
-		data->map->arr[y] = ft_strdup((char *)temp->content);
-		if (!data->map->arr[y])
-			ftl_err("in map conversion", data);
-		data->map->arr[y][ft_strlen(temp->content)] = '\0';
+		d->map->arr[y] = ft_strdup((char *)temp->content);
+		if (!d->map->arr[y])
+			ftl_err("in map conversion", d);
+		d->map->arr[y][ft_strlen(temp->content)] = '\0';
 		y++;
 		temp = temp->next;
 	}
-	data->map->arr[y] = NULL;
+	d->map->arr[y] = NULL;
 	y = 0;
 }
 
-void	find_player(char **arr, t_pos *player_pos, char *player_dir)
+/**
+ * @brief This function will find the player's position and direction
+ * 
+ * @param arr
+ * @param pl_pos
+ * @param pl_dir
+ * 
+ * @return void
+ */
+void	find_player(char **arr, t_pos *pl_pos, char *pl_dir)
 {
 	int		x;
 	int		y;
@@ -57,9 +66,9 @@ void	find_player(char **arr, t_pos *player_pos, char *player_dir)
 			if (arr[x][y] == 'N' || arr[x][y] == 'S' || arr[x][y] == 'E'
 			|| arr[x][y] == 'W')
 			{
-				player_pos->x = x;
-				player_pos->y = y;
-				*player_dir = arr[x][y];
+				pl_pos->x = x;
+				pl_pos->y = y;
+				*pl_dir = arr[x][y];
 				arr[x][y] = '0';
 				return ;
 			}
@@ -72,22 +81,22 @@ void	find_player(char **arr, t_pos *player_pos, char *player_dir)
 /**
  * @brief This function will calculate the size of the map
  * 		  by counting the number of lines and the length of the longest line
- * 		  after deleting the lines that are not a map data
- * @param data t_data*
+ * 		  after deleting the lines that are not a map d
+ * @param d t_data*
  * @return t_pos*
  */
-void	map_size(t_data *data)
+void	map_size(t_data *d)
 {
 	t_list	*temp;
 
-	data->map->map_size->x = 0;
-	data->map->map_size->y = 0;
-	temp = data->map_list;
+	d->map->map_size->x = 0;
+	d->map->map_size->y = 0;
+	temp = d->map_lst;
 	while (temp)
 	{
-		data->map->map_size->y++;
-		if (data->map->map_size->x < (int)ft_strlen(temp->content))
-			data->map->map_size->x = ft_strlen(temp->content);
+		d->map->map_size->y++;
+		if (d->map->map_size->x < (int)ft_strlen(temp->content))
+			d->map->map_size->x = ft_strlen(temp->content);
 		temp = temp->next;
 	}
 }

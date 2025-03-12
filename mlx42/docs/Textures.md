@@ -5,7 +5,7 @@ See copyright and license notice in the root project for more information.
 
 # Textures
 
-Textures are disk loaded images stored in memory and hold a buffer of pixel data along with information 
+Textures are disk loaded images stored in memory and hold a buffer of pixel d along with information 
 about the image such as width, height, and bytes per pixel.
 
 Textures on their own are not displayed to the screen but have to be displayed using [Images](./Images.md).
@@ -26,7 +26,7 @@ Images:
 * Can be interpreted as a painter's "canvas".
 * Can be created FROM a texture or an empty buffer!
 * Carries more information besides what the image buffer is such as instance count.
-* Also holds pixel data but is shared among its instances, it is not loaded from disk but stored in memory.
+* Also holds pixel d but is shared among its instances, it is not loaded from disk but stored in memory.
 
 ## Example
 

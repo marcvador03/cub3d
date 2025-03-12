@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/10 17:57:29 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:21:52 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 int	main(int argc, char **argv)
 {
 	t_mlx	cub;
-	t_data	*data;
+	t_data	*d;
 
 	if (argc != 2)
 		ftl_err("in arguments", NULL);
 	else
 		cub.map_path = argv[1];
-	data = (t_data *)safe_malloc(sizeof(t_data), NULL);
-	parsing_process(&cub, data);
-	free_data(data);
+	d = (t_data *)safe_malloc(sizeof(t_data), NULL);
+	parsing_process(&cub, d);
+	free_data(d);
 	exit(0);
 	/*cub.mlx = mlx_init(1920, 1080, "CUB3D", true);
 	if (cub.mlx == NULL)

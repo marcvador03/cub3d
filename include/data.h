@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.h                                             :+:      :+:    :+:   */
+/*   d.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,15 +15,15 @@
 
 # include "cub3d.h"
 
-typedef struct s_txtr_data
+typedef struct s_gr_d
 {
-	char			*no_txtr;
-	char			*so_txtr;
-	char			*we_txtr;
-	char			*ea_txtr;
+	char			*no_tx;
+	char			*so_tx;
+	char			*we_tx;
+	char			*ea_tx;
 	unsigned int	f_clr[3];
 	unsigned int	c_clr[3];
-}	t_txtr_data;
+}	t_gr_d;
 
 /* struct for storing position on a map*/
 typedef struct s_pos
@@ -34,22 +34,25 @@ typedef struct s_pos
 
 /* struct for creating and managing the map */
 typedef struct s_map
-{	
+{
 	char	**arr;
 	t_pos	*map_size;
-	t_pos	*player_pos;
+	t_pos	*pl_pos;
 	char	player_dir;
 	int		x;
 	int		y;
 }		t_map;
 
+
+
 /* !!! struct for storing all the data !!! */
 typedef struct s_data
 {
-	t_txtr_data	*txtrs;
+	t_gr_d		*txs;
 	t_map		*map;
-	t_list		*line_list;
-	t_list		*map_list;
+	t_list		*ln_lst;
+	t_list		*map_lst;
+	//t_mlx		*cub;
 }	t_data;
 
 #endif

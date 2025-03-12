@@ -20,11 +20,11 @@ An image on its own is very simple:
  * 
  * @param width The width of the image.
  * @param height The height of the image.
- * @param pixels The literal pixel data.
- * @param instances An instance carries the X, Y, Z location data.
+ * @param pixels The literal pixel d.
+ * @param instances An instance carries the X, Y, Z location d.
  * @param count The element count of the instances array.
  * @param enabled If true the image is drawn onto the screen, else it's not.
- * @param context Abstracted OpenGL data.
+ * @param context Abstracted OpenGL d.
  */
 typedef struct mlx_image
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   MLX42.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 02:29:06 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2023/03/30 16:23:19 by ntamayo-      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   MLX42.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 02:29:06 by W2Wizard          #+#    #+#             */
+/*   Updated: 2025/03/12 12:12:29 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,7 +257,7 @@ typedef enum keys
  * 
  * @param width The width of the texture.
  * @param height The height of the texture.
- * @param pixels The literal pixel data.
+ * @param pixels The literal pixel d.
  * @param bytes_per_pixel The amount of bytes in a pixel, always 4.
  */
 typedef struct mlx_texture
@@ -269,9 +269,9 @@ typedef struct mlx_texture
 }	mlx_texture_t;
 
 /**
- * Struct containing data regarding an XPM image.
+ * Struct containing d regarding an XPM image.
  * 
- * @param texture The texture data of the XPM.
+ * @param texture The texture d of the XPM.
  * @param color_count The amount of colors available.
  * @param cpp The amount of characters per pixel.
  * @param mode The color mode, either (c)olor or (m)onochrome.
@@ -307,8 +307,8 @@ typedef struct mlx_instance
 }	mlx_instance_t;
 
 /**
- * Key function callback data.
- * Data related to the mlx_key_hook function
+ * Key function callback d.
+ * d related to the mlx_key_hook function
  * 
  * @param key The key that was pressed.
  * @param action The action that was done with the key.
@@ -317,13 +317,13 @@ typedef struct mlx_instance
  * They may be consistent on different platforms.
  * @param modifier The modifier key that was pressed, 0 if no key was pressed.
  */
-typedef struct mlx_key_data
+typedef struct mlx_key_d
 {
 	keys_t			key;
 	action_t		action;
 	int32_t			os_key;
 	modifier_key_t	modifier;
-}	mlx_key_data_t;
+}	mlx_key_d_t;
 
 /**
  * An image with an individual buffer that can be rendered.
@@ -331,11 +331,11 @@ typedef struct mlx_key_data
  * 
  * @param width The width of the image.
  * @param height The height of the image.
- * @param pixels The literal pixel data.
- * @param instances An instance carrying the X, Y and Z location data.
+ * @param pixels The literal pixel d.
+ * @param instances An instance carrying the X, Y and Z location d.
  * @param count The element count of the instances array.
  * @param enabled If true the image is drawn onto the screen, else it's not.
- * @param context Abstracted OpenGL data.
+ * @param context Abstracted OpenGL d.
  */
 typedef struct mlx_image
 {
@@ -349,9 +349,9 @@ typedef struct mlx_image
 }	mlx_image_t;
 
 /**
- * Main MLX handle, carries important data in regards to the program.
+ * Main MLX handle, carries important d in regards to the program.
  * @param window The window itself.
- * @param context Abstracted opengl data.
+ * @param context Abstracted opengl d.
  * @param width The width of the window.
  * @param height The height of the window.
  * @param delta_time The time difference between the previous frame 
@@ -435,10 +435,10 @@ typedef void (*mlx_cursorfunc)(double xpos, double ypos, void* param);
 /**
  * Callback function used to handle key presses.
  * 
- * @param[in] keydata The callback data, contains info on key, action, ...
+ * @param[in] keyd The callback d, contains info on key, action, ...
  * @param[in] param Additional parameter to pass on to the function.
  */
-typedef void (*mlx_keyfunc)(mlx_key_data_t keydata, void* param);
+typedef void (*mlx_keyfunc)(mlx_key_d_t keyd, void* param);
 
 /**
  * Callback function used to handle window resizing.
@@ -785,7 +785,7 @@ bool mlx_loop_hook(mlx_t* mlx, void (*f)(void*), void* param);
  * Decode/load a PNG file into a buffer.
  * 
  * @param[in] path Path to the PNG file.
- * @return If successful the texture data is returned, else NULL.
+ * @return If successful the texture d is returned, else NULL.
  */
 mlx_texture_t* mlx_load_png(const char* path);
 
@@ -798,14 +798,14 @@ mlx_texture_t* mlx_load_png(const char* path);
 xpm_t* mlx_load_xpm42(const char* path);
 
 /**
- * Deletes a texture by freeing its allocated data.
+ * Deletes a texture by freeing its allocated d.
  * 
  * @param[in] texture The texture to free. 
  */
 void mlx_delete_texture(mlx_texture_t* texture);
 
 /**
- * Deletes an XPM42 texture by freeing its allocated data.
+ * Deletes an XPM42 texture by freeing its allocated d.
  * 
  * This will not remove any already drawn XPMs, it simply
  * deletes the XPM buffer.
@@ -870,7 +870,7 @@ int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y);
 /**
  * Deleting an image will remove it from the render queue as well as any and all
  * instances it might have. Additionally, just as extra measures sets all the
- * data to NULL.
+ * d to NULL.
  * 
  * If you simply wish to stop rendering an image without de-allocation
  * set the 'enabled' boolean in the image struct.
@@ -882,7 +882,7 @@ void mlx_delete_image(mlx_t* mlx, mlx_image_t* image);
 
 /**
  * Allows you to resize an image, a new pixel buffer is allocated
- * to fit & the previous data is scaled to fit the new size.
+ * to fit & the previous d is scaled to fit the new size.
  * 
  * @param[in] img The image to resize.
  * @param[in] nwidth The new width.
@@ -917,7 +917,7 @@ void mlx_set_instance_depth(mlx_instance_t* instance, int32_t zdepth);
 mlx_image_t* mlx_put_string(mlx_t* mlx, const char* str, int32_t x, int32_t y);
 
 /**
- * Retrieve the texture data for the built-in font.
+ * Retrieve the texture d for the built-in font.
  * 
  * @return Pointer to the built-in font texture.
  */

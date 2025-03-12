@@ -6,7 +6,7 @@
 include(FetchContent)
 
 macro(LinkGLFW TARGET)
-    FetchContent_Declare(
+    FetchContent_dataeclare(
         glfw
         GIT_REPOSITORY https://github.com/glfw/glfw
         GIT_TAG 3.3.8

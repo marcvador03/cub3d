@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/11 14:45:04 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:44:01 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,64 @@ void	free_d(char **ptr)
 	free_s(ptr);
 }
 
+/*static void	free_mlx(t_mlx *cub)
+{
+	if (cub)
+	{
+		if (cub->win)
+			mlx_destroy_window(cub->mlx, cub->win);
+		if (cub->img)
+			mlx_destroy_image(cub->mlx, cub->img);
+		if (cub->mlx)
+			free_s(cub->mlx);
+		if (cub->raycast)
+			free_s(cub->raycast);
+		if (cub->player)
+			free_s(cub->player);
+		if (cub->render)
+			free_s(cub->render);
+		if (cub->map_path)
+			free_s(cub->map_path);
+		if (cub->map)
+			free_d(cub->map);
+		if (cub->image)
+			free_s(cub->image);
+		if (cub->texture)
+			free_s(cub->texture);
+		free_s(cub);
+	}
+}*/
+
 /**
- * @brief Free the data structure
+ * @brief Free the d structure
  * 
- * @param data
+ * @param d t_data *
  * @return void 
  */
-void	free_data(t_data *data)
+void	free_data(t_data *d)
 {
-	if (data)
+	if (d)
 	{
-		if (data->txtrs)
+		if (d->txs)
 		{
-			free_s(data->txtrs->no_txtr);
-			free_s(data->txtrs->so_txtr);
-			free_s(data->txtrs->we_txtr);
-			free_s(data->txtrs->ea_txtr);
-			free_s(data->txtrs);
+			free_s(d->txs->no_tx);
+			free_s(d->txs->so_tx);
+			free_s(d->txs->we_tx);
+			free_s(d->txs->ea_tx);
+			free_s(d->txs);
 		}
-		if (data->map)
+		if (d->map)
 		{
-			free_d(data->map->arr);
-			free_s(data->map->map_size);
-			free_s(data->map->player_pos);
-			free_s(data->map);
+			free_d(d->map->arr);
+			free_s(d->map->map_size);
+			free_s(d->map->pl_pos);
+			free_s(d->map);
 		}
-		if (data->line_list)
-			ft_lstclear(&data->line_list, free_s);
-		if (data->map_list)
-			ft_lstclear(&data->map_list, free_s);
-		free_s(data);
+		if (d->ln_lst)
+			ft_lstclear(&d->ln_lst, free_s);
+		if (d->map_lst)
+			ft_lstclear(&d->map_lst, free_s);
+		//free_mlx(d->cub);
+		free_s(d);
 	}
 }
