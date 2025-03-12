@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/12 12:24:14 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:53:11 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ bool	is_map_line(void *content, bool *map_started)
  * @param d
  * @return void
  */
-void	d_extr(t_data *d)
+void	data_extr(t_data *d)
 {
 	t_list	*temp;
 	bool	map_started;
@@ -135,7 +135,7 @@ void	parsing_process(t_mlx *cub, t_data *d)
 	structs_init(d);
 	parse_cub_file(cub, d);
 	map_pos_checker(d);
-	d_extr(d);
+	data_extr(d);
 	ft_lstclear(&d->ln_lst, free_s);
 	map_size(d);
 	map_conversion(d);
