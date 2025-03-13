@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/12 12:21:55 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/13 18:43:20 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void	free_data(t_data *d);
 // memory_utils.c
 void	*safe_malloc(size_t size, t_data *d);
 
-// error_utils.c
+// exit_utils.c
 void	ftl_err(const char *msg, t_data *d);
+void	exit_normal(t_data *d);
 
 /* --------------------- parse and map files ---------------------------------*/
 
@@ -81,5 +82,13 @@ char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *d);
 
 // structs_init.c
 void	structs_init(t_data *d);
+
+/* --------------------- raycasting -----------------------------------------*/
+
+/* --------------------- move ---------------------------------------------- */
+// move_check_pos.c
+bool	is_move_valid(t_data *d, s_player *p, double new_x, double new_y);
+
+void	move(t_data *d, int key);
 
 #endif

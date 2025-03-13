@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:57:57 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/12 12:50:41 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/13 18:35:37 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 //boolean values for int
 # define TRUE	1
 # define FALSE	0
+
+//macros for moves
+# define RESET	0
+# define UP		1
+# define DOWN	2
+# define LEFT	3
+# define RIGHT	4
+# define TURN_L	1
+# define TURN_R	2
 
 //colors
 # define RST	"\033[0m"

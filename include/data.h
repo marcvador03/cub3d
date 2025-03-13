@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:50:03 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/12 12:50:08 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/13 18:46:20 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "cub3d.h"
 
-typedef struct s_gr_d
+typedef struct s_gr_data
 {
 	char			*no_tx;
 	char			*so_tx;
@@ -23,7 +23,7 @@ typedef struct s_gr_d
 	char			*ea_tx;
 	unsigned int	f_clr[3];
 	unsigned int	c_clr[3];
-}	t_gr_d;
+}	t_gr_data;
 
 /* struct for storing position on a map*/
 typedef struct s_pos
@@ -46,11 +46,15 @@ typedef struct s_map
 /* !!! struct for storing all the data !!! */
 typedef struct s_data
 {
-	t_gr_d		*txs;
+	void		*mlx;
+	void		*win;
+	t_gr_data	*txs;
 	t_map		*map;
 	t_list		*ln_lst;
 	t_list		*map_lst;
-	//t_mlx		*cub;
+	t_mlx		*cub;
+	int			pl_move;
+	int			pl_rotate;
 }	t_data;
 
 #endif
