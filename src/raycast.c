@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:38:24 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/11 20:05:44 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/12 11:13:21 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,12 @@ int	raycast_init(t_mlx *cub)
 		exit (1);
 	cub->image = mlx_new_image(cub->mlx, cub->win_w, cub->win_h);
 	if (cub->image == NULL)
+		exit (1);
+	cub->main_tex->width = cub->win_w;
+	cub->main_tex->height = cub->win_h;
+	cub->main_tex->bytes_per_pixel = BPP;
+	cub->main_tex->pixels = (uint8_t *)ft_calloc(sizeof(uint8_t), cub->win_w * cub->win_h * cub->main_tex->bytes_per_pixel);
+	if (cub->main_tex->pixels == NULL)
 		exit (1);
 	raycast_loop(cub, cub->raycast, cub->player);
 	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)
