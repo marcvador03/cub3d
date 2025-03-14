@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:59:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/13 16:36:09 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:14:56 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	is_valid_pos_on_map(t_data *d, double x, double y)
 	return (true);
 }
 
-bool	is_move_valid(t_data *d, s_player *p, double new_x, double new_y)
+bool	is_move_valid(t_data *d, t_player *p, double new_x, double new_y)
 {
 	bool	is_valid;
 

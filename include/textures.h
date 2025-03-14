@@ -1,14 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 16:36:17 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/13 17:49:14 by mpietrza         ###   ########.fr       */
+/*   Created: 2025/02/26 11:36:04 by mfleury           #+#    #+#             */
+/*   Updated: 2025/03/12 18:37:08 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef TEXTURES_H
+# define TEXTURES_H
+# include "cub3d.h"
 
+# define BPP 4
+//# define TEST_TXT "textures/Material-LIB/BrickWall/BrickWall[Red]-B.png"
+# define TEST_TXT "textures/Material-LIB/BrickWall/BrickWall-N.png"
+
+#endif

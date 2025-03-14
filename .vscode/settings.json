@@ -1,3 +1,7 @@
 {
-    "makefile.configureOnOpen": true
+    "makefile.configureOnOpen": true,
+    "files.associations": {
+        "random": "c",
+        "cub3d.h": "c"
+    }
 }

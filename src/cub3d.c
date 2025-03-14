@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/12 12:21:52 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:29:23 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ int	main(int argc, char **argv)
 		cub.map_path = argv[1];
 	d = (t_data *)safe_malloc(sizeof(t_data), NULL);
 	parsing_process(&cub, d);
-	free_data(d);
-	exit(0);
-	/*cub.mlx = mlx_init(1920, 1080, "CUB3D", true);
+	cub.mlx = mlx_init(1920, 1080, "CUB3D", true);
 	if (cub.mlx == NULL)
-		return (1);
+		ftl_err("mlx_init() failed", d);
+	mlx_close_hook(cub.mlx, &hook_close, &cub);
+	mlx_key_hook(cub.mlx, &hook_key, &cub);
+	mlx_loop_hook(cub.mlx, &move_player, d);
+	raycast_init(&cub);
 	mlx_loop(cub.mlx);
 	mlx_terminate(cub.mlx);
-	return (0);*/
+	free_data(d);
+	exit(0);
 }

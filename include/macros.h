@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:57:57 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/13 18:35:37 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:48:03 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 
 //macros for moves
 # define RESET	0
-# define UP		1
-# define DOWN	2
+# define FWD	1
+# define BKW	2
 # define LEFT	3
 # define RIGHT	4
-# define TURN_L	1
-# define TURN_R	2
+# define TURN_L	-1
+# define TURN_R	1
+# define MV_SPD_FCTR	80
+# define RT_ANGLE_FCTR	67
 
 //colors
 # define RST	"\033[0m"

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/13 18:43:20 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:28:56 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,16 @@
 # include <sys/types.h>
 # include <sys/time.h>
 # include <limits.h>
+# include <math.h>
 
 # include "../libft/libft.h"
 # include "../libft/getnextline/get_next_line.h"
 # include "../mlx42/include/MLX42/MLX42.h"
+# include "textures.h"
 
 # include "macros.h"
 # include "data.h"
 
-typedef struct s_mlx
-{
-	mlx_t	*mlx;
-	char	*map_path;
-}	t_mlx;
 
 /* --------------------- utils functions -------------------------------------*/
 // free_utils.c
@@ -83,12 +80,20 @@ char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *d);
 // structs_init.c
 void	structs_init(t_data *d);
 
+/* --------------------- hooks ---------------------------------------------- */
+// hooks.c
+void	hook_key(void *param);
+void	hook_close(void *param);
+
+
 /* --------------------- raycasting -----------------------------------------*/
 
 /* --------------------- move ---------------------------------------------- */
 // move_check_pos.c
-bool	is_move_valid(t_data *d, s_player *p, double new_x, double new_y);
+bool	is_move_valid(t_data *d, t_player *p, double new_x, double new_y);
 
-void	move(t_data *d, int key);
+// move_player.c
+void	move_player(void *param);
+
 
 #endif

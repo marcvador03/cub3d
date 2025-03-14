@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/12 12:44:01 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:57:35 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	free_d(char **ptr)
 	free_s(ptr);
 }
 
-/*static void	free_mlx(t_mlx *cub)
+static void	free_mlx(t_mlx *cub)
 {
 	if (cub)
 	{
-		if (cub->win)
+		if (cub->mlx && cub->win)
 			mlx_destroy_window(cub->mlx, cub->win);
 		if (cub->img)
 			mlx_destroy_image(cub->mlx, cub->img);
@@ -73,7 +73,7 @@ void	free_d(char **ptr)
 			free_s(cub->texture);
 		free_s(cub);
 	}
-}*/
+}
 
 /**
  * @brief Free the d structure
