@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/17 15:16:15 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:58:26 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	mlx_close_hook(cub.mlx, &hook_close, &cub);
 	mlx_key_hook(cub.mlx, key_handler, &cub);
 	mlx_loop_hook(cub.mlx, &move_player, d);
-	raycast_init(&cub);
+	raycast_init(&cub, d);
 	mlx_loop(cub.mlx);
 	mlx_terminate(cub.mlx);
 	free_data(d);

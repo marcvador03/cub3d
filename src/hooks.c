@@ -6,12 +6,12 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 17:51:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/17 15:49:27 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:49:08 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "MLX42/MLX42.h"
+//#include "MLX42/MLX42.h"
 
 /**
  * @brief Function to handle key presses

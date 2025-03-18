@@ -1,5 +1,5 @@
 #Directory definition
-LIBFt_dataIR := libft
+LIBFT_DIR := libft
 LIBMLX_DIR := mlx42
 SRC_DIR := src
 OBJ_DIR := obj
@@ -12,15 +12,19 @@ NAME := cub3D
 SRC_NAMES = cub3d.c \
 			exit_utils.c \
 			free_utils.c \
+			hooks.c \
 			list_utils.c \
 			map_checks.c \
 			map_conversion.c \
 			memory_utils.c \
 			move_check_pos.c \
-			move.c \
+			move_player.c \
 			parsing_utils.c \
 			parsing.c \
-			str_utils.c\
+			player_direction.c \
+			raycast.c \
+			render.c \
+			str_utils.c \
 			structs_init.c
 			
 INC_NAMES := cub3d.h
@@ -55,7 +59,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)
 	cc $(CFLAGS) $(DEBUG) -c $< -o $@ 
 
 libft: 
-	@$(MAKE) -C $(LIBFt_dataIR)
+	@$(MAKE) -C $(LIBFT_DIR)
 
 libmlx: 
 	cmake -S $(LIBMLX_DIR) -B $(CUR_DIR)/$(LIB_DIR)

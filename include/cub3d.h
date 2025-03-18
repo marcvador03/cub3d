@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/17 15:25:28 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:58:08 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	find_player(char **arr, t_pos *pl_pos, char *player_dir);
 // parsing.c
 void	parse_cub_file(t_mlx *cub, t_data *d);
 bool	is_map_line(void *content, bool *map_started);
-void	d_extr(t_data *d);
+void	data_extr(t_data *d);
 void	parsing_process(t_mlx *cub, t_data *d);
 
 // parsing_utils.c
@@ -85,7 +85,6 @@ void	structs_init(t_data *d);
 void	key_handler(struct mlx_key_d keydata, void *param);
 void	hook_close(void *param);
 
-/* --------------------- raycasting -----------------------------------------*/
 
 /* --------------------- move ---------------------------------------------- */
 // move_check_pos.c
@@ -94,5 +93,12 @@ bool	is_move_valid(t_data *d, t_player *p, double new_x, double new_y);
 // move_player.c
 void	move_player(void *param);
 
+/* --------------------- raycasting -----------------------------------------*/
 
+// raycast.c
+int    raycast_loop(t_mlx *cub, t_raycast *c, t_player *p);
+int    raycast_init(t_mlx *cub, t_data *d);
+
+// render.c
+int		render_init(t_mlx *cub, t_render *r, t_raycast *c, int x);
 #endif
