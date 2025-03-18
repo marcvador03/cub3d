@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:59:20 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/13 18:34:21 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:21:45 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	structs_init(t_data *d)
 	d->ln_lst = NULL;
 	d->map_lst = NULL;
 	d->cub = NULL;
-	d->pl_move = RESET;
+	d->pl_mv = RESET;
 	d->pl_rotate = RESET;
 }

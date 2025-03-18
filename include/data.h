@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:50:03 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/14 12:40:31 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:21:45 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ typedef struct s_data
 	t_list		*ln_lst;
 	t_list		*map_lst;
 	t_mlx		*cub;
-	int			pl_move;
+	int			pl_mv;
 	int			pl_rotate;
 }	t_data;
 

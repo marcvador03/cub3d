@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/14 16:28:56 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:25:28 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,8 @@ void	structs_init(t_data *d);
 
 /* --------------------- hooks ---------------------------------------------- */
 // hooks.c
-void	hook_key(void *param);
+void	key_handler(struct mlx_key_d keydata, void *param);
 void	hook_close(void *param);
-
 
 /* --------------------- raycasting -----------------------------------------*/
 

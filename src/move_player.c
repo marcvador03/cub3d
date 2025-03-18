@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:36:17 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/14 16:26:38 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:22:37 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool	move_player_action(int direction, t_player *p, t_data *d)
 		new_x = p->posX + p->dirX / MV_SPD_FCTR;
 		new_y = p->posY + p->dirY / MV_SPD_FCTR;
 	}
-	else if (direction == BKW)
+	else if (direction == BK)
 	{
 		new_x = p->posX - p->dirX / MV_SPD_FCTR;
 		new_y = p->posY - p->dirY / MV_SPD_FCTR;
@@ -59,8 +59,8 @@ void	move_player(void *param)
 
 	d = (t_data *)param;
 	has_moved = false;
-	if (d->pl_move != 0)
-		has_moved = move_player_action(d->pl_move, d->cub->player, d);
+	if (d->pl_mv != 0)
+		has_moved = move_player_action(d->pl_mv, d->cub->player, d);
 	if (d->pl_rotate != 0)
 		has_moved = rotate_player(d->pl_rotate, d->cub->player, d);
 	if (has_moved)

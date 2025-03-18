@@ -6,45 +6,55 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 17:51:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/14 16:28:34 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:49:27 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "MLX42/MLX42.h"
 
-static int	key_handler(int key, t_data *d)
+/**
+ * @brief Function to handle key presses
+ * 
+ * @param k_d struct with key data
+ * @param param pointer to the data struct
+ * @return void
+ */
+void	key_handler(struct mlx_key_d k_d, void *param)
 {
-	if (key == MLX_KEY_ESCAPE)
+	t_data	*d;
+
+	d = (t_data *)param;
+	if (k_d.key == MLX_KEY_ESCAPE)
 		mlx_terminate(d->cub->mlx);
-	if (key == MLX_KEY_W || key == MLX_KEY_UP)
-		d->pl_move = FWD;
-	if (key == MLX_KEY_S || key == MLX_KEY_DOWN)
-		d->pl_move = BKW;
-	if (key == MLX_KEY_A)
-		d->pl_move = LEFT;
-	if (key == MLX_KEY_D)
-		d->pl_move = RIGHT;
-	if (key == MLX_KEY_LEFT)
+	if (k_d.key == MLX_KEY_W || k_d.key == MLX_KEY_UP)
+		d->pl_mv = FWD;
+	if (k_d.key == MLX_KEY_S || k_d.key == MLX_KEY_DOWN)
+		d->pl_mv = BK;
+	if (k_d.key == MLX_KEY_A)
+		d->pl_mv = LEFT;
+	if (k_d.key == MLX_KEY_D)
+		d->pl_mv = RIGHT;
+	if (k_d.key == MLX_KEY_LEFT)
 		d->pl_rotate = TURN_L;
-	if (key == MLX_KEY_RIGHT)
+	if (k_d.key == MLX_KEY_RIGHT)
 		d->pl_rotate = TURN_R;
-	if (((key == MLX_KEY_W || key == MLX_KEY_UP) && d->pl_move == FWD)
-		|| ((key == MLX_KEY_S || key == MLX_KEY_DOWN) && d->pl_move == BKW)
-		|| (key == MLX_KEY_A && d->pl_move == LEFT)
-		|| (key == MLX_KEY_D && d->pl_move == RIGHT))
-		d->pl_move = RESET;
-	if ((key == MLX_KEY_LEFT && d->pl_rotate == TURN_L)
-		|| (key == MLX_KEY_RIGHT && d->pl_rotate == TURN_R))
+	if (((k_d.key == MLX_KEY_W || k_d.key == MLX_KEY_UP) && d->pl_mv == FWD)
+		|| ((k_d.key == MLX_KEY_S || k_d.key == MLX_KEY_DOWN) && d->pl_mv == BK)
+		|| (k_d.key == MLX_KEY_A && d->pl_mv == LEFT)
+		|| (k_d.key == MLX_KEY_D && d->pl_mv == RIGHT))
+		d->pl_mv = RESET;
+	if ((k_d.key == MLX_KEY_LEFT && d->pl_rotate == TURN_L)
+		|| (k_d.key == MLX_KEY_RIGHT && d->pl_rotate == TURN_R))
 		d->pl_rotate = RESET;
-	return (0);
 }
 
-void	hook_key(void *param)
-{
-	t_data *d = (t_data *)param;
-	mlx_key_hook(d->win, key_handler, d->cub);
-}
-
+/**
+ * @brief Function to close the mlx window
+ * 
+ * @param param pointer to the mlx struct
+ * @return void
+ */
 void	hook_close(void *ptr)
 {
 	t_mlx	*cub;
