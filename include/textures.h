@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:36:04 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/12 18:37:08 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/19 12:28:53 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "cub3d.h"
 
 # define BPP 4
-//# define TEST_TXT "textures/Material-LIB/BrickWall/BrickWall[Red]-B.png"
-# define TEST_TXT "textures/Material-LIB/BrickWall/BrickWall-N.png"
+# define TEST_TXT "textures/Material-LIB/BrickWall/BrickWall[Red]-B.png"
+//# define TEST_TXT "textures/Material-LIB/BrickWall/BrickWall-R.png"
 
 #endif

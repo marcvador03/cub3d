@@ -6,12 +6,13 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:38:24 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/12 11:13:21 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/19 16:56:27 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	create_texture(t_mlx *cub, t_raycast *c, t_render *r, int x);
 int	render_init(t_mlx *cub, t_render *r, t_raycast *c, int x);
 
 static void	raycast_dist_next_grid(t_raycast *c, t_player *p)
@@ -106,7 +107,6 @@ int	raycast_loop(t_mlx *cub, t_raycast *c, t_player *p)
 
 int	raycast_init(t_mlx *cub)
 {
-	//mlx_texture_t*	texture;
 	int	testmap[10][15] = 
 	{
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -150,8 +150,8 @@ int	raycast_init(t_mlx *cub)
 		}
 		i++;
 	}
-	cub->player->dirX = -1;
-	cub->player->dirY = 0;
+	cub->player->dirX = 1;
+	cub->player->dirY = 1;
 	cub->player->planeX = 0.0;
 	cub->player->planeY = 0.5;
 	cub->texture = mlx_load_png(TEST_TXT);
@@ -159,12 +159,6 @@ int	raycast_init(t_mlx *cub)
 		exit (1);
 	cub->image = mlx_new_image(cub->mlx, cub->win_w, cub->win_h);
 	if (cub->image == NULL)
-		exit (1);
-	cub->main_tex->width = cub->win_w;
-	cub->main_tex->height = cub->win_h;
-	cub->main_tex->bytes_per_pixel = BPP;
-	cub->main_tex->pixels = (uint8_t *)ft_calloc(sizeof(uint8_t), cub->win_w * cub->win_h * cub->main_tex->bytes_per_pixel);
-	if (cub->main_tex->pixels == NULL)
 		exit (1);
 	raycast_loop(cub, cub->raycast, cub->player);
 	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)

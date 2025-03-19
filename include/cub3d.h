@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/12 10:40:22 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/19 16:56:49 by mfleury          ###   ########.fr       */
 /*   Updated: 2025/02/24 11:38:26 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -37,7 +37,6 @@ typedef struct	s_render
 	int		pixelY;
 	double	step;
 	double	pixel_pos;
-	int		color;
 
 }	t_render;
 
@@ -86,7 +85,6 @@ typedef struct s_mlx
 	int				win_h;
 	mlx_image_t		*image;
 	mlx_texture_t	*texture;
-	mlx_texture_t	*main_tex;
 }	t_mlx;
 
 
