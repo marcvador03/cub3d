@@ -10,6 +10,7 @@ LIB_DIR := lib
 NAME := cub3D
 
 SRC_NAMES = cub3d.c \
+<<<<<<< HEAD
 			error_utils.c \
 			free_utils.c \
 			list_utils.c \
@@ -21,6 +22,14 @@ SRC_NAMES = cub3d.c \
 			str_utils.c\
 			structs_init.c
 			
+=======
+			hooks.c \
+			raycast.c \
+			render.c \
+			move.c \
+			free_utils.c \
+
+>>>>>>> marc
 INC_NAMES := cub3d.h
 
 OBJECTS := $(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(SRC_NAMES)))
@@ -33,6 +42,7 @@ CFLAGS += -Wall -Werror -Wextra -MMD -MP -g -I $(INC_DIR) -fsanitize=address
 
 LIB_NAMES := libft.a \
 			libmlx42.a 
+
 LIBS_TAG :=  -ldl \
 			 -lglfw \
 			 -pthread \
@@ -46,7 +56,7 @@ CUR_DIR := $(shell pwd)
 #TARGETS
 all: libft libmlx $(OBJECTS) $(NAME) 
 
-$(NAME): $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES) $(OBJECTS)
+$(NAME): $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES) $(OBJECTS) | $(LIB_DIR)
 	cc $(CFLAGS) -L libft -L lib $(DEBUG) $(OBJECTS) -o $@ $(LIBS_TAG) $(LIBS_TAG)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)
@@ -62,6 +72,10 @@ libmlx:
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
+
+$(LIB_DIR):
+	@mkdir $(LIB_DIR)
+
 flags:
 	@echo $(CFLAGS)
 
@@ -76,6 +90,7 @@ clean:
 fclean: clean
 	@rm -rf $(NAME)
 	@$(MAKE) fclean -C $(LIBFT_DIR)
+	@rm -rf $(LIB_DIR)
 
 re: fclean all
 ifneq ($(DEPS), )

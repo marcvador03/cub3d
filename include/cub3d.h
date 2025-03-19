@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/12 12:21:55 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:18:21 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,18 @@
 # include <sys/types.h>
 # include <sys/time.h>
 # include <limits.h>
+# include <math.h>
 
 # include "../libft/libft.h"
 # include "../libft/getnextline/get_next_line.h"
 # include "../mlx42/include/MLX42/MLX42.h"
-
+# include "textures.h"
 # include "macros.h"
 # include "data.h"
 
-typedef struct s_mlx
-{
-	mlx_t	*mlx;
-	char	*map_path;
-}	t_mlx;
+# define FALSE 0
+# define TRUE 1
+
 
 /* --------------------- utils functions -------------------------------------*/
 // free_utils.c
