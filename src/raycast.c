@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:38:24 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/18 15:37:11 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:12:03 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,30 +104,24 @@ int	raycast_loop(t_mlx *cub, t_raycast *c, t_player *p)
 	return (0);
 }
 
-int	raycast_init(t_mlx *cub, t_data *d)
+int	raycast_init(t_data *d)
 {
-	cub->raycast = (t_raycast *)ft_calloc(1, sizeof(t_raycast));
-	cub->player = (t_player *)ft_calloc(1, sizeof(t_player));
-	cub->render = (t_render *)ft_calloc(1, sizeof(t_render));
-	if (cub->raycast == NULL || cub->player == NULL || cub->render == NULL)
+	
+	d->cub->raycast = (t_raycast *)ft_calloc(1, sizeof(t_raycast));
+	d->cub->player = (t_player *)ft_calloc(1, sizeof(t_player));
+	d->cub->render = (t_render *)ft_calloc(1, sizeof(t_render));
+	if (!d->cub->raycast || !d->cub->player	|| !d->cub->render)
 		ftl_err("in raycast_init1", d);
-	cub->map = d->map->arr;
-	cub->win_w = 1920;
-	cub->win_h = 1080;
-	cub->texture = mlx_load_png(TEST_TXT);
-	if (cub->texture == NULL)
+	d->cub->map = d->map->arr;
+	set_player_location_and_dir(d);
+	d->cub->texture = mlx_load_png(TEST_TXT);
+	if (d->cub->texture == NULL)
 		ftl_err("in raycast_init2", d);
-	cub->image = mlx_new_image(cub->mlx, cub->win_w, cub->win_h);
-	if (cub->image == NULL)
+	d->cub->image = mlx_new_image(d->cub->mlx, d->cub->win_w, d->cub->win_h);
+	if (d->cub->image == NULL)
 		ftl_err("in raycast_init3", d);
-	cub->main_tex->width = (int32_t)cub->win_w;
-	cub->main_tex->height = (int32_t)cub->win_h;
-	cub->main_tex->bytes_per_pixel = BPP;
-	cub->main_tex->pixels = (uint8_t *)ft_calloc(sizeof(uint8_t), cub->win_w * cub->win_h * cub->main_tex->bytes_per_pixel);
-	if (cub->main_tex->pixels == NULL)
-		ftl_err("in raycast_init4", d);
-	raycast_loop(cub, cub->raycast, cub->player);
-	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)
+	raycast_loop(d->cub, d->cub->raycast, d->cub->player);
+	if (mlx_image_to_window(d->cub->mlx, d->cub->image, 0, 0) < 0)
 		printf("error loading image to window");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:50:03 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/18 13:44:15 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:06:32 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_render
 	int		pixelY;
 	double	step;
 	double	pixel_pos;
-	int		color;
+	//int		color;
 
 }	t_render;
 
@@ -65,7 +65,7 @@ typedef struct s_mlx
 	t_raycast		*raycast;
 	t_player		*player;
 	t_render		*render;
-	char			*map_path;
+	
 	char			**map;
 	int				win_w;
 	int				win_h;
@@ -114,6 +114,7 @@ typedef struct s_data
 	t_mlx		*cub;
 	int			pl_mv;
 	int			pl_rotate;
+	char		*map_path;
 }	t_data;
 
 #endif

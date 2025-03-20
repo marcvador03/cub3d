@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/12 14:53:11 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:06:15 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param map
  * @return void 
  */
-void	parse_cub_file(t_mlx *cub, t_data *d)
+void	parse_cub_file(t_data *d)
 {
 	int		fd;
 	t_list	**head;
@@ -27,7 +27,10 @@ void	parse_cub_file(t_mlx *cub, t_data *d)
 	char	*line;
 
 	head = &d->ln_lst; // Store the address of the head pointer
-	fd = open(cub->map_path, O_RDONLY);
+	if (!d->map_path)
+		ftl_err("in map path", d);
+	printf("Debug: map path: %s\n", d->map_path);
+	fd = open(d->map_path, O_RDONLY);
 	if (fd < 0)
 		ftl_err("in opening file", d);
 	while (gnl_for_loop(fd, &line))
@@ -130,10 +133,10 @@ void	data_extr(t_data *d)
  * @param d
  * @return void
  */
-void	parsing_process(t_mlx *cub, t_data *d)
+void	parsing_process(t_data *d)
 {
 	structs_init(d);
-	parse_cub_file(cub, d);
+	parse_cub_file(d);
 	map_pos_checker(d);
 	data_extr(d);
 	ft_lstclear(&d->ln_lst, free_s);
