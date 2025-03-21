@@ -6,13 +6,13 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:20:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/21 12:58:33 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/21 16:45:24 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	hook_key(mlx_key_d_t k, void *param)
+void	hook_key(mlx_key_data_t k, void *param)
 {
 	t_mlx		*cub;
 	double		x;
