@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/19 17:34:49 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/21 14:04:51 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int	main(int argc, char **argv)
 		cub.map_path = argv[1];
 	d = (t_data *)safe_malloc(sizeof(t_data), NULL);
 	parsing_process(&cub, d);
-	free_data(d);
 	//exit(0);
-	cub.mlx = mlx_init(1920, 1080, "CUB3D", true);
+	cub.d = d;
+	cub.win_w = 1080;
+	cub.win_h = 1080;
+	cub.mlx = mlx_init(cub.win_w, cub.win_h, "CUB3D", false);
 	if (cub.mlx == NULL)
 		return (1);
 	mlx_close_hook(cub.mlx, &hook_close, &cub);
@@ -33,5 +35,6 @@ int	main(int argc, char **argv)
 	raycast_init(&cub);
 	mlx_loop(cub.mlx);
 	mlx_terminate(cub.mlx);
+	free_data(d);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:01:55 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/21 13:07:04 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/21 14:05:51 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	render_init(t_mlx *cub, t_render *r, t_raycast *c, int x)
 			mlx_put_pixel(cub->image, cub->win_w - x, y++, color);
 		}
 		else if (y > cub->raycast->wall_end)
-			mlx_put_pixel(cub->image, cub->win_w - x, y++, 0xFFFFFF);
+			mlx_put_pixel(cub->image, cub->win_w - x, y++, *cub->d->txs->f_clr);
 		else if (y < cub->raycast->wall_start)
-			mlx_put_pixel(cub->image, cub->win_w - x, y++, 0x00000000);
+			mlx_put_pixel(cub->image, cub->win_w - x, y++, *cub->d->txs->c_clr);
 	}
 	return (0);
 }
