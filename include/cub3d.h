@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/21 14:04:32 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/21 16:32:19 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include "../mlx42/include/MLX42/MLX42.h"
 # include "textures.h"
 # include "macros.h"
-# include "data.h"
 
 # define FALSE 0
 # define TRUE 1
