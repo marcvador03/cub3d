@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/19 17:18:21 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/21 12:58:40 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,11 @@ char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *d);
 // structs_init.c
 void	structs_init(t_data *d);
 
+//hooks.c
+void	hook_key(mlx_key_d_t k, void *param);
+void	hook_close(void *ptr);
+
+//raycast.c
+int	raycast_loop(t_mlx *cub, t_raycast *c, t_player *p);
+int	raycast_init(t_mlx *cub);
 #endif

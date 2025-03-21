@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:38:24 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/19 16:56:27 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/21 13:05:18 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,33 @@ int	render_init(t_mlx *cub, t_render *r, t_raycast *c, int x);
 
 static void	raycast_dist_next_grid(t_raycast *c, t_player *p)
 {
-	if (c->rayDirX == 0)
-		c->deltaDistX = 1e30;
+	if (c->raydir_x == 0)
+		c->deltadist_x = 1e30;
 	else
-		c->deltaDistX = fabs(1 / c->rayDirX);	
-	if (c->rayDirY == 0)
-		c->deltaDistY = 1e30;
+		c->deltadist_x = fabs(1 / c->raydir_x);	
+	if (c->raydir_y == 0)
+		c->deltadist_y = 1e30;
 	else
-		c->deltaDistY = fabs(1 / c->rayDirY);
-	if (c->rayDirX < 0)
+		c->deltadist_y = fabs(1 / c->raydir_y);
+	if (c->raydir_x < 0)
 	{
-		c->stepX = -1;
-		c->sideDistX = (p->posX - c->mapX) * c->deltaDistX;
+		c->step_x = -1;
+		c->sidedist_x = (p->pos_x - c->map_x) * c->deltadist_x;
 	}
 	else
 	{
-		c->stepX = 1;
-		c->sideDistX = (c->mapX + 1.0 - p->posX) * c->deltaDistX;
+		c->step_x = 1;
+		c->sidedist_x = (c->map_x + 1.0 - p->pos_x) * c->deltadist_x;
 	}
-	if (c->rayDirY < 0)
+	if (c->raydir_y < 0)
 	{	
-		c->stepY = -1;
-		c->sideDistY = (p->posY - c->mapY) * c->deltaDistY;
+		c->step_y = -1;
+		c->sidedist_y = (p->pos_y - c->map_y) * c->deltadist_y;
 	}
 	else
 	{
-		c->stepY = 1;
-		c->sideDistY = (c->mapY + 1.0 - p->posY) * c->deltaDistY;
+		c->step_y = 1;
+		c->sidedist_y = (c->map_y + 1.0 - p->pos_y) * c->deltadist_y;
 	}
 }
 
@@ -52,34 +52,34 @@ static void	raycast_dist_to_wall(t_mlx *cub, t_raycast *c, t_player *p)
 	c->hit_flag = FALSE;
 	while (c->hit_flag == FALSE)
 	{
-		if (c->sideDistX < c->sideDistY)
+		if (c->sidedist_x < c->sidedist_y)
 		{
-			c->sideDistX += c->deltaDistX;
-			c->mapX += c->stepX;
+			c->sidedist_x += c->deltadist_x;
+			c->map_x += c->step_x;
 			c->side_flag = FALSE;
 		}
 		else
 		{
-			c->sideDistY += c->deltaDistY;
-			c->mapY += c->stepY;
+			c->sidedist_y += c->deltadist_y;
+			c->map_y += c->step_y;
 			c->side_flag = TRUE;
 		}
-		if (cub->map[c->mapY][c->mapX] == 1)
+		if (cub->map[c->map_y][c->map_x] == 1)
 			c->hit_flag = TRUE;
 	}
 	if (c->side_flag == FALSE)
-		c->walldist = (c->mapX - p->posX + (0 - c->stepX) / 2) / c->rayDirX;
+		c->walldist = (c->map_x - p->pos_x + (0 - c->step_x) / 2) / c->raydir_x;
 	else
-		c->walldist = (c->mapY - p->posY + (1 - c->stepY) / 2) / c->rayDirY;
+		c->walldist = (c->map_y - p->pos_y + (1 - c->step_y) / 2) / c->raydir_y;
 }
 
 static void	raycast_wall_height(t_mlx *cub, t_raycast *c)
 {
-	c->lineHeight = (int)(cub->win_h / c->walldist);
-	c->wall_start = -c->lineHeight / 2 + cub->win_h / 2;
+	c->lineheight = (int)(cub->win_h / c->walldist);
+	c->wall_start = -c->lineheight / 2 + cub->win_h / 2;
 	if (c->wall_start < 0)
 		c->wall_start = 0;
-	c->wall_end = c->lineHeight / 2 + cub->win_h / 2;
+	c->wall_end = c->lineheight / 2 + cub->win_h / 2;
 	if (c->wall_end < 0)
 		c->wall_end = 0;
 }
@@ -91,11 +91,11 @@ int	raycast_loop(t_mlx *cub, t_raycast *c, t_player *p)
 	x = 0;
 	while (x < cub->win_w)
 	{
-		c->mapX = (int)p->posX;
-		c->mapY = (int)p->posY;
-		p->cameraX = 2 * ((double)x / (double)cub->win_w) - 1;
-		c->rayDirX = p->dirX + p->planeX * p->cameraX;
-		c->rayDirY = p->dirY + p->planeY * p->cameraX;
+		c->map_x = (int)p->pos_x;
+		c->map_y = (int)p->pos_y;
+		p->camera_x = 2 * ((double)x / (double)cub->win_w) - 1;
+		c->raydir_x = p->dir_x + p->plane_x * p->camera_x;
+		c->raydir_y = p->dir_y + p->plane_y * p->camera_x;
 		raycast_dist_next_grid(c, p);
 		raycast_dist_to_wall(cub, c, p);
 		raycast_wall_height(cub, c);
@@ -143,17 +143,17 @@ int	raycast_init(t_mlx *cub)
 			cub->map[i][j] = testmap[i][j];
 			if (cub->map[i][j] == 5)
 			{
-				cub->player->posX = j;
-				cub->player->posY = i;
+				cub->player->pos_x = j;
+				cub->player->pos_y = i;
 			}
 			j++;
 		}
 		i++;
 	}
-	cub->player->dirX = 1;
-	cub->player->dirY = 1;
-	cub->player->planeX = 0.0;
-	cub->player->planeY = 0.5;
+	cub->player->dir_x = 1;
+	cub->player->dir_y = 1;
+	cub->player->plane_x = 0.0;
+	cub->player->plane_y = 0.5;
 	cub->texture = mlx_load_png(TEST_TXT);
 	if (cub->texture == NULL)
 		exit (1);

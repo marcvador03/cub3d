@@ -1,5 +1,5 @@
 #Directory definition
-LIBFt_dataIR := libft
+LIBFT_DIR := libft
 LIBMLX_DIR := mlx42
 SRC_DIR := src
 OBJ_DIR := obj
@@ -10,7 +10,6 @@ LIB_DIR := lib
 NAME := cub3D
 
 SRC_NAMES = cub3d.c \
-<<<<<<< HEAD
 			error_utils.c \
 			free_utils.c \
 			list_utils.c \
@@ -19,17 +18,13 @@ SRC_NAMES = cub3d.c \
 			memory_utils.c \
 			parsing_utils.c \
 			parsing.c \
-			str_utils.c\
-			structs_init.c
-			
-=======
+			str_utils.c \
+			structs_init.c \
 			hooks.c \
 			raycast.c \
 			render.c \
-			move.c \
-			free_utils.c \
+			move.c
 
->>>>>>> marc
 INC_NAMES := cub3d.h
 
 OBJECTS := $(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(SRC_NAMES)))
@@ -38,7 +33,7 @@ INCLUDES := $(patsubst %.h, $(INC_DIR)/%.h, $(INC_NAMES))
 
 DEPS := $(OBJECTS:.o=.d)
 
-CFLAGS += -Wall -Werror -Wextra -MMD -MP -g -I $(INC_DIR) -fsanitize=address
+CFLAGS += -Wall -Werror -Wextra -MMD -MP -g -I $(INC_DIR)
 
 LIB_NAMES := libft.a \
 			libmlx42.a 
@@ -47,6 +42,7 @@ LIBS_TAG :=  -ldl \
 			 -lglfw \
 			 -pthread \
 			 -lm
+
 LIBS_TAG += $(patsubst lib%.a, -l%, $(LIB_NAMES))
 
 DEBUG ?=
@@ -63,7 +59,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)
 	cc $(CFLAGS) $(DEBUG) -c $< -o $@ 
 
 libft: 
-	@$(MAKE) -C $(LIBFt_dataIR)
+	@$(MAKE) -C $(LIBFT_DIR)
 
 libmlx: 
 	cmake -S $(LIBMLX_DIR) -B $(CUR_DIR)/$(LIB_DIR)
