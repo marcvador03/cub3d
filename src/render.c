@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 16:01:55 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/21 14:05:51 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/21 16:59:46 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int	render_init(t_mlx *cub, t_render *r, t_raycast *c, int x)
 			color = color | (cub->texture->pixels[cub->texture->height * r->pixel_y * BPP + r->pixel_x * BPP + 1] << 16); 
 			color = color | (cub->texture->pixels[cub->texture->height * r->pixel_y * BPP + r->pixel_x * BPP + 2] << 8); 
 			color = color | (cub->texture->pixels[cub->texture->height * r->pixel_y * BPP + r->pixel_x * BPP + 3]);
-			mlx_put_pixel(cub->image, cub->win_w - x, y++, color);
+			mlx_put_pixel(cub->image, cub->win_w - 1 - x, y++, color);
 		}
 		else if (y > cub->raycast->wall_end)
-			mlx_put_pixel(cub->image, cub->win_w - x, y++, *cub->d->txs->f_clr);
+			mlx_put_pixel(cub->image, cub->win_w - 1- x, y++, *cub->d->txs->f_clr);
 		else if (y < cub->raycast->wall_start)
-			mlx_put_pixel(cub->image, cub->win_w - x, y++, *cub->d->txs->c_clr);
+			mlx_put_pixel(cub->image, cub->win_w - 1 - x, y++, *cub->d->txs->c_clr);
 	}
 	return (0);
 }

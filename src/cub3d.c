@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/21 16:36:12 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/21 16:57:09 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(int argc, char **argv)
 	parsing_process(&cub, d);
 	//exit(0);
 	cub.d = d;
-	cub.win_w = 240;
-	cub.win_h = 240;
+	cub.win_w = 1080;
+	cub.win_h = 1080;
 	cub.mlx = mlx_init(cub.win_w, cub.win_h, "CUB3D", false);
 	if (cub.mlx == NULL)
 		return (1);
