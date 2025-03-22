@@ -1,5 +1,5 @@
 #Directory definition
-LIBFt_dataIR := libft
+LIBFT_DIR := libft
 LIBMLX_DIR := mlx42
 SRC_DIR := src
 OBJ_DIR := obj
@@ -53,7 +53,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)
 	cc $(CFLAGS) $(DEBUG) -c $< -o $@ 
 
 libft: 
-	@$(MAKE) -C $(LIBFt_dataIR)
+	@$(MAKE) -C $(LIBFT_DIR)
 
 libmlx: 
 	cmake -S $(LIBMLX_DIR) -B $(CUR_DIR)/$(LIB_DIR)
