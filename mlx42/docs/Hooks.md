@@ -90,8 +90,8 @@ Use a key hook if you want single keypress detection or more precision as to how
 ```c
 
 /**
- * Key function callback d.
- * d related to the mlx_key_hook function
+ * Key function callback data.
+ * Data related to the mlx_key_hook function
  * 
  * @param key The key that was pressed.
  * @param action The action that was done with the key.
@@ -100,22 +100,22 @@ Use a key hook if you want single keypress detection or more precision as to how
  * They may be consistent on different platforms.
  * @param modifier The modifier key that was pressed, 0 if none.
  */
-typedef struct mlx_key_d
+typedef struct mlx_key_data
 {
 	keys_t		key;
 	action_t	action;
 	int32_t		os_key;
 	modifier_key_t	modifier;
-}	mlx_key_d_t;
+}	mlx_key_data_t;
 
 
 /**
  * Callback function used to handle keypresses.
  * 
- * @param[in] keyd The callback d, contains info on key, action, ...
+ * @param[in] keydata The callback data, contains info on key, action, ...
  * @param[in] param Additional parameter to pass to the function.
  */
-typedef void (*mlx_keyfunc)(mlx_key_d_t keyd, void* param);
+typedef void (*mlx_keyfunc)(mlx_key_data_t keydata, void* param);
 
 /**
  * This function sets the key callback, which is called when a key is pressed
@@ -160,18 +160,18 @@ Here are some simple examples on how to implement each one of the hooks in a sim
 #define WIDTH 720
 #define HEIGHT 480
 
-void my_keyhook(mlx_key_d_t keyd, void* param)
+void my_keyhook(mlx_key_data_t keydata, void* param)
 {
 	// If we PRESS the 'J' key, print "Hello".
-	if (keyd.key == MLX_KEY_J && keyd.action == MLX_PRESS)
+	if (keydata.key == MLX_KEY_J && keydata.action == MLX_PRESS)
 		puts("Hello ");
 
 	// If we RELEASE the 'K' key, print "World".
-	if (keyd.key == MLX_KEY_K && keyd.action == MLX_RELEASE)
+	if (keydata.key == MLX_KEY_K && keydata.action == MLX_RELEASE)
 		puts("World");
 
 	// If we HOLD the 'L' key, print "!".
-	if (keyd.key == MLX_KEY_L && keyd.action == MLX_REPEAT)
+	if (keydata.key == MLX_KEY_L && keydata.action == MLX_REPEAT)
 		puts("!");
 }
 

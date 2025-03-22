@@ -1,7 +1,0 @@
-/sgoinfre/students/mpietrza/projects/cub3d/lib/CMakeFiles/mlx42.dir
-/sgoinfre/students/mpietrza/projects/cub3d/lib/CMakeFiles/edit_cache.dir
-/sgoinfre/students/mpietrza/projects/cub3d/lib/CMakeFiles/rebuild_cache.dir
-/sgoinfre/students/mpietrza/projects/cub3d/lib/CMakeFiles/list_install_components.dir
-/sgoinfre/students/mpietrza/projects/cub3d/lib/CMakeFiles/install.dir
-/sgoinfre/students/mpietrza/projects/cub3d/lib/CMakeFiles/install/local.dir
-/sgoinfre/students/mpietrza/projects/cub3d/lib/CMakeFiles/install/strip.dir

@@ -9,7 +9,7 @@ XPM42 is a custom file format made for MLX42 to provide an easy to use and under
 images can be stored. The format is based on the actual [XPM3](https://en.wikipedia.org/wiki/X_PixMap) format.
 
 An XPM file basically stores a look-up table inside of it to fetch which character corresponds to which color. Additionally in the
-header there is a character per pixel count, this is due to the limitation of the amount of characters. Each 'Pixel' in the XPM d can 
+header there is a character per pixel count, this is due to the limitation of the amount of characters. Each 'Pixel' in the XPM data can 
 be represented by multiple characters.
 
 For example `*.` would be viewed as a single pixel if the characters per pixel count was 2.
@@ -23,7 +23,7 @@ The file format looks as follows:
 16 7 2 1 c        <- Width | Height | Color count | Characters per Pixel | Mode (C: Color or M: Monochrome)
 * #FF0000FF       <- Entry always: <Char> <Space> <Hexadecimal> Colors MUST have all four channels (RGBA)
 . #00000000
-**..*...........  <- Literal pixel d
+**..*...........  <- Literal pixel data
 *.*.*...........
 **..*..**.**..**
 *.*.*.*.*.*..*.*

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mlx_list.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/28 01:53:51 by W2Wizard          #+#    #+#             */
-/*   Updated: 2025/03/12 12:12:29 by mpietrza         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mlx_list.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/12/28 01:53:51 by W2Wizard      #+#    #+#                 */
+/*   Updated: 2023/02/27 11:31:01 by W2Wizard      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ mlx_list_t* mlx_lstremove(mlx_list_t** lst, void* value, bool (*comp)(void*, voi
 }
 
 // Retrieve Z value from queue.
-static int32_t mlx_getzd(mlx_list_t* entry)
+static int32_t mlx_getzdata(mlx_list_t* entry)
 {
 	const draw_queue_t* queue = entry->content;
 
@@ -129,7 +129,7 @@ static void mlx_insertsort(mlx_list_t** head, mlx_list_t* new)
 
 	if (*head == NULL)
 		*head = new;
-	else if (mlx_getzd(*head) >= mlx_getzd(new))
+	else if (mlx_getzdata(*head) >= mlx_getzdata(new))
 	{
 		new->next = *head;
 		new->next->prev = new;
@@ -140,7 +140,7 @@ static void mlx_insertsort(mlx_list_t** head, mlx_list_t* new)
 		current = *head;
 
 		// Find insertion location.
-		while (current->next != NULL && mlx_getzd(current->next) < mlx_getzd(new))
+		while (current->next != NULL && mlx_getzdata(current->next) < mlx_getzdata(new))
 			current = current->next;
 		new->next = current->next;
 
