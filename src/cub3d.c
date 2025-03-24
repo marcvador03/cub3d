@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 14:00:30 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 16:32:46 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	main(int argc, char **argv)
 
 	d = (t_data *)safe_malloc(sizeof(t_data), NULL);
 	check_args(argc, argv, d);
+	parsing_process(d);
 	d->win_w = 1080;
 	d->win_h = 1080;
-	parsing_process(d);
 	d->mlx = mlx_init(d->win_w, d->win_h, "CUB3D", true);
 	if (!d->mlx)
 		ftl_err("mlx_init() failed", d);
