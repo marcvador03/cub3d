@@ -6,5 +6,6 @@ a.out
 cub3D
 minishell
 obj/
+lib/
 .*.swp
 .*.swo
