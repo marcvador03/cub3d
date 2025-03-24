@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 13:57:10 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 16:27:36 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	raycast_dist_to_wall(t_data *d, t_raycast *c, t_player *p)
 			c->map_y += c->step_y;
 			c->side_flag = TRUE;
 		}
-		if (d->map->arr[c->map_y][c->map_x] == 1)
+		if (d->map->i_map[c->map_y][c->map_x] == 1)
 			c->hit_flag = TRUE;
 	}
 	if (c->side_flag == FALSE)

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 16:14:34 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:28:52 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	free_s(void *ptr)
  * @param ptr 
  * @return void 
  */
-void	free_d(char **ptr)
+void	free_d(void **ptr)
 {
 	int	i;
 
@@ -91,8 +91,8 @@ void	free_data(t_data *d)
 		}
 		if (d->map)
 		{
-			free_d(d->map->arr);
-			free_d(d->map->i_map);
+			free_d((void **)d->map->arr);
+			free_d((void **)d->map->i_map);
 			free_s(d->map->map_size);
 			free_s(d->map->pl_pos);
 			free_s(d->map);

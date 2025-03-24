@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/24 16:17:08 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:29:07 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,6 @@ void	parsing_process(t_data *d)
 	is_map_symbols_correct(d);
 	find_player(d->map->arr, d->map->pl_pos, &d->map->player_dir);
 	map_arr_to_int(d);
-	free_d(d->map->arr);
+	free_d((void **)d->map->arr);
 	ft_lstclear(&d->map_lst, free_s);
 }
