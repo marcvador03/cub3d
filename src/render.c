@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:45:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 14:41:29 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 16:33:23 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ static void	render_loop(t_data *d, t_render *r, int x)
 			r->pixel_y = (int) r->pixel_pos & (d->texture->height - 1);
 			r->pixel_pos += r->step;
 			color = get_rgba(d->texture, (r->pixel_y + r->pixel_x) * BPP);
-			mlx_put_pixel(d->image, d->win_w - x, y++, color);
+			mlx_put_pixel(d->image, d->win_w - x - 1, y++, color);
 		}
 		else if (y > d->raycast->wall_end)
-			mlx_put_pixel(d->image, d->win_w - x, y++, *d->txs->f_clr);
+			mlx_put_pixel(d->image, d->win_w - x - 1, y++, *d->txs->f_clr);
 		else if (y < d->raycast->wall_start)
-			mlx_put_pixel(d->image, d->win_w - x, y++, *d->txs->c_clr);
+			mlx_put_pixel(d->image, d->win_w - x - 1, y++, *d->txs->c_clr);
 	}
 	return ;
 }
