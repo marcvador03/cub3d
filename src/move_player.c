@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:36:17 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/24 13:20:12 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 14:40:50 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	move_player(void *param)
 	d = (t_data *)param;
 	has_moved = false;
 	if (d->pl_mv != 0 && (d->pl_mv == FWD || d->pl_mv == BK))
-		has_moved = move_player_fwd_bkw(d->pl_mv, d->cub->player, d);
+		has_moved = move_player_fwd_bkw(d->pl_mv, d->player, d);
 	if (d->pl_mv != 0 && (d->pl_mv == LEFT || d->pl_mv == RIGHT))
-		has_moved = move_player_left_right(d->pl_mv, d->cub->player, d);
+		has_moved = move_player_left_right(d->pl_mv, d->player, d);
 	if (d->pl_rotate != 0)
-		has_moved = rotate_player(d->pl_rotate, d->cub->player);
+		has_moved = rotate_player(d->pl_rotate, d->player);
 	if (has_moved)
-		raycast_loop(d, d->cub->raycast, d->cub->player);
+		raycast_loop(d, d->raycast, d->player);
 }

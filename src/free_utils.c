@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 13:58:12 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 14:35:51 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,27 @@ void	free_d(char **ptr)
 	free_s(ptr);
 }
 
-static void	free_mlx(t_mlx *cub)
+static void	free_mlx_data(t_data *d)
 {
-	if (cub)
+	if (d)
 	{
-		if (cub->mlx && cub->mlx->window)
-			mlx_close_window(cub->mlx);
-		if (cub->image)
-			mlx_delete_image(cub->mlx, cub->image);
-		if (cub->mlx)
-			free_s(cub->mlx);
-		if (cub->raycast)
-			free_s(cub->raycast);
-		if (cub->player)
-			free_s(cub->player);
-		if (cub->render)
-			free_s(cub->render);
-		if (cub->map)
-			free_d(cub->map);
-		if (cub->image)
-			free_s(cub->image);
-		if (cub->texture)
-			free_s(cub->texture);
-		free_s(cub);
+		if (d->mlx && d->mlx->window)
+			mlx_close_window(d->mlx);
+		if (d->image)
+			mlx_delete_image(d->mlx, d->image);
+		if (d->mlx)
+			free_s(d->mlx);
+		if (d->raycast)
+			free_s(d->raycast);
+		if (d->player)
+			free_s(d->player);
+		if (d->render)
+			free_s(d->render);
+		if (d->image)
+			free_s(d->image);
+		if (d->texture)
+			free_s(d->texture);
+		free_s(d);
 	}
 }
 
@@ -102,10 +100,9 @@ void	free_data(t_data *d)
 			ft_lstclear(&d->ln_lst, free_s);
 		if (d->map_lst)
 			ft_lstclear(&d->map_lst, free_s);
-		if (d->cub)
-			free_mlx(d->cub);
 		if (d->map_path)
 			free_s(d->map_path);
+		free_mlx_data(d);
 		free_s(d);
 	}
 }

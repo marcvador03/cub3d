@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:27:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 13:02:29 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 14:40:17 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	key_handler(struct mlx_key_data k_d, void *param)
 
 	d = (t_data *)param;
 	if (k_d.key == MLX_KEY_ESCAPE)
-		mlx_terminate(d->cub->mlx);
+		mlx_terminate(d->mlx);
 	if (k_d.key == MLX_KEY_W || k_d.key == MLX_KEY_UP)
 		d->pl_mv = FWD;
 	if (k_d.key == MLX_KEY_S || k_d.key == MLX_KEY_DOWN)
@@ -90,8 +90,8 @@ void	key_handler(struct mlx_key_data k_d, void *param)
 
 void	hook_close(void *ptr)
 {
-	t_mlx	*cub;
+	t_data	*d;
 
-	cub = (t_mlx *)ptr;
-	mlx_terminate(cub->mlx);
+	d = (t_data *)ptr;
+	mlx_terminate(d->mlx);
 }

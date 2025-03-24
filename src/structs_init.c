@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:59:20 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/20 15:52:39 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:43:11 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	structs_init(t_data *d)
 	d->map->arr = NULL;
 	d->ln_lst = NULL;
 	d->map_lst = NULL;
-	d->cub = (t_mlx *)safe_malloc(sizeof(t_mlx), d);
 	d->pl_mv = RESET;
 	d->pl_rotate = RESET;
 }

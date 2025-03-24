@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:45:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 13:52:49 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 14:41:29 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static uint32_t	get_rgba(mlx_texture_t	*t, int p_pos)
 	return (color);
 }
 
-static void	render_loop(t_data *d, t_render *r, t_raycast *c, int x)
+static void	render_loop(t_data *d, t_render *r, int x)
 {
 	int			y;
 	uint32_t	color;
@@ -59,6 +59,6 @@ int	render_init(t_data *d, t_render *r, t_raycast *c, int x)
 	r->step = 1.0 * d->texture->height / c->lineheight;
 	tmp = c->wall_start - (d->win_w / 2) + (c->lineheight / 2);
 	r->pixel_pos = tmp * r->step;
-	render_loop(d, r, c, x);
+	render_loop(d, r, x);
 	return (0);
 }
