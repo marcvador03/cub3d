@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 14:02:35 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 16:15:53 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	is_map_closed(t_data *d);
 // map_conversion.c
 void	map_conversion(t_data *d);
 void	find_player(char **arr, t_pos *pl_pos, char *player_dir);
+void	map_size(t_data *d);
+void	map_arr_to_int(t_data *d);
 
 // parsing.c
 void	parse_cub_file(t_data *d);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:46:45 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 14:01:51 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 15:57:52 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_pos
 typedef struct s_map
 {
 	char		**arr;
+	int			**i_map;
 	t_pos		*map_size;
 	t_pos		*pl_pos;
 	char		player_dir;
