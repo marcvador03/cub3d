@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:43:13 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/24 13:06:21 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 13:19:56 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	set_player_north_south(t_player *player, t_map *map)
 	}
 }
 
-static void set_player_east_west(t_player *player, t_map *map)
+static void	set_player_east_west(t_player *player, t_map *map)
 {
 	if (map->player_dir == 'E')
 	{

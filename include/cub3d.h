@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 13:11:28 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 14:02:35 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 
 # define FALSE 0
 # define TRUE 1
-
 
 /* --------------------- utils functions -------------------------------------*/
 // free_utils.c
@@ -87,7 +86,6 @@ void	structs_init(t_data *d);
 void	key_handler(struct mlx_key_data keydata, void *param);
 void	hook_close(void *param);
 
-
 /* --------------------- move ---------------------------------------------- */
 // move_check_pos.c
 bool	is_move_valid(t_data *d, t_player *p, double new_x, double new_y);
@@ -101,8 +99,8 @@ void	set_player_location_and_dir(t_data *d);
 /* --------------------- raycasting -----------------------------------------*/
 
 // raycast.c
-int    raycast_loop(t_data *d, t_raycast *c, t_player *p);
-int    raycast_init(t_data *d);
+int		raycast_loop(t_data *d, t_raycast *c, t_player *p);
+int		raycast_init(t_data *d);
 
 // render.c
 int		render_init(t_data *d, t_render *r, t_raycast *c, int x);

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:36:17 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/24 13:13:36 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 13:20:12 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static bool	move_player_left_right(int direction, t_player *p, t_data *d)
 	return (is_move_valid(d, p, new_x, new_y));
 }
 
-static bool	 rotate_player(int direction, t_player *p)
+static bool	rotate_player(int direction, t_player *p)
 {
 	double	rt_angle;
 

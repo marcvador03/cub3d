@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/20 16:06:15 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:20:50 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,6 @@ void	parse_cub_file(t_data *d)
 	close(fd);
 }
 
-/**
- * @brief This function will check if the line is a map line
- * then store it in the map linked list
- * 
- * @param temp t_list*
- * @param d t_data*
- * @param map_started bool*
- * @return void
- */
 static void	map_actions(t_list *temp, t_data *d, bool *map_started)
 {
 	t_list	*new_node;
@@ -142,7 +133,6 @@ void	parsing_process(t_data *d)
 	ft_lstclear(&d->ln_lst, free_s);
 	map_size(d);
 	map_conversion(d);
-	//ft_arr_print(d->map->arr);
 	is_map_closed(d);
 	is_map_symbols_correct(d);
 	find_player(d->map->arr, d->map->pl_pos, &d->map->player_dir);

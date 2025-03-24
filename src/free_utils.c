@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/20 16:07:18 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:58:12 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_s(void *ptr)
 void	free_d(char **ptr)
 {
 	int	i;
-     
+
 	i = 0;
 	if (!ptr)
 		return ;
@@ -63,7 +63,6 @@ static void	free_mlx(t_mlx *cub)
 			free_s(cub->player);
 		if (cub->render)
 			free_s(cub->render);
-
 		if (cub->map)
 			free_d(cub->map);
 		if (cub->image)
