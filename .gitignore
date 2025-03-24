@@ -9,3 +9,4 @@ obj/
 lib/
 .*.swp
 .*.swo
+.vscode/

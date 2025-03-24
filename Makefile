@@ -10,20 +10,23 @@ LIB_DIR := lib
 NAME := cub3D
 
 SRC_NAMES = cub3d.c \
-			error_utils.c \
+			exit_utils.c \
 			free_utils.c \
+			hooks.c \
 			list_utils.c \
 			map_checks.c \
 			map_conversion.c \
 			memory_utils.c \
+			move_check_pos.c \
+			move_player.c \
 			parsing_utils.c \
 			parsing.c \
-			str_utils.c \
-			structs_init.c \
-			hooks.c \
+			player_direction.c \
 			raycast.c \
 			render.c \
-			move.c
+			str_utils.c \
+			structs_init.c
+
 
 INC_NAMES := cub3d.h
 

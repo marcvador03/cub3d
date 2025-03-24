@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 12:08:56 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 12:27:34 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,30 @@
 
 int	main(int argc, char **argv)
 {
-	t_mlx	cub;
 	t_data	*d;
 
-	if (argc != 2)
-		ftl_err("in arguments", NULL);
-	else
-		cub.map_path = argv[1];
 	d = (t_data *)safe_malloc(sizeof(t_data), NULL);
-	parsing_process(&cub, d);
-	//exit(0);
-	cub.d = d;
-	cub.win_w = 1080;
-	cub.win_h = 1080;
-	cub.mlx = mlx_init(cub.win_w, cub.win_h, "CUB3D", false);
-	if (cub.mlx == NULL)
-		return (1);
-	mlx_close_hook(cub.mlx, &hook_close, &cub);
-	mlx_key_hook(cub.mlx, &hook_key, &cub);
-	raycast_init(&cub);
-	mlx_loop(cub.mlx);
-	mlx_terminate(cub.mlx);
+	if (argc != 2)
+		ftl_err("in arguments", d);
+	else
+	{
+		d->cub = (t_mlx *)safe_malloc(sizeof(t_mlx), d);
+		d->map_path = ft_strdup(argv[1]);
+		if (!d->map_path)
+			ftl_err("in malloc", d);
+	}
+	d->cub->win_w = 1080;
+	d->cub->win_h = 1080;
+	parsing_process(d);
+	d->cub->mlx = mlx_init(d->cub->win_w, d->cub->win_h, "CUB3D", true);
+	if (!d->cub->mlx)
+		ftl_err("mlx_init() failed", d);
+	mlx_close_hook(d->cub->mlx, &hook_close, &d->cub);
+	mlx_key_hook(d->cub->mlx, key_handler, &d->cub);
+	mlx_loop_hook(d->cub->mlx, &move_player, d);
+	raycast_init(d);
+	mlx_loop(d->cub->mlx);
+	mlx_terminate(d->cub->mlx);
 	free_data(d);
-	return (0);
+	exit(0);
 }

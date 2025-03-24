@@ -5,15 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 11:38:24 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/21 13:05:18 by mfleury          ###   ########.fr       */
+/*   Created: 2025/03/24 12:43:04 by mfleury           #+#    #+#             */
+/*   Updated: 2025/03/24 13:11:18 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	create_texture(t_mlx *cub, t_raycast *c, t_render *r, int x);
-int	render_init(t_mlx *cub, t_render *r, t_raycast *c, int x);
 
 static void	raycast_dist_next_grid(t_raycast *c, t_player *p)
 {
@@ -84,28 +81,28 @@ static void	raycast_wall_height(t_mlx *cub, t_raycast *c)
 		c->wall_end = 0;
 }
 
-int	raycast_loop(t_mlx *cub, t_raycast *c, t_player *p)
+int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
 {
 	int			x;
 
 	x = 0;
-	while (x < cub->win_w)
+	while (x < d->cub->win_w)
 	{
 		c->map_x = (int)p->pos_x;
 		c->map_y = (int)p->pos_y;
-		p->camera_x = 2 * ((double)x / (double)cub->win_w) - 1;
+		p->camera_x = 2 * ((double)x / (double)d->cub->win_w) - 1;
 		c->raydir_x = p->dir_x + p->plane_x * p->camera_x;
 		c->raydir_y = p->dir_y + p->plane_y * p->camera_x;
 		raycast_dist_next_grid(c, p);
-		raycast_dist_to_wall(cub, c, p);
-		raycast_wall_height(cub, c);
-		render_init(cub, cub->render, c, x);
+		raycast_dist_to_wall(d->cub, c, p);
+		raycast_wall_height(d->cub, c);
+		render_init(d, d->cub->render, c, x);
 		x++;
 	}
 	return (0);
 }
 
-int	raycast_init(t_mlx *cub)
+/*int	raycast_init(t_mlx *cub)
 {
 	int	testmap[10][15] = 
 	{
@@ -161,7 +158,25 @@ int	raycast_init(t_mlx *cub)
 	if (cub->image == NULL)
 		exit (1);
 	raycast_loop(cub, cub->raycast, cub->player);
-	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)
+	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)*/
+int	raycast_init(t_data *d)
+{
+	
+	d->cub->raycast = (t_raycast *)ft_calloc(1, sizeof(t_raycast));
+	d->cub->player = (t_player *)ft_calloc(1, sizeof(t_player));
+	d->cub->render = (t_render *)ft_calloc(1, sizeof(t_render));
+	if (!d->cub->raycast || !d->cub->player	|| !d->cub->render)
+		ftl_err("in raycast_init1", d);
+	d->cub->map = d->map->arr;
+	set_player_location_and_dir(d);
+	d->cub->texture = mlx_load_png(TEST_TXT);
+	if (d->cub->texture == NULL)
+		ftl_err("in raycast_init2", d);
+	d->cub->image = mlx_new_image(d->cub->mlx, d->cub->win_w, d->cub->win_h);
+	if (d->cub->image == NULL)
+		ftl_err("in raycast_init3", d);
+	raycast_loop(d, d->cub->raycast, d->cub->player);
+	if (mlx_image_to_window(d->cub->mlx, d->cub->image, 0, 0) < 0)
 		printf("error loading image to window");
 	return (0);
 }

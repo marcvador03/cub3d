@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/12 12:44:01 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:07:18 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_s(void *ptr)
 void	free_d(char **ptr)
 {
 	int	i;
-
+     
 	i = 0;
 	if (!ptr)
 		return ;
@@ -47,14 +47,14 @@ void	free_d(char **ptr)
 	free_s(ptr);
 }
 
-/*static void	free_mlx(t_mlx *cub)
+static void	free_mlx(t_mlx *cub)
 {
 	if (cub)
 	{
-		if (cub->win)
-			mlx_destroy_window(cub->mlx, cub->win);
-		if (cub->img)
-			mlx_destroy_image(cub->mlx, cub->img);
+		if (cub->mlx && cub->mlx->window)
+			mlx_close_window(cub->mlx);
+		if (cub->image)
+			mlx_delete_image(cub->mlx, cub->image);
 		if (cub->mlx)
 			free_s(cub->mlx);
 		if (cub->raycast)
@@ -63,8 +63,7 @@ void	free_d(char **ptr)
 			free_s(cub->player);
 		if (cub->render)
 			free_s(cub->render);
-		if (cub->map_path)
-			free_s(cub->map_path);
+
 		if (cub->map)
 			free_d(cub->map);
 		if (cub->image)
@@ -73,7 +72,7 @@ void	free_d(char **ptr)
 			free_s(cub->texture);
 		free_s(cub);
 	}
-}*/
+}
 
 /**
  * @brief Free the d structure
@@ -104,7 +103,10 @@ void	free_data(t_data *d)
 			ft_lstclear(&d->ln_lst, free_s);
 		if (d->map_lst)
 			ft_lstclear(&d->map_lst, free_s);
-		//free_mlx(d->cub);
+		if (d->cub)
+			free_mlx(d->cub);
+		if (d->map_path)
+			free_s(d->map_path);
 		free_s(d);
 	}
 }
