@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/24 16:13:20 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:27:41 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,10 @@ void	map_arr_to_int(t_data *d)
 	int	x;
 	
 	y = 0;
-	x = 0;
 	d->map->i_map = (int **)safe_malloc(sizeof(int *) * d->map->map_size->y, d);
 	while (d->map->arr[y])
 	{
+		//printf("arr[%d]: %s\n", y, d->map->arr[y]);
 		x = 0;
 		d->map->i_map[y] = (int *)safe_malloc(sizeof(int) * d->map->map_size->x, d);
 		while (d->map->arr[y][x])
@@ -128,6 +128,7 @@ void	map_arr_to_int(t_data *d)
 				d->map->i_map[y][x] = 1;
 			else
 				ftl_err("in map convertion to int", d);
+			//printf("i_map[%d][%d]: %d\n", y, x, d->map->i_map[y][x]);
 			x++;
 		}
 		y++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:45:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 16:33:23 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/24 17:26:42 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 static uint32_t	get_rgba(mlx_texture_t	*t, int p_pos)
 {
-	uint32_t	color;
+    uint32_t color;
+    int index;
 
-	color = (t->pixels[t->height * p_pos] << 24);
-	color = color | (t->pixels[t->height * p_pos + 1] << 16);
-	color = color | (t->pixels[t->height * p_pos + 2] << 8);
-	color = color | (t->pixels[t->height * p_pos + 3]);
-	return (color);
+    if (p_pos < 0 || p_pos >= (int)(t->width * t->height))
+    {
+        fprintf(stderr, "Error: p_pos out of bounds: %d\n", p_pos);
+        return 0; // Default color
+    }
+
+    index = p_pos * 4; // Each pixel has 4 bytes (RGBA)
+    color = (t->pixels[index] << 24);
+    color |= (t->pixels[index + 1] << 16);
+    color |= (t->pixels[index + 2] << 8);
+    color |= (t->pixels[index + 3]);
+    return color;
 }
 
 static void	render_loop(t_data *d, t_render *r, int x)
