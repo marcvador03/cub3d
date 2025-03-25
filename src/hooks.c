@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:27:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 14:40:17 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/25 15:24:24 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,39 +59,63 @@
 	}
 }*/
 
-void	key_handler(struct mlx_key_data k_d, void *param)
+void	key_handler_press(struct mlx_key_data k_d, void *param)
 {
 	t_data	*d;
 
 	d = (t_data *)param;
 	if (k_d.key == MLX_KEY_ESCAPE)
 		mlx_terminate(d->mlx);
-	if (k_d.key == MLX_KEY_W || k_d.key == MLX_KEY_UP)
-		d->pl_mv = FWD;
-	if (k_d.key == MLX_KEY_S || k_d.key == MLX_KEY_DOWN)
-		d->pl_mv = BK;
-	if (k_d.key == MLX_KEY_A)
-		d->pl_mv = LEFT;
-	if (k_d.key == MLX_KEY_D)
-		d->pl_mv = RIGHT;
-	if (k_d.key == MLX_KEY_LEFT)
-		d->pl_rotate = TURN_L;
-	if (k_d.key == MLX_KEY_RIGHT)
-		d->pl_rotate = TURN_R;
-	if (((k_d.key == MLX_KEY_W || k_d.key == MLX_KEY_UP) && d->pl_mv == FWD)
-		|| ((k_d.key == MLX_KEY_S || k_d.key == MLX_KEY_DOWN) && d->pl_mv == BK)
-		|| (k_d.key == MLX_KEY_A && d->pl_mv == LEFT)
-		|| (k_d.key == MLX_KEY_D && d->pl_mv == RIGHT))
-		d->pl_mv = RESET;
-	if ((k_d.key == MLX_KEY_LEFT && d->pl_rotate == TURN_L)
-		|| (k_d.key == MLX_KEY_RIGHT && d->pl_rotate == TURN_R))
-		d->pl_rotate = RESET;
+	if (k_d.action == MLX_PRESS) // Check if the key is pressed
+	{
+		if (k_d.key == MLX_KEY_W || k_d.key == MLX_KEY_UP)
+			d->pl_mv = FWD;
+		if (k_d.key == MLX_KEY_S || k_d.key == MLX_KEY_DOWN)
+			d->pl_mv = BK;
+		if (k_d.key == MLX_KEY_A)
+			d->pl_mv = LEFT;
+		if (k_d.key == MLX_KEY_D)
+			d->pl_mv = RIGHT;
+		if (k_d.key == MLX_KEY_LEFT)
+			d->pl_rotate = TURN_L;
+		if (k_d.key == MLX_KEY_RIGHT)
+			d->pl_rotate = TURN_R;
+	}
 }
+
+void	key_handler_release(struct mlx_key_data k_d, void *param)
+{
+	t_data	*d;
+
+	d = (t_data *)param;
+	if (k_d.key == MLX_KEY_ESCAPE)
+		mlx_terminate(d->mlx);
+	if (k_d.action == MLX_RELEASE) // Check if the key is released
+	{
+		if (((k_d.key == MLX_KEY_W || k_d.key == MLX_KEY_UP) && d->pl_mv == FWD)
+			|| ((k_d.key == MLX_KEY_S || k_d.key == MLX_KEY_DOWN) && d->pl_mv == BK)
+			|| (k_d.key == MLX_KEY_A && d->pl_mv == LEFT)
+			|| (k_d.key == MLX_KEY_D && d->pl_mv == RIGHT))
+			d->pl_mv = RESET;
+		if ((k_d.key == MLX_KEY_LEFT && d->pl_rotate == TURN_L)
+			|| (k_d.key == MLX_KEY_RIGHT && d->pl_rotate == TURN_R))
+			d->pl_rotate = RESET;
+	}
+}
+
+void	key_handler(struct mlx_key_data k_d, void *param)
+{
+	key_handler_press(k_d, param);
+	key_handler_release(k_d, param);
+}
+
 
 void	hook_close(void *ptr)
 {
 	t_data	*d;
 
 	d = (t_data *)ptr;
+	free_data(d);
 	mlx_terminate(d->mlx);
 }
+

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 16:28:52 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/25 15:16:54 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	free_mlx_data(t_data *d)
 		if (d->image)
 			mlx_delete_image(d->mlx, d->image);
 		if (d->mlx)
-			free_s(d->mlx);
+			mlx_terminate(d->mlx);
 		if (d->raycast)
 			free_s(d->raycast);
 		if (d->player)
@@ -67,7 +67,6 @@ static void	free_mlx_data(t_data *d)
 			free_s(d->image);
 		if (d->texture)
 			free_s(d->texture);
-		free_s(d);
 	}
 }
 

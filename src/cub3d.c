@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 16:32:46 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/25 15:23:55 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	if (!d->mlx)
 		ftl_err("mlx_init() failed", d);
 	mlx_close_hook(d->mlx, &hook_close, &d);
-	mlx_key_hook(d->mlx, key_handler, &d);
+	mlx_key_hook(d->mlx, key_handler, d);
 	mlx_loop_hook(d->mlx, &move_player, d);
 	raycast_init(d);
 	mlx_loop(d->mlx);

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 16:28:17 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/25 15:24:03 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	structs_init(t_data *d);
 
 /* --------------------- hooks ---------------------------------------------- */
 // hooks.c
+void	key_handler_press(struct mlx_key_data keydata, void *param);
+void	key_handler_release(struct mlx_key_data keydata, void *param);
 void	key_handler(struct mlx_key_data keydata, void *param);
 void	hook_close(void *param);
 
