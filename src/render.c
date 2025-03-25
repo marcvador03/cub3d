@@ -6,28 +6,25 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:45:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 17:26:42 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:43:58 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static uint32_t	get_rgba(mlx_texture_t	*t, int p_pos)
+static uint32_t	get_rgba(mlx_texture_t	*t, int index)
 {
     uint32_t color;
-    int index;
 
-    if (p_pos < 0 || p_pos >= (int)(t->width * t->height))
+    if (index < 0 || index >= (int)(t->width * t->height))
     {
-        fprintf(stderr, "Error: p_pos out of bounds: %d\n", p_pos);
+        fprintf(stderr, "Error: index out of bounds: %d\n", index);
         return 0; // Default color
     }
-
-    index = p_pos * 4; // Each pixel has 4 bytes (RGBA)
-    color = (t->pixels[index] << 24);
-    color |= (t->pixels[index + 1] << 16);
-    color |= (t->pixels[index + 2] << 8);
-    color |= (t->pixels[index + 3]);
+    color = (t->pixels[index * BPP] << 24);
+    color |= (t->pixels[index * BPP + 1] << 16);
+    color |= (t->pixels[index * BPP + 2] << 8);
+    color |= (t->pixels[index * BPP + 3]);
     return color;
 }
 
@@ -35,15 +32,18 @@ static void	render_loop(t_data *d, t_render *r, int x)
 {
 	int			y;
 	uint32_t	color;
+	uint32_t	height;
+	
 
 	y = 0;
 	while (y < d->win_h)
 	{
 		if (y >= d->raycast->wall_start && y <= d->raycast->wall_end)
 		{
-			r->pixel_y = (int) r->pixel_pos & (d->texture->height - 1);
+			height = d->texture->height;
+			r->pixel_y = (int) r->pixel_pos & (height- 1);
 			r->pixel_pos += r->step;
-			color = get_rgba(d->texture, (r->pixel_y + r->pixel_x) * BPP);
+			color = get_rgba(d->texture, (height * r->pixel_y + r->pixel_x));
 			mlx_put_pixel(d->image, d->win_w - x - 1, y++, color);
 		}
 		else if (y > d->raycast->wall_end)
