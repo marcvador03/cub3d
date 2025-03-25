@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:57:57 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/17 15:22:37 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:27:01 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # define BK	2
 # define LEFT	3
 # define RIGHT	4
-# define TURN_L	-1
-# define TURN_R	1
-# define MV_SPD_FCTR	80
-# define RT_ANGLE_FCTR	67
+# define TURN_L	1
+# define TURN_R	-1
+# define MV_SPD_FCTR	20
+# define RT_ANGLE_FCTR	40
 
 //colors
 # define RST	"\033[0m"
