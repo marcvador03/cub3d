@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/24 16:29:07 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:01:20 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	parse_cub_file(t_data *d)
 	head = &d->ln_lst; // Store the address of the head pointer
 	if (!d->map_path)
 		ftl_err("in map path", d);
-	printf("Debug: map path: %s\n", d->map_path);
 	fd = open(d->map_path, O_RDONLY);
 	if (fd < 0)
 		ftl_err("in opening file", d);
