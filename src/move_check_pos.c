@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:59:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/24 13:04:10 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/25 15:41:56 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static bool	is_valid_pos_on_map(t_data *d, double x, double y)
 {
 	if ((x < 0.25 || x >= (double)(d->map->map_size->x) - 1.25)
-		|| (y < 0.25 || y >= (double)(d->map->map_size->y) - 0.25))
+		|| (y < 0.25 || y >= (double)(d->map->map_size->y) - 0.25)
+		|| (int)x < 0 || (int)x >= d->map->map_size->x
+		|| (int)y < 0 || (int)y >= d->map->map_size->y)
 		return (false);
 	return (true);
 }

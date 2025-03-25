@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:36:17 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/24 14:40:50 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/25 15:48:46 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ static bool	move_player_left_right(int direction, t_player *p, t_data *d)
 	new_y = 0;
 	if (direction == LEFT)
 	{
-		new_x = p->pos_x + p->dir_x / MV_SPD_FCTR;
-		new_y = p->pos_y - p->dir_y / MV_SPD_FCTR;
+		new_x = p->pos_x - p->dir_x / MV_SPD_FCTR;
+		new_y = p->pos_y + p->dir_y / MV_SPD_FCTR;
+
 	}
 	else if (direction == RIGHT)
 	{
-		new_x = p->pos_x - p->dir_x / MV_SPD_FCTR;
-		new_y = p->pos_y + p->dir_y / MV_SPD_FCTR;
+		new_x = p->pos_x + p->dir_x / MV_SPD_FCTR;
+		new_y = p->pos_y - p->dir_y / MV_SPD_FCTR;
 	}
 	return (is_move_valid(d, p, new_x, new_y));
 }

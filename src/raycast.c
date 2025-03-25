@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 16:27:36 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/25 15:40:19 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ static void	raycast_dist_to_wall(t_data *d, t_raycast *c, t_player *p)
 			c->sidedist_y += c->deltadist_y;
 			c->map_y += c->step_y;
 			c->side_flag = TRUE;
+		}
+		printf("Debug: Accessing i_map[%d][%d]\n", c->map_y, c->map_x);
+		if (c->sidedist_x < 0 || c->sidedist_x >= d->map->map_size->x || c->sidedist_y < 0 || c->sidedist_y >= d->map->map_size->y)
+		{
+			fprintf(stderr, "Error: Out-of-bounds access at i_map[%f][%f]\n", c->sidedist_y, c->sidedist_x);
+			return ; // Return an error or handle out-of-bounds access
 		}
 		if (d->map->i_map[c->map_y][c->map_x] == 1)
 			c->hit_flag = TRUE;

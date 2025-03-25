@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:57:57 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/25 15:27:01 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:48:19 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 //macros for moves
 # define RESET	0
 # define FWD	1
-# define BK	2
+# define BK		2
 # define LEFT	3
 # define RIGHT	4
 # define TURN_L	1
