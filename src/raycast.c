@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/25 16:00:47 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:10:24 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ static void	raycast_dist_to_wall(t_data *d, t_raycast *c, t_player *p)
 			c->map_y += c->step_y;
 			c->side_flag = TRUE;
 		}
+		if (c->map_x < 0 || c->map_x >= d->map->map_size->x
+			|| c->map_y < 0 || c->map_y >= d->map->map_size->y)
+			return ;
 		if (d->map->i_map[c->map_y][c->map_x] == 1)
 			c->hit_flag = TRUE;
 	}
@@ -73,6 +76,9 @@ static void	raycast_wall_height(t_data *d, t_raycast *c)
 		c->wall_end = 0;
 }
 
+// Removed duplicate floor_ceiling function as it conflicts with render.c
+
+
 int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
 {
 	int			x;
@@ -80,6 +86,7 @@ int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
 	x = 0;
 	while (x < d->win_w)
 	{
+		
 		c->map_x = (int)p->pos_x;
 		c->map_y = (int)p->pos_y;
 		p->camera_x = 2 * ((double)x / (double)d->win_w) - 1;
@@ -115,8 +122,8 @@ int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
 		{1,1,0,0,0,0,0,1,1,1,1,1,0,1,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,0,1,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,0,1,1},
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-	};
+		// floor_ceiling(d, x, c->wall_start, c->wall_end);
+		render_init(d, d->render, c, x);
 	int	i;
 	int	j;
 
@@ -166,7 +173,6 @@ int	raycast_init(t_data *d)
 	d->render = (t_render *)ft_calloc(1, sizeof(t_render));
 	if (!d->raycast || !d->player || !d->render)
 		ftl_err("in raycast_init1", d);
-	//d->map = d->map->arr;
 	set_player_location_and_dir(d);
 	d->texture = mlx_load_png(TEST_TXT);
 	if (d->texture == NULL)

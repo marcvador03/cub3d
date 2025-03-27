@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:45:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/25 16:49:58 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/27 15:09:26 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ static uint32_t	get_rgba(mlx_texture_t	*t, int index)
 	return (color);
 }
 
+/**
+ * @brief Convert color from RGB to RGBA format
+ * 
+ * @param color RGB color array
+ * @return RGBA color
+ */
+static u_int32_t cnv_c(unsigned int *color)
+{
+	return ((color[0] << 24) | (color[1] << 16) | (color[2] << 8) | 0xFF);
+}
+
 static void	render_loop(t_data *d, t_render *r, int x)
 {
 	int			y;
@@ -40,17 +51,16 @@ static void	render_loop(t_data *d, t_render *r, int x)
 		if (y >= d->raycast->wall_start && y <= d->raycast->wall_end)
 		{
 			height = d->texture->height;
-			r->pixel_y = (int) r->pixel_pos & (height - 1);
+			r->pixel_y = (int)r->pixel_pos & (height - 1);
 			r->pixel_pos += r->step;
 			color = get_rgba(d->texture, (height * r->pixel_y + r->pixel_x));
 			mlx_put_pixel(d->image, d->win_w - x - 1, y++, color);
-		}
-		else if (y > d->raycast->wall_end)
-			mlx_put_pixel(d->image, d->win_w - x - 1, y++, *d->txs->f_clr);
-		else if (y < d->raycast->wall_start)
-			mlx_put_pixel(d->image, d->win_w - x - 1, y++, *d->txs->c_clr);
 	}
-	return ;
+		else if (y > d->raycast->wall_end)
+			mlx_put_pixel(d->image, d->win_w - x - 1, y++, cnv_c(d->txs->f_clr));
+		else if (y < d->raycast->wall_start)
+			mlx_put_pixel(d->image, d->win_w - x - 1, y++, cnv_c(d->txs->c_clr));
+	}
 }
 
 int	render_init(t_data *d, t_render *r, t_raycast *c, int x)
