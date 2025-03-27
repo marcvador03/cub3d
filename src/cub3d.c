@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/25 15:23:55 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:47:35 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 	t_data	*d;
 
 	d = (t_data *)safe_malloc(sizeof(t_data), NULL);
+	structs_init(d);
 	check_args(argc, argv, d);
 	parsing_process(d);
 	d->win_w = 1080;

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:59:20 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/24 16:12:36 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:48:25 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	structs_init(t_data *d)
 	d->map->arr = NULL;
 	d->map->i_map = NULL;
 	d->map->player_dir = RESET;
+	d->map_path = NULL;
 	d->mlx = NULL;
 	d->raycast = NULL;
 	d->player = NULL;
@@ -42,4 +43,5 @@ void	structs_init(t_data *d)
 	d->map_lst = NULL;
 	d->pl_mv = RESET;
 	d->pl_rotate = RESET;
+	
 }

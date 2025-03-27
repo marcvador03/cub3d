@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/25 16:01:20 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:47:39 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ void	data_extr(t_data *d)
  */
 void	parsing_process(t_data *d)
 {
-	structs_init(d);
 	parse_cub_file(d);
 	map_pos_checker(d);
 	data_extr(d);
