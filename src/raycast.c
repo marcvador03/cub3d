@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/27 15:10:24 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:17:10 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ static void	raycast_wall_height(t_data *d, t_raycast *c)
 	if (c->wall_end < 0)
 		c->wall_end = 0;
 }
-
-// Removed duplicate floor_ceiling function as it conflicts with render.c
 
 
 int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
@@ -166,6 +164,7 @@ int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
 		exit (1);
 	raycast_loop(cub, cub->raycast, cub->player);
 	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)*/
+
 int	raycast_init(t_data *d)
 {
 	d->raycast = (t_raycast *)ft_calloc(1, sizeof(t_raycast));
