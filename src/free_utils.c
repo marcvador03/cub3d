@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/28 17:22:20 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/31 18:57:17 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,16 @@ void	free_d(void **ptr)
 	int	i;
 
 	i = 0;
-	if (!ptr)
+	if (!ptr || !*ptr) 
 		return ;
 	while (ptr[i] != NULL)
 	{
 		free(ptr[i]);
-		ptr[i++] = NULL;
+		ptr[i] = NULL;
+		i++;
 	}
 	free_s(ptr);
+	ptr = NULL;
 }
 
 static void	free_mlx_data(t_data *d)
@@ -58,7 +60,7 @@ static void	free_mlx_data(t_data *d)
 		if (d->mlx)
 		{
 			mlx_terminate(d->mlx);
-			free_s(d->mlx);
+//			free_s(d->mlx);
 			d->mlx = NULL;
 		}
 		if (d->raycast)
@@ -68,10 +70,27 @@ static void	free_mlx_data(t_data *d)
 		if (d->render)
 			free_s(d->render);
 		if (d->image)
-			free_s(d->image);
+//			free_s(d->image);
+			d->image = NULL;
 		if (d->texture)
-			free_s(d->texture);
+		{
+			mlx_delete_texture(d->texture);
+			d->texture = NULL;
+		}
 	}
+}
+
+static void free_imap(t_data *d)
+{
+	int	i;
+
+	i = 0;
+	while (d->map->i_map[i])
+	{
+		free(d->map->i_map[i]);
+		i++;
+	}
+	free_s(d->map->i_map);
 }
 
 /**
@@ -94,8 +113,7 @@ void	free_data(t_data *d)
 		}
 		if (d->map)
 		{
-			free_d((void **)d->map->arr);
-			free_d((void **)d->map->i_map);
+			free_imap(d);
 			free_s(d->map->map_size);
 			free_s(d->map->pl_pos);
 			free_s(d->map);
