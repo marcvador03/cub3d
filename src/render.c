@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:45:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/28 17:02:54 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/31 13:32:03 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static uint32_t	get_rgba(mlx_texture_t	*t, int index)
 	if (index < 0 || index >= (int)(t->width * t->height))
 	{
 		fprintf(stderr, "Error: index out of bounds: %d\n", index);
-		return (0); // Default color
+		return (-1); // Default color
 	}
 	color = (t->pixels[index * BPP] << 24);
 	color |= (t->pixels[index * BPP + 1] << 16);
