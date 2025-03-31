@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:46:45 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/24 15:57:52 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/31 19:25:27 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,10 @@ typedef struct s_data
 	int				win_w;
 	int				win_h;
 	mlx_image_t		*image;
-	mlx_texture_t	*texture;
+	mlx_texture_t	*texture_no;
+	mlx_texture_t	*texture_so;
+	mlx_texture_t	*texture_we;
+	mlx_texture_t	*texture_ea;
 	t_map			*map;
 	t_list			*ln_lst;
 	t_list			*map_lst;

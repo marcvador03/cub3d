@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/31 13:51:52 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/31 19:26:27 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,11 @@ int	raycast_init(t_data *d)
 	if (!d->raycast || !d->player || !d->render)
 		ftl_err("in raycast_init1", d);
 	set_player_location_and_dir(d);
-	d->texture = mlx_load_png(TEST_TXT);
-	if (d->texture == NULL)
+	d->texture_no = mlx_load_png(d->txs->no_tx);
+	d->texture_so = mlx_load_png(d->txs->so_tx);
+	d->texture_we = mlx_load_png(d->txs->we_tx);
+	d->texture_ea = mlx_load_png(d->txs->ea_tx);
+	if (d->texture_no == NULL || d->texture_so == NULL || d->texture_we == NULL || d->texture_ea == NULL)
 		ftl_err("in raycast_init2", d);
 	d->image = mlx_new_image(d->mlx, d->win_w, d->win_h);
 	if (d->image == NULL)

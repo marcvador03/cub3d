@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/28 17:22:20 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/31 18:58:14 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ static void	free_mlx_data(t_data *d)
 			free_s(d->render);
 		if (d->image)
 			free_s(d->image);
-		if (d->texture)
-			free_s(d->texture);
+		if (d->texture_no)
+			free_s(d->texture_no);
 	}
 }
 

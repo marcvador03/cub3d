@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:59:20 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/27 16:48:25 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/31 18:58:53 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	structs_init(t_data *d)
 	d->win_w = RESET;
 	d->win_h = RESET;
 	d->image = NULL;
-	d->texture = NULL;
+	d->texture_no = NULL;
 	d->ln_lst = NULL;
 	d->map_lst = NULL;
 	d->pl_mv = RESET;

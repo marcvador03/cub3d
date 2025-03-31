@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:45:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/31 13:32:03 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/31 19:55:53 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,44 @@ static u_int32_t cnv_c(unsigned int *color)
 	return ((color[0] << 24) | (color[1] << 16) | (color[2] << 8) | 0xFF);
 }
 
+static mlx_texture_t	*get_texture_direction(t_data *d)
+{
+	mlx_texture_t	*tex;
+
+	if (d->raycast->side_flag == 0)
+	{
+		if (d->raycast->raydir_x >= 0)
+			tex = d->texture_ea;
+		else	
+			tex = d->texture_we;
+	}
+	else
+	{
+		if (d->raycast->raydir_y > 0)
+			tex = d->texture_no;
+		else	
+			tex = d->texture_so;
+	}
+	return (tex);
+}
+
 static void	render_loop(t_data *d, t_render *r, int x)
 {
 	int			y;
 	uint32_t	color;
 	uint32_t	height;
+	mlx_texture_t	*tex;
 
 	y = 0;
 	while (y < d->win_h)
 	{
 		if (y >= d->raycast->wall_start && y <= d->raycast->wall_end)
 		{
-			height = d->texture->height;
+			tex = get_texture_direction(d);
+			height = tex->height;
 			r->pixel_y = (int)r->pixel_pos & (height - 1);
 			r->pixel_pos += r->step;
-			color = get_rgba(d->texture, (height * r->pixel_y + r->pixel_x));
+			color = get_rgba(tex, (height * r->pixel_y + r->pixel_x));
 			mlx_put_pixel(d->image, d->win_w - x - 1, y++, color);
 	}
 		else if (y > d->raycast->wall_end)
@@ -72,8 +95,8 @@ int	render_init(t_data *d, t_render *r, t_raycast *c, int x)
 	else
 		r->wall_x = d->player->pos_y + c->walldist * c->raydir_y;
 	r->wall_x -= floor(r->wall_x);
-	r->pixel_x = (int)(r->wall_x * d->texture->width);
-	r->step = 1.0 * d->texture->height / c->lineheight;
+	r->pixel_x = (int)(r->wall_x * d->texture_no->width);
+	r->step = 1.0 * d->texture_no->height / c->lineheight;
 	tmp = c->wall_start - (d->win_w / 2) + (c->lineheight / 2);
 	r->pixel_pos = tmp * r->step;
 	render_loop(d, r, x);
