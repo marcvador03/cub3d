@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/31 13:41:51 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/03/31 13:51:52 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	raycast_dist_to_wall(t_data *d, t_raycast *c, t_player *p)
 			c->hit_flag = TRUE;
 	}
 	if (c->side_flag == FALSE)
-		c->walldist = (c->map_x - p->pos_x + (0 - c->step_x) / 2) / c->raydir_x;
+		c->walldist = (c->map_x - p->pos_x + (1 - c->step_x) / 2) / c->raydir_x;
 	else
 		c->walldist = (c->map_y - p->pos_y + (1 - c->step_y) / 2) / c->raydir_y;
 }
