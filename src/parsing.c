@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/27 16:47:39 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/31 18:46:42 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	parse_cub_file(t_data *d)
 	while (gnl_for_loop(fd, &line))
 	{
 		temp = (t_list *)safe_malloc(sizeof(t_list), d);
-		temp->content = line;
+		temp->content = ft_strdup(line);
+		if (!temp->content)
+			ftl_err("in malloc", d);
 		temp->next = NULL;
 		ft_lstadd_back(head, temp);
 	}
@@ -128,7 +130,7 @@ void	parsing_process(t_data *d)
 	parse_cub_file(d);
 	map_pos_checker(d);
 	data_extr(d);
-	ft_lstclear(&d->ln_lst, free_s);
+	//ft_lstclear(&d->ln_lst, free_s);
 	map_size(d);
 	map_conversion(d);
 	is_map_closed(d);
@@ -136,5 +138,5 @@ void	parsing_process(t_data *d)
 	find_player(d->map->arr, d->map->pl_pos, &d->map->player_dir);
 	map_arr_to_int(d);
 	free_d((void **)d->map->arr);
-	ft_lstclear(&d->map_lst, free_s);
+	//ft_lstclear(&d->map_lst, free_s);
 }

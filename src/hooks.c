@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:27:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/25 15:24:24 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/03/31 18:14:00 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	key_handler_press(struct mlx_key_data k_d, void *param)
 
 	d = (t_data *)param;
 	if (k_d.key == MLX_KEY_ESCAPE)
-		mlx_terminate(d->mlx);
+		exit_normal(d);
 	if (k_d.action == MLX_PRESS) // Check if the key is pressed
 	{
 		if (k_d.key == MLX_KEY_W || k_d.key == MLX_KEY_UP)
@@ -88,8 +88,8 @@ void	key_handler_release(struct mlx_key_data k_d, void *param)
 	t_data	*d;
 
 	d = (t_data *)param;
-	if (k_d.key == MLX_KEY_ESCAPE)
-		mlx_terminate(d->mlx);
+	/*if (k_d.key == MLX_KEY_ESCAPE)
+		exit_normal(d);*/
 	if (k_d.action == MLX_RELEASE) // Check if the key is released
 	{
 		if (((k_d.key == MLX_KEY_W || k_d.key == MLX_KEY_UP) && d->pl_mv == FWD)
@@ -115,7 +115,7 @@ void	hook_close(void *ptr)
 	t_data	*d;
 
 	d = (t_data *)ptr;
-	free_data(d);
-	mlx_terminate(d->mlx);
+	//free_data(d);
+	exit_normal(d);
 }
 
