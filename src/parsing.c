@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/31 18:46:42 by milosz           ###   ########.fr       */
+/*   Updated: 2025/04/01 16:05:17 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	parse_cub_file(t_data *d)
 			ftl_err("in malloc", d);
 		temp->next = NULL;
 		ft_lstadd_back(head, temp);
+		free_s(line);
+		line = NULL;
 	}
 	close(fd);
 }

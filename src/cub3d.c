@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/31 17:50:27 by milosz           ###   ########.fr       */
+/*   Updated: 2025/04/01 16:02:59 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int argc, char **argv)
 	d->mlx = mlx_init(d->win_w, d->win_h, "CUB3D", true);
 	if (!d->mlx)
 		ftl_err("mlx_init() failed", d);
-	
 	mlx_key_hook(d->mlx, key_handler, d);
 	mlx_loop_hook(d->mlx, &move_player, d);
 	mlx_close_hook(d->mlx, &hook_close, &d);
