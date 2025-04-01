@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/03/31 18:58:14 by mfleury          ###   ########.fr       */
-=======
-/*   Updated: 2025/03/31 18:57:17 by milosz           ###   ########.fr       */
->>>>>>> 124cb1d539b10d1e5326a32408078ee0261be383
+/*   Updated: 2025/04/01 14:36:21 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +49,30 @@ void	free_d(void **ptr)
 	ptr = NULL;
 }
 
+static void free_textures(t_data *d)
+{
+	if (d->texture_no)
+	{
+		mlx_delete_texture(d->texture_no);
+		d->texture_no = NULL;
+	}
+	if (d->texture_so)
+	{
+		mlx_delete_texture(d->texture_so);
+		d->texture_so = NULL;
+	}
+	if (d->texture_we)
+	{
+		mlx_delete_texture(d->texture_we);
+		d->texture_we = NULL;
+	}
+	if (d->texture_ea)
+	{
+		mlx_delete_texture(d->texture_ea);
+		d->texture_ea = NULL;
+	}
+}
+
 static void	free_mlx_data(t_data *d)
 {
 	if (d)
@@ -64,7 +84,6 @@ static void	free_mlx_data(t_data *d)
 		if (d->mlx)
 		{
 			mlx_terminate(d->mlx);
-//			free_s(d->mlx);
 			d->mlx = NULL;
 		}
 		if (d->raycast)
@@ -74,34 +93,23 @@ static void	free_mlx_data(t_data *d)
 		if (d->render)
 			free_s(d->render);
 		if (d->image)
-<<<<<<< HEAD
-			free_s(d->image);
-		if (d->texture_no)
-			free_s(d->texture_no);
-=======
-//			free_s(d->image);
 			d->image = NULL;
-		if (d->texture)
-		{
-			mlx_delete_texture(d->texture);
-			d->texture = NULL;
-		}
->>>>>>> 124cb1d539b10d1e5326a32408078ee0261be383
+		free_textures(d);
 	}
 }
 
-static void free_imap(t_data *d)
+/*static void free_imap(t_data *d)
 {
 	int	i;
 
 	i = 0;
-	while (d->map->i_map[i])
+	while (d->map->i_map[i] < d->map->map_size->y - 1)
 	{
 		free(d->map->i_map[i]);
 		i++;
 	}
 	free_s(d->map->i_map);
-}
+}*/
 
 /**
  * @brief Free the d structure
@@ -123,7 +131,8 @@ void	free_data(t_data *d)
 		}
 		if (d->map)
 		{
-			free_imap(d);
+			//free_imap(d);
+			free_d((void**)d->map->i_map);
 			free_s(d->map->map_size);
 			free_s(d->map->pl_pos);
 			free_s(d->map);

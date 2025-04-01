@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_conversion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/31 18:48:12 by milosz           ###   ########.fr       */
+/*   Updated: 2025/04/01 14:34:44 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	map_conversion(t_data *d)
 	temp = d->map_lst;
 	while (temp)
 	{
-		d->map->arr[y] = ft_strdup((char *)temp->content);
+		d->map->arr[y] = (char *)safe_malloc((ft_strlen(temp->content) + 1) * sizeof(char), d);
 		if (!d->map->arr[y])
 			ftl_err("in map conversion", d);
-		d->map->arr[y][ft_strlen(temp->content)] = '\0';
+		ft_strlcpy(d->map->arr[y], (char *)temp->content, ft_strlen(temp->content) + 1);
 		y++;
 		temp = temp->next;
 	}
@@ -114,11 +114,11 @@ void	map_arr_to_int(t_data *d)
 	int	x;
 
 	y = 0;
-	d->map->i_map = (int **)safe_malloc(sizeof(int *) * d->map->map_size->y, d);
+	d->map->i_map = (int **)safe_malloc(sizeof(int *) * (d->map->map_size->y + 1), d);
 	while (d->map->arr[y])
 	{
 		x = 0;
-		d->map->i_map[y] = (int *)safe_malloc(sizeof(int) * d->map->map_size->x, d);
+		d->map->i_map[y] = (int *)safe_malloc(sizeof(int) * (d->map->map_size->x), d);
 		while (d->map->arr[y][x])
 		{
 			if ((d->map->arr[y][x] == ' ') || (d->map->arr[y][x] == '0'))
@@ -131,4 +131,5 @@ void	map_arr_to_int(t_data *d)
 		}
 		y++;
 	}
+	d->map->i_map[y] = NULL;
 }

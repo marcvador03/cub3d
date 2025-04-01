@@ -6,11 +6,21 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:59:20 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/31 18:58:53 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/01 14:05:30 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void structs_init2(t_data *d)
+{
+	d->ln_lst = NULL;
+	d->map_lst = NULL;
+	d->pl_mv = RESET;
+	d->pl_rotate = RESET;
+	d->map_path = NULL;
+}
+
 /**
  * @brief This function will initialize the structs
  * 
@@ -24,13 +34,6 @@ void	structs_init(t_data *d)
 	d->txs->so_tx = NULL;
 	d->txs->we_tx = NULL;
 	d->txs->ea_tx = NULL;
-	d->map = (t_map *)safe_malloc(sizeof(t_map), d);
-	d->map->pl_pos = (t_pos *)safe_malloc(sizeof(t_pos), d);
-	d->map->map_size = (t_pos *)safe_malloc(sizeof(t_pos), d);
-	d->map->arr = NULL;
-	d->map->i_map = NULL;
-	d->map->player_dir = RESET;
-	d->map_path = NULL;
 	d->mlx = NULL;
 	d->raycast = NULL;
 	d->player = NULL;
@@ -39,9 +42,14 @@ void	structs_init(t_data *d)
 	d->win_h = RESET;
 	d->image = NULL;
 	d->texture_no = NULL;
-	d->ln_lst = NULL;
-	d->map_lst = NULL;
-	d->pl_mv = RESET;
-	d->pl_rotate = RESET;
-	
+	d->texture_so = NULL;
+	d->texture_we = NULL;
+	d->texture_ea = NULL;
+	d->map = (t_map *)safe_malloc(sizeof(t_map), d);
+	d->map->pl_pos = (t_pos *)safe_malloc(sizeof(t_pos), d);
+	d->map->map_size = (t_pos *)safe_malloc(sizeof(t_pos), d);
+	d->map->arr = NULL;
+	d->map->i_map = NULL;
+	d->map->player_dir = RESET;
+	structs_init2(d);
 }
