@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/01 16:05:17 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:40:49 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	parse_cub_file(t_data *d)
 	t_list	*temp;
 	char	*line;
 
-	head = &d->ln_lst; // Store the address of the head pointer
+	head = &d->ln_lst;
 	if (!d->map_path)
 		ftl_err("in map path", d);
 	fd = open(d->map_path, O_RDONLY);
@@ -40,12 +40,29 @@ void	parse_cub_file(t_data *d)
 			ftl_err("in malloc", d);
 		temp->next = NULL;
 		ft_lstadd_back(head, temp);
-		free_s(line);
+		free(line);
 		line = NULL;
 	}
 	close(fd);
 }
 
+/**
+ * @brief Adds a new node to the map linked list if the map has started.
+ *
+ * This function checks if the map parsing has started. If it has, it creates
+ * a new node for the map linked list, duplicates the content of the current
+ * node without the newline character, and appends the new node to the end of
+ * the map linked list.
+ *
+ * @param temp Pointer to the current node in the input list being processed.
+ * @param d Pointer to the main data structure containing the map linked list.
+ * @param map_started Pointer to a boolean indicating whether the map parsing
+ *        has started.
+ *
+ * @note The function uses `safe_malloc` to allocate memory and `ft_strdup_w_o_nl`
+ *       to duplicate the content of the current node without the newline character.
+ *       It also uses `ft_lstadd_back` to append the new node to the linked list.
+ */
 static void	map_actions(t_list *temp, t_data *d, bool *map_started)
 {
 	t_list	*new_node;
@@ -139,6 +156,6 @@ void	parsing_process(t_data *d)
 	is_map_symbols_correct(d);
 	find_player(d->map->arr, d->map->pl_pos, &d->map->player_dir);
 	map_arr_to_int(d);
-	free_d((void **)d->map->arr);
+	//free_d((void **)d->map->arr);
 	//ft_lstclear(&d->map_lst, free_s);
 }

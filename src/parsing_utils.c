@@ -6,7 +6,7 @@
 /*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:21:14 by milosz            #+#    #+#             */
-/*   Updated: 2025/03/31 18:43:26 by milosz           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:44:09 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,17 @@ void	color_extractor(char *line, unsigned int color[3], t_data *d)
  * @param fd int
  * @param line char**
  */
-bool	gnl_for_loop(int fd, char **line)
+bool gnl_for_loop(int fd, char **line)
 {
-	*line = get_next_line(fd);
-	if (*line == NULL)
+	char *tmp;
+
+	tmp = get_next_line(fd);
+	if (tmp == NULL)
 		return (false);
+	*line = ft_strdup(tmp);
+	free(tmp);
+	if (*line == NULL)
+		ftl_err("in malloc", NULL);
 	return (true);
 }
 

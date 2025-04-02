@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_conversion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/01 14:34:44 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:32:17 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,21 @@ void	map_conversion(t_data *d)
 	t_list	*temp;
 	t_pos	*map_size;
 
+	if (!d->map->map_size)
+		ftl_err("map_size is not initialized", d);
 	map_size = d->map->map_size;
-	d->map->arr
-		= (char **)safe_malloc((map_size->y + 1) * sizeof(char *), d);
+	d->map->arr = (char **)safe_malloc((map_size->y + 1) * sizeof(char *), d);
 	y = 0;
 	temp = d->map_lst;
 	while (temp)
 	{
-		d->map->arr[y] = (char *)safe_malloc((ft_strlen(temp->content) + 1) * sizeof(char), d);
+		d->map->arr[y] = ft_strdup((char *)temp->content);
 		if (!d->map->arr[y])
 			ftl_err("in map conversion", d);
-		ft_strlcpy(d->map->arr[y], (char *)temp->content, ft_strlen(temp->content) + 1);
 		y++;
 		temp = temp->next;
 	}
 	d->map->arr[y] = NULL;
-	y = 0;
 }
 
 /**

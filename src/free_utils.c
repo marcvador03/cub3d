@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 11:13:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/01 14:36:21 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:03:33 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,8 @@ void	free_data(t_data *d)
 		}
 		if (d->map)
 		{
-			//free_imap(d);
 			free_d((void**)d->map->i_map);
+			free_d((void**)d->map->arr);
 			free_s(d->map->map_size);
 			free_s(d->map->pl_pos);
 			free_s(d->map);

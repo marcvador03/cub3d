@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/01 16:02:59 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:34:57 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	check_args(int argc, char **argv, t_data *d)
 		ftl_err("in arguments", d);
 	else
 	{
-		//d->mlx = (mlx_t *)safe_malloc(sizeof(mlx_t), d);
 		d->map_path = ft_strdup(argv[1]);
 		if (!d->map_path)
 			ftl_err("in malloc", d);
@@ -44,6 +43,5 @@ int	main(int argc, char **argv)
 	mlx_close_hook(d->mlx, &hook_close, &d);
 	raycast_init(d);
 	mlx_loop(d->mlx);
-	//mlx_terminate(d->mlx);
 	exit_normal(d);
 }
