@@ -6,7 +6,7 @@
 /*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/02 12:40:49 by milosz           ###   ########.fr       */
+/*   Updated: 2025/04/02 14:47:35 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,13 +149,10 @@ void	parsing_process(t_data *d)
 	parse_cub_file(d);
 	map_pos_checker(d);
 	data_extr(d);
-	//ft_lstclear(&d->ln_lst, free_s);
 	map_size(d);
 	map_conversion(d);
 	is_map_closed(d);
 	is_map_symbols_correct(d);
 	find_player(d->map->arr, d->map->pl_pos, &d->map->player_dir);
 	map_arr_to_int(d);
-	//free_d((void **)d->map->arr);
-	//ft_lstclear(&d->map_lst, free_s);
 }

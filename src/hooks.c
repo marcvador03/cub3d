@@ -6,7 +6,7 @@
 /*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:27:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/31 18:14:00 by milosz           ###   ########.fr       */
+/*   Updated: 2025/04/02 14:52:54 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ void	key_handler_release(struct mlx_key_data k_d, void *param)
 	t_data	*d;
 
 	d = (t_data *)param;
-	/*if (k_d.key == MLX_KEY_ESCAPE)
-		exit_normal(d);*/
 	if (k_d.action == MLX_RELEASE) // Check if the key is released
 	{
 		if (((k_d.key == MLX_KEY_W || k_d.key == MLX_KEY_UP) && d->pl_mv == FWD)
@@ -103,19 +101,30 @@ void	key_handler_release(struct mlx_key_data k_d, void *param)
 	}
 }
 
+/**
+ * @brief This function will handle the key press and release events
+ * 
+ * @param k_d
+ * @param param
+ * @return void
+ */
 void	key_handler(struct mlx_key_data k_d, void *param)
 {
 	key_handler_press(k_d, param);
 	key_handler_release(k_d, param);
 }
 
-
+/**
+ * @brief This function will close the window and exit the program
+ * 
+ * @param ptr
+ * @return void
+ */
 void	hook_close(void *ptr)
 {
 	t_data	*d;
 
 	d = (t_data *)ptr;
-	//free_data(d);
 	exit_normal(d);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:45:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/31 19:55:53 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:14:24 by milosz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	render_loop(t_data *d, t_render *r, int x)
 			r->pixel_pos += r->step;
 			color = get_rgba(tex, (height * r->pixel_y + r->pixel_x));
 			mlx_put_pixel(d->image, d->win_w - x - 1, y++, color);
-	}
+		}
 		else if (y > d->raycast->wall_end)
 			mlx_put_pixel(d->image, d->win_w - x - 1, y++, cnv_c(d->txs->f_clr));
 		else if (y < d->raycast->wall_start)
