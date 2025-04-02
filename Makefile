@@ -8,6 +8,7 @@ LIB_DIR := lib
 
 #Filenames definition
 NAME := cub3D
+NAME_BONUS = $(NAME)
 
 SRC_NAMES = cub3d.c \
 			exit_utils.c \
@@ -27,16 +28,24 @@ SRC_NAMES = cub3d.c \
 			str_utils.c \
 			structs_init.c
 
+SRC_NAMES_BONUS := hooks_bonus.c
 
 INC_NAMES := cub3d.h
 
+INC_NAMES_BONUS := cub3d.h
+
 OBJECTS := $(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(SRC_NAMES)))
+
+OBJECTS_BONUS := $(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(SRC_NAMES_BONUS)))
 
 INCLUDES := $(patsubst %.h, $(INC_DIR)/%.h, $(INC_NAMES))
 
-DEPS := $(OBJECTS:.o=.d)
+INCLUDES_BONUS := $(patsubst %.h, $(INC_DIR)/%.h, $(INC_NAMES_BONUS))
 
-CFLAGS += -Wall -Werror -Wextra -MMD -MP -g -I $(INC_DIR) -fsanitize=address #-Ofast 
+DEPS := $(OBJECTS:.o=.d)
+DEPS_BONUS := $(OBJECTS_BONUS:.o=.d)
+
+CFLAGS += -Wall -Werror -Wextra -MMD -MP -g -Ofast -I $(INC_DIR) #-fsanitize=address 
 
 LIB_NAMES := libft.a \
 			libmlx42.a 
@@ -55,8 +64,13 @@ CUR_DIR := $(shell pwd)
 #TARGETS
 all: libft libmlx $(OBJECTS) $(NAME) 
 
+bonus: libft libmlx $(OBJECTS_BONUS) bonus_m 
+
 $(NAME): $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES) $(OBJECTS) | $(LIB_DIR)
 	cc $(CFLAGS) -L libft -L lib $(DEBUG) $(OBJECTS) -o $@ $(LIBS_TAG) $(LIBS_TAG)
+
+bonus_m: $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES_BONUS) $(OBJECTS) $(OBJECTS_BONUS) | $(LIB_DIR)
+	cc $(CFLAGS) -L libft -L lib $(DEBUG) $(OBJECTS) $(OBJECTS_BONUS) -o $@ $(LIBS_TAG) $(LIBS_TAG)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)
 	cc $(CFLAGS) $(DEBUG) -c $< -o $@ 
@@ -80,7 +94,8 @@ flags:
 
 show:
 	@echo $(OBJECTS)
-	@echo $(SRC_NAMES)
+	@echo $(OBJECTS_BONUS)
+#	@echo $(SRC_NAMES)
 
 clean: 
 	@$(MAKE) clean -C $(LIBFT_DIR)
@@ -95,4 +110,7 @@ re: fclean all
 ifneq ($(DEPS), )
 -include $(DEPS)
 endif
-.PHONY: all flags clean fclean re show libft mlx
+ifneq ($(DEPS_BONUS), )
+-include $(DEPS)
+endif
+.PHONY: all flags clean fclean re show libft mlx bonus
