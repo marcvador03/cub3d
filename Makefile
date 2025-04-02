@@ -36,7 +36,7 @@ INCLUDES := $(patsubst %.h, $(INC_DIR)/%.h, $(INC_NAMES))
 
 DEPS := $(OBJECTS:.o=.d)
 
-CFLAGS += -Wall -Werror -Wextra -MMD -MP -g -I $(INC_DIR) -fsanitize=address
+CFLAGS += -Wall -Werror -Wextra -MMD -MP -g -Ofast -I $(INC_DIR)
 
 LIB_NAMES := libft.a \
 			libmlx42.a 

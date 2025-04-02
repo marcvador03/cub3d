@@ -6,37 +6,28 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:45:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/31 19:55:53 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/02 15:50:20 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static uint32_t	get_rgba(mlx_texture_t	*t, int index)
+static void	inject_img(t_data *d, mlx_texture_t *t, int t_index, int i_index)
 {
-	uint32_t	color;
-
-	if (index < 0 || index >= (int)(t->width * t->height))
-	{
-		fprintf(stderr, "Error: index out of bounds: %d\n", index);
-		return (-1); // Default color
-	}
-	color = (t->pixels[index * BPP] << 24);
-	color |= (t->pixels[index * BPP + 1] << 16);
-	color |= (t->pixels[index * BPP + 2] << 8);
-	color |= (t->pixels[index * BPP + 3]);
-	return (color);
+	d->image->pixels[i_index] = t->pixels[t_index]; 
+	d->image->pixels[i_index + 1] = t->pixels[t_index + 1]; 
+	d->image->pixels[i_index + 2] = t->pixels[t_index + 2]; 
+	d->image->pixels[i_index + 3] = t->pixels[t_index + 3]; 
+	return ;
 }
 
-/**
- * @brief Convert color from RGB to RGBA format
- * 
- * @param color RGB color array
- * @return RGBA color
- */
-static u_int32_t cnv_c(unsigned int *color)
+static void	inject_col_img(t_data *d, unsigned int color[3], int i_index)
 {
-	return ((color[0] << 24) | (color[1] << 16) | (color[2] << 8) | 0xFF);
+	d->image->pixels[i_index] = color[0]; 
+	d->image->pixels[i_index + 1] = color[1]; 
+	d->image->pixels[i_index + 2] = color[2]; 
+	d->image->pixels[i_index + 3] = 0xFF; 
+	return ;
 }
 
 static mlx_texture_t	*get_texture_direction(t_data *d)
@@ -63,26 +54,26 @@ static mlx_texture_t	*get_texture_direction(t_data *d)
 static void	render_loop(t_data *d, t_render *r, int x)
 {
 	int			y;
-	uint32_t	color;
 	uint32_t	height;
-	mlx_texture_t	*tex;
+	int			index;
+	mlx_texture_t	*t;
 
 	y = 0;
 	while (y < d->win_h)
 	{
 		if (y >= d->raycast->wall_start && y <= d->raycast->wall_end)
 		{
-			tex = get_texture_direction(d);
-			height = tex->height;
+			t = get_texture_direction(d);
+			height = t->height;
 			r->pixel_y = (int)r->pixel_pos & (height - 1);
 			r->pixel_pos += r->step;
-			color = get_rgba(tex, (height * r->pixel_y + r->pixel_x));
-			mlx_put_pixel(d->image, d->win_w - x - 1, y++, color);
+			index = height * r->pixel_y + r->pixel_x;
+			inject_img(d, t, index * BPP, (y++ * d->win_w + x) * BPP);
 	}
 		else if (y > d->raycast->wall_end)
-			mlx_put_pixel(d->image, d->win_w - x - 1, y++, cnv_c(d->txs->f_clr));
+			inject_col_img(d, d->txs->f_clr, (y++ * d->win_w + x) * BPP); 
 		else if (y < d->raycast->wall_start)
-			mlx_put_pixel(d->image, d->win_w - x - 1, y++, cnv_c(d->txs->c_clr));
+			inject_col_img(d, d->txs->c_clr, (y++ * d->win_w + x) * BPP); 
 	}
 }
 
