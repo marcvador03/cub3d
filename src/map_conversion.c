@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/03 13:45:49 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:34:18 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	find_player(char **arr, t_pos *pl_pos, char *pl_dir)
 				pl_pos->y = y;
 				*pl_dir = arr[y][x];
 				arr[y][x] = '0';
-				printf("Debug: Player x = %d, y = %d\n", x , y);
 				return ;
 			}
 			x++;
