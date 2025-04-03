@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_conversion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/02 15:15:33 by milosz           ###   ########.fr       */
+/*   Updated: 2025/04/03 13:45:49 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,25 @@ void	find_player(char **arr, t_pos *pl_pos, char *pl_dir)
 	int		x;
 	int		y;
 
-	x = 0;
-	while (arr[x])
+	y = 0;
+	while (arr[y])
 	{
-		y = 0;
-		while (arr[x][y])
+		x = 0;
+		while (arr[y][x])
 		{
-			if (arr[x][y] == 'N' || arr[x][y] == 'S' || arr[x][y] == 'E'
-			|| arr[x][y] == 'W')
+			if (arr[y][x] == 'N' || arr[y][x] == 'S' || arr[y][x] == 'E'
+			|| arr[y][x] == 'W')
 			{
 				pl_pos->x = x;
 				pl_pos->y = y;
-				*pl_dir = arr[x][y];
-				arr[x][y] = '0';
-				//printf("Debug: Player x = %d, y = %d\n", x , y);
+				*pl_dir = arr[y][x];
+				arr[y][x] = '0';
+				printf("Debug: Player x = %d, y = %d\n", x , y);
 				return ;
 			}
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 	
 }
