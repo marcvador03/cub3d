@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/03 12:58:42 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/03 12:58:30 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "../libft/getnextline/get_next_line.h"
 # include "../mlx42/include/MLX42/MLX42.h"
 # include "macros.h"
-# include "data.h"
+# include "data_bonus.h"
 
 # define FALSE 0
 # define TRUE 1
