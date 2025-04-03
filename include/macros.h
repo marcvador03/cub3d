@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:57:57 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/25 15:48:19 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:57:19 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@
 # define CYN	"\033[36m"
 # define WHT	"\033[37m"
 # define BLD	"\033[1m" 
+
+//bits per pixel
+# define BPP 4
 
 #endif
