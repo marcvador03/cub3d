@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:21:51 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/03 14:34:18 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:45:56 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * 
  * @param map_lst
  * @param map_size
- * @return char** - map converted to 2D array
+ * @return void
  */
 void	map_conversion(t_data *d)
 {
@@ -45,9 +45,9 @@ void	map_conversion(t_data *d)
 /**
  * @brief This function will find the player's position and direction
  * 
- * @param arr
- * @param pl_pos
- * @param pl_dir
+ * @param arr char** - the map array
+ * @param pl_pos t_pos* - the player's position
+ * @param pl_dir char* - the player's direction
  * 
  * @return void
  */
@@ -75,15 +75,14 @@ void	find_player(char **arr, t_pos *pl_pos, char *pl_dir)
 		}
 		y++;
 	}
-	
 }
 
 /**
  * @brief This function will calculate the size of the map
  * 		  by counting the number of lines and the length of the longest line
  * 		  after deleting the lines that are not a map d
- * @param d t_data*
- * @return t_pos*
+ * @param d t_data* - the data structure
+ * @return void
  */
 void	map_size(t_data *d)
 {
@@ -101,11 +100,10 @@ void	map_size(t_data *d)
 	}
 }
 
-
 /**
  * @brief This function will convert the map from char to int
  * 
- * @param d t_data*
+ * @param d t_data* - the data structure
  * @return void
  */
 void	map_arr_to_int(t_data *d)
@@ -114,11 +112,13 @@ void	map_arr_to_int(t_data *d)
 	int	x;
 
 	y = 0;
-	d->map->i_map = (int **)safe_malloc(sizeof(int *) * (d->map->map_size->y + 1), d);
+	d->map->i_map = (int **)safe_malloc(sizeof(int *)
+			* (d->map->map_size->y + 1), d);
 	while (d->map->arr[y])
 	{
 		x = 0;
-		d->map->i_map[y] = (int *)safe_malloc(sizeof(int) * (d->map->map_size->x), d);
+		d->map->i_map[y] = (int *)safe_malloc(sizeof(int)
+				* (d->map->map_size->x), d);
 		while (d->map->arr[y][x])
 		{
 			if ((d->map->arr[y][x] == ' ') || (d->map->arr[y][x] == '0'))

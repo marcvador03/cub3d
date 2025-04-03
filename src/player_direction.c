@@ -6,12 +6,18 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:43:13 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/03 14:32:14 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:46:22 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+/**
+ * @brief Set the player direction based on the map
+ * 
+ * @param player t_player* - the player structure
+ * @param map t_map* - the map structure
+ * @return void
+ */
 static void	set_player_north_south(t_player *player, t_map *map)
 {
 	if (map->player_dir == 'N')
@@ -30,6 +36,13 @@ static void	set_player_north_south(t_player *player, t_map *map)
 	}
 }
 
+/**
+ * @brief Set the player direction based on the map
+ * 
+ * @param player t_player* - the player structure
+ * @param map t_map* - the map structure
+ * @return void
+ */
 static void	set_player_east_west(t_player *player, t_map *map)
 {
 	if (map->player_dir == 'E')
@@ -65,4 +78,3 @@ void	set_player_location_and_dir(t_data *d)
 	d->player->pos_x = d->map->pl_pos->x + 0.5f;
 	d->player->pos_y = d->map->pl_pos->y + 0.5f;
 }
-// function to be added to 'raycast.c' -> int raycast_init(t_mlx *cub)

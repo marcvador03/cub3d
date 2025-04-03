@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/02 14:47:35 by milosz           ###   ########.fr       */
+/*   Updated: 2025/04/03 15:44:02 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 /**
  * @brief This function will parse the map file and store it in a linked list
  * 
- * @param cub
- * @param map
+ * @param d t_data* - the data structure
  * @return void 
  */
 void	parse_cub_file(t_data *d)
@@ -54,13 +53,16 @@ void	parse_cub_file(t_data *d)
  * node without the newline character, and appends the new node to the end of
  * the map linked list.
  *
- * @param temp Pointer to the current node in the input list being processed.
- * @param d Pointer to the main data structure containing the map linked list.
- * @param map_started Pointer to a boolean indicating whether the map parsing
- *        has started.
+ * @param temp t_list* Pointer to the current node in the input 
+ * 		  list being processed.
+ * @param d  t_data* Pointer to the main data structure containing the map
+ * 			 linked list.
+ * @param map_started bool*  Pointer to a boolean indicating whether
+ * 		  the map parsing has started.
  *
- * @note The function uses `safe_malloc` to allocate memory and `ft_strdup_w_o_nl`
- *       to duplicate the content of the current node without the newline character.
+ * @note The function uses `safe_malloc` to allocate memory and 
+ * 		 `ft_strdup_w_o_nl` to duplicate the content of the current node
+ * 		 without the newline character.
  *       It also uses `ft_lstadd_back` to append the new node to the linked list.
  */
 static void	map_actions(t_list *temp, t_data *d, bool *map_started)
@@ -80,8 +82,10 @@ static void	map_actions(t_list *temp, t_data *d, bool *map_started)
 /**
  * @brief This function will check if the line is a map line
  * 
- * @param line
- * @return bool 
+ * @param content void* - the line to check
+ * @param map_started bool* - a pointer to a boolean that indicates 
+ * 		  if the map has started
+ * @return bool  - true if the line is a map line, false otherwise
  */
 bool	is_map_line(void *content, bool *map_started)
 {
@@ -107,7 +111,7 @@ bool	is_map_line(void *content, bool *map_started)
 /**
  * @brief This function will extract the d from the linked list
  * 
- * @param d
+ * @param d t_data* - the data structure
  * @return void
  */
 void	data_extr(t_data *d)
@@ -138,10 +142,10 @@ void	data_extr(t_data *d)
 }
 
 /**
- * @brief This function will parse the map file and store it in a linked list
+ * @brief This is the main function for parsing the cub file
+ * 		  incorporating all the parsing functions
  * 
- * @param cub
- * @param d
+ * @param d t_data* - the data structure
  * @return void
  */
 void	parsing_process(t_data *d)

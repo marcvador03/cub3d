@@ -6,12 +6,12 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:46:45 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/03 12:56:12 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/03 15:56:51 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_H
-# define DATA_H
+#ifndef DATA_BONUS_H
+# define DATA_BONUS_H
 
 # include "cub3d_bonus.h"
 
@@ -58,19 +58,6 @@ typedef struct s_raycast
 
 }	t_raycast;
 
-/*typedef struct s_mlx
-{
-	mlx_t			*mlx;
-	t_raycast		*raycast;
-	t_player		*player;
-	t_render		*render;
-	char			**map;
-	int				win_w;
-	int				win_h;
-	mlx_image_t		*image;
-	mlx_texture_t	*texture;
-}	t_mlx;*/
-
 typedef struct s_gr_data
 {
 	char			*no_tx;
@@ -103,14 +90,11 @@ typedef struct s_map
 /* !!! struct for storing all the data !!! */
 typedef struct s_data
 {
-	//void		*mlx;
-	//void		*win;
 	t_gr_data		*txs;
 	mlx_t			*mlx;
 	t_raycast		*raycast;
 	t_player		*player;
 	t_render		*render;
-	//char			**map;
 	int				win_w;
 	int				win_h;
 	mlx_image_t		*image;
@@ -121,7 +105,6 @@ typedef struct s_data
 	t_map			*map;
 	t_list			*ln_lst;
 	t_list			*map_lst;
-	//t_mlx		*cub;
 	int				pl_mv;
 	int				pl_rotate;
 	char			*map_path;

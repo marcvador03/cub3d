@@ -6,13 +6,13 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:59:20 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/01 14:05:30 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:53:06 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void structs_init2(t_data *d)
+static void	structs_init2(t_data *d)
 {
 	d->ln_lst = NULL;
 	d->map_lst = NULL;

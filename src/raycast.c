@@ -6,12 +6,18 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/03/31 19:26:27 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/03 15:48:42 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief This function will set the player location and direction
+ * 
+ * @param d t_data* - the data structure
+ * @return void
+ */
 static void	raycast_dist_next_grid(t_raycast *c, t_player *p)
 {
 	if (c->raydir_x < 0)
@@ -36,6 +42,14 @@ static void	raycast_dist_next_grid(t_raycast *c, t_player *p)
 	}
 }
 
+/**
+ * @brief This function will calculate the distance to the next wall
+ * 
+ * @param d t_data* - the data structure
+ * @param c t_raycast* - the raycast structure
+ * @param p t_player* - the player structure
+ * @return void
+ */
 static void	raycast_dist_to_wall(t_data *d, t_raycast *c, t_player *p)
 {
 	c->hit_flag = FALSE;
@@ -65,6 +79,13 @@ static void	raycast_dist_to_wall(t_data *d, t_raycast *c, t_player *p)
 		c->walldist = (c->map_y - p->pos_y + (1 - c->step_y) / 2) / c->raydir_y;
 }
 
+/**
+ * @brief This function will calculate the height of the wall
+ * 
+ * @param d t_data* - the data structure
+ * @param c t_raycast* - the raycast structure
+ * @return void
+ */
 static void	raycast_wall_height(t_data *d, t_raycast *c)
 {
 	c->lineheight = (int)(d->win_h / c->walldist);
@@ -76,15 +97,22 @@ static void	raycast_wall_height(t_data *d, t_raycast *c)
 		c->wall_end = d->win_h - 1;
 }
 
-
+/**
+ * @brief This function will loop through the screen and cast rays
+ * 
+ * @param d t_data* - the data structure
+ * @param c t_raycast* - the raycast structure
+ * @param p t_player* - the player structure
+ * @return int - 0 if success
+ * 
+ */
 int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
 {
-	int			x;
+	int	x;
 
 	x = 0;
 	while (x < d->win_w)
 	{
-		
 		c->map_x = (int)p->pos_x;
 		c->map_y = (int)p->pos_y;
 		p->camera_x = 2 * ((double)x / (double)d->win_w) - 1;
@@ -107,64 +135,13 @@ int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
 	return (0);
 }
 
-/*int	raycast_init(t_mlx *cub)
-{
-	int	testmap[10][15] = 
-	{
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-		{1,0,0,0,0,0,0,1,1,1,1,1,1,1,1},
-		{1,1,0,0,0,0,0,0,0,0,0,0,0,1,1},
-		{1,1,1,0,0,0,0,0,0,0,0,0,5,1,1},
-		{1,1,1,0,0,0,0,0,0,0,0,0,0,1,1},
-		{1,1,0,0,0,0,0,1,1,1,1,1,0,1,1},
-		{1,1,0,0,0,0,0,1,1,1,1,1,0,1,1},
-		{1,1,1,1,1,1,1,1,1,1,1,1,0,1,1},
-		{1,1,1,1,1,1,1,1,1,1,1,1,0,1,1},
-		// floor_ceiling(d, x, c->wall_start, c->wall_end);
-		render_init(d, d->render, c, x);
-	int	i;
-	int	j;
-
-	cub->raycast = (t_raycast *)ft_calloc(1, sizeof(t_raycast));
-	cub->player = (t_player *)ft_calloc(1, sizeof(t_player));
-	cub->render = (t_render *)ft_calloc(1, sizeof(t_render));
-	if (cub->raycast == NULL || cub->player == NULL || cub->render == NULL)
-		exit(1);
-	cub->map = (int **)ft_calloc(10, sizeof(int *));
-	if (cub->map == NULL)
-		exit(1);
-	i = 0;
-	while (i < 10)
-	{
-		cub->map[i] = (int *)ft_calloc(15, sizeof(int));
-		if (cub->map[i] == NULL)
-			exit(1);
-		j = 0;
-		while (j < 15)
-		{
-			cub->map[i][j] = testmap[i][j];
-			if (cub->map[i][j] == 5)
-			{
-				cub->player->pos_x = j;
-				cub->player->pos_y = i;
-			}
-			j++;
-		}
-		i++;
-	}
-	cub->player->dir_x = 1;
-	cub->player->dir_y = 1;
-	cub->player->plane_x = 0.0;
-	cub->player->plane_y = 0.5;
-	cub->texture = mlx_load_png(TEST_TXT);
-	if (cub->texture == NULL)
-		exit (1);
-	cub->image = mlx_new_image(cub->mlx, cub->win_w, cub->win_h);
-	if (cub->image == NULL)
-		exit (1);
-	raycast_loop(cub, cub->raycast, cub->player);
-	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)*/
-
+/**
+ * @brief This function will initialize the raycast structure
+ * 
+ * @param d t_data* - the data structure
+ * @return int - 0 if success
+ * 
+ */
 int	raycast_init(t_data *d)
 {
 	d->raycast = (t_raycast *)ft_calloc(1, sizeof(t_raycast));
@@ -177,7 +154,8 @@ int	raycast_init(t_data *d)
 	d->texture_so = mlx_load_png(d->txs->so_tx);
 	d->texture_we = mlx_load_png(d->txs->we_tx);
 	d->texture_ea = mlx_load_png(d->txs->ea_tx);
-	if (d->texture_no == NULL || d->texture_so == NULL || d->texture_we == NULL || d->texture_ea == NULL)
+	if (d->texture_no == NULL || d->texture_so == NULL || d->texture_we == NULL
+		|| d->texture_ea == NULL)
 		ftl_err("in raycast_init2", d);
 	d->image = mlx_new_image(d->mlx, d->win_w, d->win_h);
 	if (d->image == NULL)

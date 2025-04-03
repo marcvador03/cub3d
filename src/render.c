@@ -3,33 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:57:54 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/02 15:58:35 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/03 15:52:40 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief This function will inject the texture into the image
+ * 
+ * @param d t_data* - the data structure
+ * @param t mlx_texture_t* - the texture
+ * @param t_index int - the index of the texture
+ * @param i_index int - the index of the image
+ * @return void
+ */
 static void	inject_img(t_data *d, mlx_texture_t *t, int t_index, int i_index)
 {
-	d->image->pixels[i_index] = t->pixels[t_index]; 
-	d->image->pixels[i_index + 1] = t->pixels[t_index + 1]; 
-	d->image->pixels[i_index + 2] = t->pixels[t_index + 2]; 
-	d->image->pixels[i_index + 3] = t->pixels[t_index + 3]; 
+	d->image->pixels[i_index] = t->pixels[t_index];
+	d->image->pixels[i_index + 1] = t->pixels[t_index + 1];
+	d->image->pixels[i_index + 2] = t->pixels[t_index + 2];
+	d->image->pixels[i_index + 3] = t->pixels[t_index + 3];
 	return ;
 }
 
+/**
+ * @brief This function will inject the color into the image
+ * 
+ * @param d t_data* - the data structure
+ * @param color unsigned int[3] - the color
+ * @param i_index int - the index of the image
+ * @return void
+ */
 static void	inject_col_img(t_data *d, unsigned int color[3], int i_index)
 {
-	d->image->pixels[i_index] = color[0]; 
-	d->image->pixels[i_index + 1] = color[1]; 
-	d->image->pixels[i_index + 2] = color[2]; 
-	d->image->pixels[i_index + 3] = 0xFF; 
+	d->image->pixels[i_index] = color[0];
+	d->image->pixels[i_index + 1] = color[1];
+	d->image->pixels[i_index + 2] = color[2];
+	d->image->pixels[i_index + 3] = 0xFF;
 	return ;
 }
 
+/**
+ * @brief This function will get the texture based on the direction
+ * 
+ * @param d t_data* - the data structure
+ * @return mlx_texture_t* - the texture
+ */
 static mlx_texture_t	*get_texture_direction(t_data *d)
 {
 	mlx_texture_t	*tex;
@@ -38,24 +61,32 @@ static mlx_texture_t	*get_texture_direction(t_data *d)
 	{
 		if (d->raycast->raydir_x >= 0)
 			tex = d->texture_ea;
-		else	
+		else
 			tex = d->texture_we;
 	}
 	else
 	{
 		if (d->raycast->raydir_y > 0)
 			tex = d->texture_no;
-		else	
+		else
 			tex = d->texture_so;
 	}
 	return (tex);
 }
 
+/**
+ * @brief This function will render the loop
+ * 
+ * @param d t_data* - the data structure
+ * @param r t_render* - the render structure
+ * @param x int - the x coordinate
+ * @return void
+ */
 static void	render_loop(t_data *d, t_render *r, int x)
 {
-	int			y;
-	uint32_t	height;
-	int			index;
+	int				y;
+	uint32_t		height;
+	int				index;
 	mlx_texture_t	*t;
 
 	y = 0;
@@ -68,15 +99,24 @@ static void	render_loop(t_data *d, t_render *r, int x)
 			r->pixel_y = (int)r->pixel_pos & (height - 1);
 			r->pixel_pos += r->step;
 			index = height * r->pixel_y + r->pixel_x;
-			inject_img(d, t, index * BPP, (y++ * d->win_w + x) * BPP);
+			inject_img(d, t, index * BPP, ((y++) * d->win_w + x) * BPP);
 		}
 		else if (y > d->raycast->wall_end)
-			inject_col_img(d, d->txs->f_clr, (y++ * d->win_w + x) * BPP); 
+			inject_col_img(d, d->txs->f_clr, ((y++) * d->win_w + x) * BPP);
 		else if (y < d->raycast->wall_start)
-			inject_col_img(d, d->txs->c_clr, (y++ * d->win_w + x) * BPP); 
+			inject_col_img(d, d->txs->c_clr, ((y++) * d->win_w + x) * BPP);
 	}
 }
 
+/**
+ * @brief This function will initialize the render
+ * 
+ * @param d t_data* - the data structure
+ * @param r t_render* - the render structure
+ * @param c t_raycast* - the raycast structure
+ * @param x int - the x coordinate
+ * @return int - 0 if success
+ */
 int	render_init(t_data *d, t_render *r, t_raycast *c, int x)
 {
 	int			tmp;

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:36:17 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/03 13:23:48 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:38:00 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static bool	move_player_fwd_bkw(int direction, t_player *p, t_data *d)
 	}
 	return (is_move_valid(d, p, new_x, new_y));
 }
+
 /**
  * Move the player left or right. Check if the move is valid.
  * @param direction The direction to move the player (LEFT or RIGHT).
@@ -86,7 +87,8 @@ static bool	rotate_player(int direction, t_player *p)
 
 /**
  * Move the player based on the current input.
- * This function is called in a loop to update the player's position and direction.
+ * This function is called in a loop to update the player's position
+ * and direction.
  * It checks the player's movement and rotation inputs and updates the player's
  * position and direction accordingly.
  * 

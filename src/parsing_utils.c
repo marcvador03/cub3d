@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:21:14 by milosz            #+#    #+#             */
-/*   Updated: 2025/04/02 12:44:09 by milosz           ###   ########.fr       */
+/*   Updated: 2025/04/03 15:40:47 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 /**
  * @brief This function will extract the file path from the line
  * 
- * @param content void*
- * @param start int
- * @param d t_data*
- * @return char*
+ * @param content void* - the line content
+ * @param start int - the starting index
+ * @param d t_data* - the data structure
+ * @return char* - the extracted file path
  */
 char	*file_path_extractor(void *content, int start, t_data *d)
 {
@@ -49,10 +49,10 @@ char	*file_path_extractor(void *content, int start, t_data *d)
 /**
  * @brief This function will extract the file path from the line
  * 
- * @param line char *
- * @param i int *
- * @param is_ascending bool
- * @return char* 
+ * @param line char * - the line content
+ * @param i int * - the index to start from
+ * @param is_ascending bool - true if we want to skip spaces in ascending order
+ * @return void
  */
 void	skip_empty_space(char *line, int *i, bool is_ascending)
 {
@@ -68,9 +68,9 @@ void	skip_empty_space(char *line, int *i, bool is_ascending)
 /**
  * @brief This function will extract the RGB d from the line
  * 
- * @param line char *
- * @param color unsigned int[3]
- * @param d t_data *
+ * @param line char * - the line content
+ * @param color unsigned int[3] - the array to store the RGB data
+ * @param d t_data * - the data structure
  * @return void
  */
 void	color_extractor(char *line, unsigned int color[3], t_data *d)
@@ -95,7 +95,7 @@ void	color_extractor(char *line, unsigned int color[3], t_data *d)
 		if (len == 0 || len > 3 || color[j] > 255)
 			ftl_err("incorrect RGB d input", d);
 		if (line[i] == ',')
-			i++; //to skip the ',' in RGB
+			i++;
 		j++;
 	}
 	if (j != 3)
@@ -106,12 +106,12 @@ void	color_extractor(char *line, unsigned int color[3], t_data *d)
  * @brief this is the extension of get_next_line function
  * that checks if the line is empty
  * 
- * @param fd int
- * @param line char**
+ * @param fd int - file descriptor
+ * @param line char** - pointer to the line
  */
-bool gnl_for_loop(int fd, char **line)
+bool	gnl_for_loop(int fd, char **line)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = get_next_line(fd);
 	if (tmp == NULL)
@@ -127,7 +127,7 @@ bool gnl_for_loop(int fd, char **line)
  * @brief This function will check if the map is in the correct position 
  * in the 'cub' file
  * 
- * @param d t_data*
+ * @param d t_data* - the data structure
  * @return void
  */
 void	map_pos_checker(t_data *d)

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/03 12:58:42 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/03 15:30:39 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 // free_utils.c
 void	free_s(void *ptr);
 void	free_d(void **ptr);
-void	free_data(t_data *d);
 
 // memory_utils.c
 void	*safe_malloc(size_t size, t_data *d);
@@ -74,10 +73,13 @@ void	color_extractor(char *line, unsigned int color[3], t_data *d);
 bool	gnl_for_loop(int fd, char **line);
 void	map_pos_checker(t_data *d);
 
-//str_utils.c
+// str_utils.c
 char	*ft_strdup_w_o_nl(char *str, t_data *d);
 void	ft_arr_print(char **arr);
 char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *d);
+
+// structs_free.c
+void	free_data(t_data *d);
 
 // structs_init.c
 void	structs_init(t_data *d);

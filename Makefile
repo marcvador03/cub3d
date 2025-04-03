@@ -26,6 +26,7 @@ SRC_NAMES = cub3d.c \
 			raycast.c \
 			render.c \
 			str_utils.c \
+			structs_free.c \
 			structs_init.c
 
 SRC_NAMES_BONUS := hooks_bonus.c
