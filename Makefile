@@ -34,7 +34,7 @@ SRC_NAMES_BONUS := hooks_bonus.c
 
 INC_NAMES := cub3d.h
 
-INC_NAMES_BONUS := cub3d.h
+INC_NAMES_BONUS := cub3d_bonus.h
 
 OBJECTS := $(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(SRC_NAMES)))
 
@@ -47,7 +47,7 @@ INCLUDES_BONUS := $(patsubst %.h, $(INC_DIR)/%.h, $(INC_NAMES_BONUS))
 DEPS := $(OBJECTS:.o=.d)
 DEPS_BONUS := $(OBJECTS_BONUS:.o=.d)
 
-CFLAGS += -Wall -Werror -Wextra -MMD -MP -g  -I $(INC_DIR) -fsanitize=address #-Ofast
+CFLAGS += -Wall -Werror -Wextra -MMD -MP -g  -I $(INC_DIR) -Ofast #-fsanitize=address
 
 LIB_NAMES := libft.a \
 			libmlx42.a 
