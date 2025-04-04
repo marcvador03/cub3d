@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:09:15 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/03/12 12:13:00 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/04 13:51:02 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,25 @@ char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *d)
 	if (!pure_line)
 		ftl_err("in deleting empty space", d);
 	return (pure_line);
+}
+
+/**
+ * @brief this is the extension of get_next_line function
+ * that checks if the line is empty
+ * 
+ * @param fd int - file descriptor
+ * @param line char** - pointer to the line
+ */
+bool	gnl_for_loop(int fd, char **line)
+{
+	char	*tmp;
+
+	tmp = get_next_line(fd);
+	if (tmp == NULL)
+		return (false);
+	*line = ft_strdup(tmp);
+	free(tmp);
+	if (*line == NULL)
+		ftl_err("in malloc", NULL);
+	return (true);
 }

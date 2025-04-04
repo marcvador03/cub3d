@@ -20,8 +20,9 @@ SRC_NAMES = cub3d.c \
 			memory_utils.c \
 			move_check_pos.c \
 			move_player.c \
-			parsing_utils.c \
 			parsing.c \
+			parsing_txt_path.c \
+			parsing_utils.c \
 			player_direction.c \
 			raycast.c \
 			render.c \

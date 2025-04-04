@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/03 15:30:39 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/04 14:05:32 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,21 @@ bool	is_map_line(void *content, bool *map_started);
 void	data_extr(t_data *d);
 void	parsing_process(t_data *d);
 
-// parsing_utils.c
+// parsing_txt_path.c
 char	*file_path_extractor(void *line, int start, t_data *d);
+bool	is_path_existing(char *path);
+void	check_txt_file_existence(t_data *d);
+
+// parsing_utils.c
 void	skip_empty_space(char *line, int *i, bool is_ascending);
 void	color_extractor(char *line, unsigned int color[3], t_data *d);
-
-bool	gnl_for_loop(int fd, char **line);
 void	map_pos_checker(t_data *d);
 
 // str_utils.c
 char	*ft_strdup_w_o_nl(char *str, t_data *d);
 void	ft_arr_print(char **arr);
 char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *d);
+bool	gnl_for_loop(int fd, char **line);
 
 // structs_free.c
 void	free_data(t_data *d);

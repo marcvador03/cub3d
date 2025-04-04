@@ -1,0 +1,11 @@
+NO ./textures/Material-LIB/BrickWall/fdsfdfsd
+SO ./textures/Material-LIB/BrickWall/BrickWall[Grey]-B.png
+WE ./textures/Material-LIB/BrickWall[Damaged]/BrickWall[Damaged]-B.png
+EA ./textures/Material-LIB/BrickWall/BrickWall[Orange]-B.png
+
+F 50,70,10
+C 100,200,250
+
+111
+1W1
+111
