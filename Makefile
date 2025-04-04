@@ -46,7 +46,7 @@ INCLUDES_BONUS := $(patsubst %.h, $(INC_DIR)/%.h, $(INC_NAMES_BONUS))
 DEPS := $(OBJECTS:.o=.d)
 DEPS_BONUS := $(OBJECTS_BONUS:.o=.d)
 
-CFLAGS += -Wall -Werror -Wextra -MMD -MP -g -Ofast -I $(INC_DIR) #-fsanitize=address 
+CFLAGS += -Wall -Werror -Wextra -MMD -MP -g  -I $(INC_DIR) -fsanitize=address #-Ofast
 
 LIB_NAMES := libft.a \
 			libmlx42.a 
