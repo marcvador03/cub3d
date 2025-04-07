@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:02:36 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/04 18:35:13 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/07 17:33:38 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define BONUS_H
 
 # include "cub3d.h"
+# include "sys/time.h"
 # define MOUSE_ANGLE_FCTR 1 
 
 typedef struct s_mouse
