@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:57:54 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/03 15:52:40 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:27:43 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
  */
 static void	inject_img(t_data *d, mlx_texture_t *t, int t_index, int i_index)
 {
+	if (t_index < 0 || t_index >= (int)(t->width * t->height * BPP))
+		return;
+	if (i_index < 0 || (int32_t)i_index >= (int)(d->win_w * d->win_h * BPP))
+		return;
 	d->image->pixels[i_index] = t->pixels[t_index];
 	d->image->pixels[i_index + 1] = t->pixels[t_index + 1];
 	d->image->pixels[i_index + 2] = t->pixels[t_index + 2];
@@ -120,15 +124,15 @@ static void	render_loop(t_data *d, t_render *r, int x)
 int	render_init(t_data *d, t_render *r, t_raycast *c, int x)
 {
 	int			tmp;
-
 	if (d->raycast->side_flag == TRUE)
 		r->wall_x = d->player->pos_x + c->walldist * c->raydir_x;
 	else
 		r->wall_x = d->player->pos_y + c->walldist * c->raydir_y;
 	r->wall_x -= floor(r->wall_x);
+	r->wall_x *= d->aspect_ratio;
 	r->pixel_x = (int)(r->wall_x * d->texture_no->width);
 	r->step = 1.0 * d->texture_no->height / c->lineheight;
-	tmp = c->wall_start - (d->win_w / 2) + (c->lineheight / 2);
+	tmp = c->wall_start - (d->win_h / 2) + (c->lineheight / 2);
 	r->pixel_pos = tmp * r->step;
 	render_loop(d, r, x);
 	return (0);

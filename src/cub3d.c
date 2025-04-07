@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milosz <milosz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/02 14:53:57 by milosz           ###   ########.fr       */
+/*   Updated: 2025/04/07 18:21:56 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	main(int argc, char **argv)
 	check_args(argc, argv, d);
 	parsing_process(d);
 	d->win_w = 1080;
-	d->win_h = 1080;
+	d->win_h = 580;
+	d->aspect_ratio = (double)d->win_w / (double)d->win_h;
 	d->mlx = mlx_init(d->win_w, d->win_h, "CUB3D", true);
 	if (!d->mlx)
 		ftl_err("mlx_init() failed", d);

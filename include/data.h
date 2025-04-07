@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:46:45 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/03 15:57:09 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:20:57 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_data
 	t_render		*render;
 	int				win_w;
 	int				win_h;
+	double			aspect_ratio;
 	mlx_image_t		*image;
 	mlx_texture_t	*texture_no;
 	mlx_texture_t	*texture_so;

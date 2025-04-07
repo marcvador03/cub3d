@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:29:36 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/07 17:29:42 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/07 17:36:12 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	mouse_move(double xpos, double ypos, void *param)
 	{
 		printf("mouse moved within the marigin \n");
 	}
-	//raycast_loop(m->d, m->d->raycast, m->d->player);
+	raycast_loop(m->d, m->d->raycast, m->d->player);
 	mlx_get_mouse_pos(m->d->mlx, &m->x, &m->y);
 	/*else if (m->y < (int32_t)ypos)
 	{
