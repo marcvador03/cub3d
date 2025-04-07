@@ -38,7 +38,6 @@ SRC_NAMES_BONUS = cub3d_bonus.c \
 				  map_checks.c \
 				  map_conversion.c \
 				  memory_utils.c \
-				  parsing_txt_path.c \
 				  move_check_pos_bonus.c \
 				  move_player.c \
 				  parsing_utils.c \
