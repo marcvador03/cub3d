@@ -38,7 +38,7 @@ SRC_NAMES_BONUS = cub3d_bonus.c \
 				  map_checks.c \
 				  map_conversion.c \
 				  memory_utils.c \
-				  move_check_pos.c \
+				  move_check_pos_bonus.c \
 				  move_player.c \
 				  parsing_utils.c \
 				  parsing.c \
@@ -54,7 +54,7 @@ SRC_NAMES_BONUS += mouse_bonus.c
 
 INC_NAMES := cub3d.h
 
-INC_NAMES_BONUS := cub3d.h
+INC_NAMES_BONUS := bonus.h
 
 OBJECTS := $(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(SRC_NAMES)))
 

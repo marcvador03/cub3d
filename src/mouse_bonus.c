@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
+/*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 17:25:21 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/07 17:22:42 by mfleury          ###   ########.fr       */
+/*   Created: 2025/04/07 17:29:36 by mfleury           #+#    #+#             */
+/*   Updated: 2025/04/07 17:29:42 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,19 @@ void	mouse_move(double xpos, double ypos, void *param)
 	
 	m = (t_mouse *)param;
 	ypos += 0;
-	if ((int32_t)xpos + 5 > m->x)
+	if ((int32_t)xpos < m->x - 1)
 	{
 		printf("mouse moved right\n");
-		rotate_player(TURN_L, m->d->player);
+		rotate_player(-TURN_R, m->d->player);
 	}
-	else if (m->x + 5 > (int32_t)xpos)
+	else if ((int32_t)xpos > m->x + 1)
 	{
 		printf("mouse moved left\n");
-		rotate_player(TURN_R, m->d->player);
+		rotate_player(-TURN_L, m->d->player);
+	}
+	else if ((int32_t)xpos > m->x - 1 && (int32_t)xpos < m->x + 1)
+	{
+		printf("mouse moved within the marigin \n");
 	}
 	//raycast_loop(m->d, m->d->raycast, m->d->player);
 	mlx_get_mouse_pos(m->d->mlx, &m->x, &m->y);
