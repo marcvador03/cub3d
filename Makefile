@@ -43,14 +43,15 @@ SRC_NAMES_BONUS = cub3d_bonus.c \
 				  move_player.c \
 				  parsing_utils.c \
 				  parsing.c \
+				  parsing_txt_path.c \
 				  player_direction.c \
 				  raycast.c \
 				  render.c \
 				  str_utils.c \
 				  structs_free.c \
 				  structs_init.c
-				  
-SRC_NAMES_BONUS +=	hooks_bonus.c
+
+SRC_NAMES_BONUS += mouse_bonus.c
 
 INC_NAMES := cub3d.h
 
