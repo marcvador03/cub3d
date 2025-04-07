@@ -30,7 +30,25 @@ SRC_NAMES = cub3d.c \
 			structs_free.c \
 			structs_init.c
 
-SRC_NAMES_BONUS := hooks_bonus.c
+SRC_NAMES_BONUS = cub3d_bonus.c \
+				  exit_utils.c \
+				  free_utils.c \
+				  hooks.c \
+				  list_utils.c \
+				  map_checks.c \
+				  map_conversion.c \
+				  memory_utils.c \
+				  move_check_pos.c \
+				  move_player.c \
+				  parsing_utils.c \
+				  parsing.c \
+				  player_direction.c \
+				  raycast.c \
+				  render.c \
+				  str_utils.c \
+				  structs_init.c
+				  
+SRC_NAMES_BONUS +=	hooks_bonus.c
 
 INC_NAMES := cub3d.h
 
@@ -47,7 +65,12 @@ INCLUDES_BONUS := $(patsubst %.h, $(INC_DIR)/%.h, $(INC_NAMES_BONUS))
 DEPS := $(OBJECTS:.o=.d)
 DEPS_BONUS := $(OBJECTS_BONUS:.o=.d)
 
-CFLAGS += -Wall -Werror -Wextra -MMD -MP -g  -I $(INC_DIR) -Ofast #-fsanitize=address
+CFLAGS += -Wall -Werror -Wextra -MMD -MP 
+CFLAGS += -g 
+#CFLAGS += -fsanitize=address 
+CFLAGS += -Ofast 
+
+CFLAGS += -I $(INC_DIR)
 
 LIB_NAMES := libft.a \
 			libmlx42.a 
@@ -71,8 +94,8 @@ bonus: libft libmlx $(OBJECTS_BONUS) bonus_m
 $(NAME): $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES) $(OBJECTS) | $(LIB_DIR)
 	cc $(CFLAGS) -L libft -L lib $(DEBUG) $(OBJECTS) -o $@ $(LIBS_TAG) $(LIBS_TAG)
 
-bonus_m: $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES_BONUS) $(OBJECTS) $(OBJECTS_BONUS) | $(LIB_DIR)
-	cc $(CFLAGS) -L libft -L lib $(DEBUG) $(OBJECTS) $(OBJECTS_BONUS) -o $@ $(LIBS_TAG) $(LIBS_TAG)
+bonus_m: $(LIBFT_DIR)/libft.a $(LIB_DIR)/libmlx42.a Makefile $(INCLUDES_BONUS) $(OBJECTS_BONUS) | $(LIB_DIR)
+	cc $(CFLAGS) -L libft -L lib $(DEBUG) $(OBJECTS_BONUS) -o $(NAME) $(LIBS_TAG) $(LIBS_TAG)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile | $(OBJ_DIR)
 	cc $(CFLAGS) $(DEBUG) -c $< -o $@ 
