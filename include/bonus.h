@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:02:36 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 16:22:33 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 16:28:14 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "cub3d.h"
 # include "sys/time.h"
-# define M_THROTTLE 10
+# define M_THROTTLE 20
 # define M_STEP 2
 
 typedef struct s_mouse

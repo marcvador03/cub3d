@@ -70,7 +70,7 @@ DEPS := $(OBJECTS:.o=.d)
 DEPS_BONUS := $(OBJECTS_BONUS:.o=.d)
 
 CFLAGS += -Wall -Werror -Wextra -MMD -MP 
-CFLAGS += -g 
+#CFLAGS += -g 
 #CFLAGS += -fsanitize=address 
 CFLAGS += -Ofast 
 

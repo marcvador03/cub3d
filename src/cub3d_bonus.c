@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:32:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:58:30 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 16:27:58 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	main(int argc, char **argv)
 	structs_init(d);
 	check_args(argc, argv, d);
 	parsing_process(d);
-	d->win_w = 1280;
-	d->win_h = 580;
+	d->win_w = 1000;
+	d->win_h = 800;
 	d->aspect_ratio = (double)d->win_w / (double)d->win_h;
 	d->mlx = mlx_init(d->win_w, d->win_h, "CUB3D", true);
 	if (!d->mlx)
