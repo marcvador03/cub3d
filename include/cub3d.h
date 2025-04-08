@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfleury <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:48:16 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:48:18 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:51:25 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,5 @@ int		raycast_init(t_data *d);
 
 // render.c
 int		render_init(t_data *d, t_render *r, t_raycast *c, int x);
-
-//timer.c
-void	time_stamp(char	*msg, bool state, t_data *d);
 
 #endif

@@ -50,8 +50,7 @@ SRC_NAMES_BONUS = cub3d_bonus.c \
 				  structs_free.c \
 				  structs_init.c
 
-SRC_NAMES_BONUS += mouse_bonus.c \
-				   bonus_utils.c
+SRC_NAMES_BONUS += mouse_bonus.c
 
 INC_NAMES := cub3d.h
 

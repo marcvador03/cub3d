@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:31:27 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:52:52 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
 	int	x;
 
 	x = 0;
-	d->frame_number++;
 	while (x < d->win_w)
 	{
 		c->map_x = (int)p->pos_x;

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:46:45 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:01:50 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:53:19 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ typedef struct s_data
 	int				pl_mv;
 	int				pl_rotate;
 	char			*map_path;
-	int				frame_number;
-	int32_t			start;
 }	t_data;
 
 #endif
