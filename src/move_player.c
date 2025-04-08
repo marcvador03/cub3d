@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:36:17 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/03 15:38:00 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:43:24 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,18 @@ static bool	move_player_left_right(int direction, t_player *p, t_data *d)
  * @param p The player structure.
  * @return true.
  */
-static bool	rotate_player(int direction, t_player *p)
+bool	rotate_player(int direction, t_player *p)
 {
 	double	rt_angle;
+	double	tmp;
 
 	rt_angle = (double)(-direction) / RT_ANGLE_FCTR;
+	tmp = p->dir_x;
 	p->dir_x = p->dir_x * cos(rt_angle) - p->dir_y * sin(rt_angle);
-	p->dir_y = p->dir_x * sin(rt_angle) + p->dir_y * cos(rt_angle);
+	p->dir_y = tmp * sin(rt_angle) + p->dir_y * cos(rt_angle);
+	tmp = p->plane_x;
 	p->plane_x = p->plane_x * cos(rt_angle) - p->plane_y * sin(rt_angle);
-	p->plane_y = p->plane_x * sin(rt_angle) + p->plane_y * cos(rt_angle);
+	p->plane_y = tmp * sin(rt_angle) + p->plane_y * cos(rt_angle);
 	return (true);
 }
 
