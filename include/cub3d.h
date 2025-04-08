@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/04 14:05:32 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:24:15 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ char	*ft_strdup_w_o_nl(char *str, t_data *d);
 void	ft_arr_print(char **arr);
 char	*ft_safe_strdup_w_o_preceding_spaces(char *line, t_data *d);
 bool	gnl_for_loop(int fd, char **line);
+bool	ft_is_space_or_newline(char *str);
 
 // structs_free.c
 void	free_data(t_data *d);

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/04 14:01:06 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:24:56 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ void	data_extr(t_data *d)
 			color_extractor(temp->content, d->txs->f_clr, d);
 		else if (!ft_strncmp((char *)temp->content, "C ", 2))
 			color_extractor(temp->content, d->txs->c_clr, d);
+		else if (!ft_is_space_or_newline((char *)temp->content))
+			ftl_err("incorrect line in cub file", d);
 		temp = temp->next;
 	}
 }
