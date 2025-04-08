@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:32:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/07 18:22:22 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:25:56 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static t_mouse *mouse_struct_init(t_data *d)
 	m->x = d->win_w / 2;
 	m->y = d->win_h / 2;
 	m->d = d;
-	mlx_set_mouse_pos(d->mlx, m->x, m->y);
+	m->start_t = 0;
+	m->cnt = 0;
 	return (m);
 }
 

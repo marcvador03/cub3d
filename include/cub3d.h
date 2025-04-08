@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:24:15 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:36:20 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,8 @@ int		raycast_init(t_data *d);
 
 // render.c
 int		render_init(t_data *d, t_render *r, t_raycast *c, int x);
+
+//timer.c
+void	time_stamp(char	*msg, bool state, t_data *d);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:57:54 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:32:24 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:36:27 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,48 @@ static void	inject_img(t_data *d, mlx_texture_t *t, int t_index, int i_index)
  * @param i_index int - the index of the image
  * @return void
  */
-static void	inject_col_img(t_data *d, unsigned int color[3], int i_index)
+/*static void	inject_col_img(t_data *d, unsigned int color[3], int i_index)
 {
 	d->image->pixels[i_index] = color[0];
 	d->image->pixels[i_index + 1] = color[1];
 	d->image->pixels[i_index + 2] = color[2];
 	d->image->pixels[i_index + 3] = 0xFF;
 	return ;
+}*/
+
+static void	inject_ceil(t_data *d, unsigned int color[3], int x)
+{
+	int	y;
+
+	if (d->raycast->wall_end + 1 >= d->win_h)
+		return ;
+	y = d->raycast->wall_end + 1;
+	while (y < d->win_h)
+	{
+		d->image->pixels[((y) * d->win_w + x) * BPP] = color[0];
+		d->image->pixels[((y) * d->win_w + x) * BPP + 1] = color[1];
+		d->image->pixels[((y) * d->win_w + x) * BPP + 2] = color[2];
+		d->image->pixels[((y++) * d->win_w + x) * BPP + 3] = 0xFF;
+	}
+	return ;
 }
 
+static void	inject_floor(t_data *d, unsigned int color[3], int x)
+{
+	int	y;
+
+	if (d->raycast->wall_start == 0)
+		return ;
+	y = 0;
+	while (y < d->raycast->wall_start)
+	{
+		d->image->pixels[((y) * d->win_w + x) * BPP] = color[0];
+		d->image->pixels[((y) * d->win_w + x) * BPP + 1] = color[1];
+		d->image->pixels[((y) * d->win_w + x) * BPP + 2] = color[2];
+		d->image->pixels[((y++) * d->win_w + x) * BPP + 3] = 0xFF;
+	}
+	return ;
+}
 /**
  * @brief This function will get the texture based on the direction
  * 
@@ -93,23 +126,18 @@ static void	render_loop(t_data *d, t_render *r, int x)
 	int				index;
 	mlx_texture_t	*t;
 
-	y = 0;
-	while (y < d->win_h)
+	y = d->raycast->wall_start;
+	t = get_texture_direction(d);
+	height = t->height;
+	while (y <= d->raycast->wall_end)
 	{
-		if (y >= d->raycast->wall_start && y <= d->raycast->wall_end)
-		{
-			t = get_texture_direction(d);
-			height = t->height;
-			r->pixel_y = (int)r->pixel_pos & (height - 1);
-			r->pixel_pos += r->step;
-			index = height * r->pixel_y + r->pixel_x;
-			inject_img(d, t, index * BPP, ((y++) * d->win_w + x) * BPP);
-		}
-		else if (y > d->raycast->wall_end)
-			inject_col_img(d, d->txs->f_clr, ((y++) * d->win_w + x) * BPP);
-		else if (y < d->raycast->wall_start)
-			inject_col_img(d, d->txs->c_clr, ((y++) * d->win_w + x) * BPP);
+		r->pixel_y = (int)r->pixel_pos & (height - 1);
+		r->pixel_pos += r->step;
+		index = height * r->pixel_y + r->pixel_x;
+		inject_img(d, t, index * BPP, ((y++) * d->win_w + x) * BPP);
 	}
+	inject_floor(d, d->txs->f_clr, x);
+	inject_ceil(d, d->txs->c_clr, x);
 }
 
 /**
@@ -124,6 +152,7 @@ static void	render_loop(t_data *d, t_render *r, int x)
 int	render_init(t_data *d, t_render *r, t_raycast *c, int x)
 {
 	int			tmp;
+	
 	if (d->raycast->side_flag == TRUE)
 		r->wall_x = d->player->pos_x + c->walldist * c->raydir_x;
 	else

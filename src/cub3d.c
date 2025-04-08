@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/07 18:21:56 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 10:42:04 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int	main(int argc, char **argv)
 {
 	t_data	*d;
 
+	
 	d = (t_data *)safe_malloc(sizeof(t_data), NULL);
 	structs_init(d);
+	time_stamp("Init", 0, d);
 	check_args(argc, argv, d);
 	parsing_process(d);
 	d->win_w = 1080;
@@ -42,6 +44,7 @@ int	main(int argc, char **argv)
 	mlx_key_hook(d->mlx, key_handler, d);
 	mlx_loop_hook(d->mlx, &move_player, d);
 	mlx_close_hook(d->mlx, hook_close, d);
+	time_stamp("Init", 1, d);
 	raycast_init(d);
 	mlx_loop(d->mlx);
 	exit_normal(d);

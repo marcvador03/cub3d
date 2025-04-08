@@ -6,12 +6,13 @@
 /*   By: mfleury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 14:22:32 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/07 15:02:50 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 11:03:27 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "bonus.h"
+
 
 time_t	get_time_ms(void)
 {
@@ -42,4 +43,14 @@ int	cub_sleep(size_t pause)
 			break;
 	}
 	return (0);
+}
+
+void	time_stamp(char	*msg, bool state, t_data *d)
+{
+	if (state == false)
+		d->start = get_time_us();
+	else
+	{
+		printf("Process %s / frame %d: %ld\n", msg, d->frame_number, get_time_us() - d->start);
+	}
 }
