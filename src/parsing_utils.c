@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:21:14 by milosz            #+#    #+#             */
-/*   Updated: 2025/04/04 13:53:36 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:04:42 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ void	color_extractor(char *line, unsigned int color[3], t_data *d)
 	while (line[i] && line[i] != '\n')
 	{
 		if (j > 2)
-			ftl_err("incorrect RGB d input", d);
+			ftl_err("incorrect RGB data input", d);
 		len = 0;
 		while (line[i] >= '0' && line[i] <= '9' && len < 3)
 			temp_color[len++] = line[i++];
 		temp_color[len] = '\0';
 		color[j] = atoi(temp_color);
 		if (len == 0 || len > 3 || color[j] > 255)
-			ftl_err("incorrect RGB d input", d);
+			ftl_err("incorrect RGB data input", d);
 		if (line[i] == ',')
 			i++;
 		j++;
 	}
 	if (j != 3)
-		ftl_err("incorrect RGB d input", d);
+		ftl_err("incorrect RGB data input", d);
 }
 
 /**

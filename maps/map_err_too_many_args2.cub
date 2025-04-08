@@ -2,10 +2,12 @@ NO ./textures/Material-LIB/BrickWall/BrickWall[Red]-B.png
 SO ./textures/Material-LIB/BrickWall/BrickWall[Grey]-B.png
 WE ./textures/Material-LIB/BrickWall[Damaged]/BrickWall[Damaged]-B.png
 EA ./textures/Material-LIB/BrickWall/BrickWall[Orange]-B.png
-F 220,100,0
-C 225,30,0
+l GMG
+kdsfgjseigj
+F 0,0,255
+C 255,0,0
   1111
-  0001
+  1001
 111011
-100E01
+100E11
 111111
