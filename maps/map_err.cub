@@ -13,9 +13,9 @@
 11110111 1110101 101111010001
 11111111 1111111 111111111111
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/Material-LIB/BrickWall/BrickWall[Red]-B.png
+SO ./textures/Material-LIB/BrickWall/BrickWall[Grey]-B.png
+WE ./textures/Material-LIB/BrickWall[Damaged]/BrickWall[Damaged]-B.png
+EA ./textures/Material-LIB/BrickWall/BrickWall[Orange]-B.png
 F 220,100,0
 C 225,30,0
