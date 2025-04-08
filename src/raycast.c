@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 11:58:00 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:01:40 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,7 @@ int	raycast_init(t_data *d)
 	d->raycast = (t_raycast *)ft_calloc(1, sizeof(t_raycast));
 	d->player = (t_player *)ft_calloc(1, sizeof(t_player));
 	d->render = (t_render *)ft_calloc(1, sizeof(t_render));
-	d->raycast->r_tex = (mlx_texture_t *)ft_calloc(1, sizeof(mlx_texture_t));
-	if (!d->raycast || !d->player || !d->render || !d->raycast->r_tex)
+	if (!d->raycast || !d->player || !d->render)
 		ftl_err("in raycast_init1", d);
 	set_player_location_and_dir(d);
 	time_stamp("load txt", 0, d);
