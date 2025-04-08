@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:59:20 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/07 18:21:56 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 10:52:06 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	structs_init2(t_data *d)
 	d->pl_mv = RESET;
 	d->pl_rotate = RESET;
 	d->map_path = NULL;
+	d->frame_number = 0;
+	d->start = 0;
 }
 
 /**

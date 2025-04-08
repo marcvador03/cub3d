@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:32:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/07 18:22:22 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:38:20 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static t_mouse *mouse_struct_init(t_data *d)
 	m->x = d->win_w / 2;
 	m->y = d->win_h / 2;
 	m->d = d;
-	mlx_set_mouse_pos(d->mlx, m->x, m->y);
+	m->start_t = 0;
+	m->cnt = 0;
 	return (m);
 }
 
@@ -45,6 +46,7 @@ int	main(int argc, char **argv)
 
 	d = (t_data *)safe_malloc(sizeof(t_data), NULL);
 	structs_init(d);
+	time_stamp("Init", 0, d);
 	check_args(argc, argv, d);
 	parsing_process(d);
 	d->win_w = 1280;
@@ -58,6 +60,7 @@ int	main(int argc, char **argv)
 	mlx_key_hook(d->mlx, key_handler, d);
 	mlx_loop_hook(d->mlx, &move_player, d);
 	mlx_close_hook(d->mlx, hook_close, d);
+	time_stamp("Init", 1, d);
 	raycast_init(d);
 	mlx_loop(d->mlx);
 	exit_normal(d);

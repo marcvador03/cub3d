@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:57:54 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/07 18:27:43 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:10:02 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ static void	render_loop(t_data *d, t_render *r, int x)
 	mlx_texture_t	*t;
 
 	y = 0;
+	//time_stamp("render loop", 0, d);
 	while (y < d->win_h)
 	{
 		if (y >= d->raycast->wall_start && y <= d->raycast->wall_end)
@@ -110,6 +111,7 @@ static void	render_loop(t_data *d, t_render *r, int x)
 		else if (y < d->raycast->wall_start)
 			inject_col_img(d, d->txs->c_clr, ((y++) * d->win_w + x) * BPP);
 	}
+	//time_stamp("render loop", 1, d);
 }
 
 /**
@@ -124,6 +126,8 @@ static void	render_loop(t_data *d, t_render *r, int x)
 int	render_init(t_data *d, t_render *r, t_raycast *c, int x)
 {
 	int			tmp;
+	
+	//time_stamp("render init", 0, d);
 	if (d->raycast->side_flag == TRUE)
 		r->wall_x = d->player->pos_x + c->walldist * c->raydir_x;
 	else
@@ -134,6 +138,7 @@ int	render_init(t_data *d, t_render *r, t_raycast *c, int x)
 	r->step = 1.0 * d->texture_no->height / c->lineheight;
 	tmp = c->wall_start - (d->win_h / 2) + (c->lineheight / 2);
 	r->pixel_pos = tmp * r->step;
+	//time_stamp("render init", 1, d);
 	render_loop(d, r, x);
 	return (0);
 }

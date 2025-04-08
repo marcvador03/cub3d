@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/07 18:24:10 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:11:27 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
 	int	x;
 
 	x = 0;
+	d->frame_number++;
+	time_stamp("raycast loop", 0, d);
 	while (x < d->win_w)
 	{
 		c->map_x = (int)p->pos_x;
@@ -132,6 +134,7 @@ int	raycast_loop(t_data *d, t_raycast *c, t_player *p)
 		render_init(d, d->render, c, x);
 		x++;
 	}
+	time_stamp("raycast loop", 1, d);
 	return (0);
 }
 
@@ -150,19 +153,23 @@ int	raycast_init(t_data *d)
 	if (!d->raycast || !d->player || !d->render)
 		ftl_err("in raycast_init1", d);
 	set_player_location_and_dir(d);
+	time_stamp("load txt", 0, d);
 	d->texture_no = mlx_load_png(d->txs->no_tx);
 	d->texture_so = mlx_load_png(d->txs->so_tx);
 	d->texture_we = mlx_load_png(d->txs->we_tx);
 	d->texture_ea = mlx_load_png(d->txs->ea_tx);
+	time_stamp("load txt", 1, d);
 	if (d->texture_no == NULL || d->texture_so == NULL || d->texture_we == NULL
 		|| d->texture_ea == NULL)
 	{
 		printf("\n");
 		ftl_err("in texture loading", d);
 	}
+	time_stamp("init img", 0, d);
 	d->image = mlx_new_image(d->mlx, d->win_w, d->win_h);
 	if (d->image == NULL)
 		ftl_err("in image initialization", d);
+	time_stamp("init img", 1, d);
 	raycast_loop(d, d->raycast, d->player);
 	if (mlx_image_to_window(d->mlx, d->image, 0, 0) < 0)
 		ftl_err("in loading image to window", d);
