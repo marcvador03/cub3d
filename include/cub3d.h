@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 10:41:47 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:43:35 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ bool	is_move_valid(t_data *d, t_player *p, double new_x, double new_y);
 
 // move_player.c
 void	move_player(void *param);
+bool	rotate_player(int direction, t_player *p);
 
 // player_direction.c
 void	set_player_location_and_dir(t_data *d);
