@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:02:36 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 11:53:30 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:06:30 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include "cub3d.h"
 # include "sys/time.h"
-# define MOUSE_THROTTLE 0
+# define MOUSE_THROTTLE 5
 # define MOUSE_STEP 0
 
 typedef struct s_mouse
