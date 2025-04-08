@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 12:46:45 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 10:52:03 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 11:56:23 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_raycast
 	int		lineheight;
 	int		wall_start;
 	int		wall_end;
+	mlx_texture_t	*r_tex;
 
 }	t_raycast;
 
