@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:57:54 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:26:37 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:34:16 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,8 @@ static void	render_loop(t_data *d, t_render *r, int x)
 		index = height * r->pixel_y + r->pixel_x;
 		inject_img(d, t, index * BPP, ((y++) * d->win_w + x) * BPP);
 	}
-	inject_floor(d, d->txs->f_clr, x);
-	inject_ceil(d, d->txs->c_clr, x);
+	inject_floor(d, d->txs->c_clr, x);
+	inject_ceil(d, d->txs->f_clr, x);
 }
 
 /**
