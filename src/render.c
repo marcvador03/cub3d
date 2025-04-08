@@ -6,11 +6,13 @@
 /*   By: mfleury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:47:53 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:47:56 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 16:04:29 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+mlx_texture_t	*get_texture_direction(t_data *d);
 
 /**
  * @brief This function will inject the texture into the image
@@ -24,9 +26,9 @@
 static void	inject_img(t_data *d, mlx_texture_t *t, int t_index, int i_index)
 {
 	if (t_index < 0 || t_index >= (int)(t->width * t->height * BPP))
-		return;
+		return ;
 	if (i_index < 0 || (int32_t)i_index >= (int)(d->win_w * d->win_h * BPP))
-		return;
+		return ;
 	d->image->pixels[i_index] = t->pixels[t_index];
 	d->image->pixels[i_index + 1] = t->pixels[t_index + 1];
 	d->image->pixels[i_index + 2] = t->pixels[t_index + 2];
@@ -84,32 +86,6 @@ static void	inject_floor(t_data *d, unsigned int color[3], int x)
 	}
 	return ;
 }
-/**
- * @brief This function will get the texture based on the direction
- * 
- * @param d t_data* - the data structure
- * @return mlx_texture_t* - the texture
- */
-static mlx_texture_t	*get_texture_direction(t_data *d)
-{
-	mlx_texture_t	*tex;
-
-	if (d->raycast->side_flag == 0)
-	{
-		if (d->raycast->raydir_x >= 0)
-			tex = d->texture_ea;
-		else
-			tex = d->texture_we;
-	}
-	else
-	{
-		if (d->raycast->raydir_y > 0)
-			tex = d->texture_no;
-		else
-			tex = d->texture_so;
-	}
-	return (tex);
-}
 
 /**
  * @brief This function will render the loop
@@ -152,7 +128,7 @@ static void	render_loop(t_data *d, t_render *r, int x)
 int	render_init(t_data *d, t_render *r, t_raycast *c, int x)
 {
 	int			tmp;
-	
+
 	if (d->raycast->side_flag == TRUE)
 		r->wall_x = d->player->pos_x + c->walldist * c->raydir_x;
 	else

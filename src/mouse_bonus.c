@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:29:36 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:43:46 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:59:33 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	mouse_loop(t_mouse *m, int32_t final, int32_t start, int dir)
 	int	i;
 
 	i = 0;
-	while (i != (final - start) && i <= MOUSE_THROTTLE)
+	while (i != (final - start) && i <= M_THROTTLE)
 	{
 		rotate_player(dir, m->d->player);
 		i++;
@@ -32,26 +32,26 @@ static void	mouse_loop(t_mouse *m, int32_t final, int32_t start, int dir)
 void	mouse_move(double xpos, double ypos, void *param)
 {
 	t_mouse	*m;
-	
+
 	m = (t_mouse *)param;
 	ypos += 0;
-	if (m->cnt != 0 && m->cnt < MOUSE_THROTTLE)
+	if (m->cnt != 0 && m->cnt < M_THROTTLE)
 	{
 		m->cnt++;
 		return ;
 	}
-	else if (m->cnt != 0 && m->cnt >= MOUSE_THROTTLE)
+	else if (m->cnt != 0 && m->cnt >= M_THROTTLE)
 		m->cnt = 0;
-	if ((int32_t)xpos < m->x - MOUSE_STEP)
+	if ((int32_t)xpos < m->x - M_STEP)
 	{
 		mouse_loop(m, m->x, (int32_t)xpos, TURN_L);
 		return ;
 	}
-	else if ((int32_t)xpos > m->x + MOUSE_STEP)
+	else if ((int32_t)xpos > m->x + M_STEP)
 	{
 		mouse_loop(m, (int32_t)xpos, m->x, TURN_R);
 		return ;
 	}
-	else if ((int32_t)xpos > m->x - MOUSE_STEP && (int32_t)xpos < m->x + MOUSE_STEP)
+	else if ((int32_t)xpos > m->x - M_STEP && (int32_t)xpos < m->x + M_STEP)
 		m->cnt++;
 }

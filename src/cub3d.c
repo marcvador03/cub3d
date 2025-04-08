@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:47:27 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:53:52 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:00:47 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(int argc, char **argv)
 {
 	t_data	*d;
 
-	
 	d = (t_data *)safe_malloc(sizeof(t_data), NULL);
 	structs_init(d);
 	check_args(argc, argv, d);

@@ -6,18 +6,17 @@
 /*   By: mfleury <mfleury@student.42barcelona.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 13:02:36 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:29:15 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 16:22:33 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef BONUS_H
 # define BONUS_H
 
 # include "cub3d.h"
 # include "sys/time.h"
-# define MOUSE_THROTTLE 10
-# define MOUSE_STEP 2
+# define M_THROTTLE 10
+# define M_STEP 2
 
 typedef struct s_mouse
 {
@@ -25,7 +24,7 @@ typedef struct s_mouse
 	int32_t		y;
 	long int	start_t;
 	int32_t		cnt;
-	t_data	*d;
+	t_data		*d;
 
 }	t_mouse;
 

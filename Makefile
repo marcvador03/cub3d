@@ -26,6 +26,7 @@ SRC_NAMES = cub3d.c \
 			player_direction.c \
 			raycast.c \
 			render.c \
+			render_utils.c \
 			str_utils.c \
 			structs_free.c \
 			structs_init.c
@@ -46,6 +47,7 @@ SRC_NAMES_BONUS = cub3d_bonus.c \
 				  player_direction.c \
 				  raycast.c \
 				  render.c \
+				  render_utils.c \
 				  str_utils.c \
 				  structs_free.c \
 				  structs_init.c

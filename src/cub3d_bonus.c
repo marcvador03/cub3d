@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 17:32:58 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:25:56 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:58:30 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static void	check_args(int argc, char **argv, t_data *d)
 	return ;
 }
 
-static t_mouse *mouse_struct_init(t_data *d)
+static t_mouse	*mouse_struct_init(t_data *d)
 {
 	t_mouse	*m;
-		
+
 	m = (t_mouse *)safe_malloc(sizeof(t_mouse), NULL);
 	m->x = d->win_w / 2;
 	m->y = d->win_h / 2;
