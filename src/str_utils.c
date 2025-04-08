@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:09:15 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/04 13:51:02 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:25:39 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,19 @@ bool	gnl_for_loop(int fd, char **line)
 	free(tmp);
 	if (*line == NULL)
 		ftl_err("in malloc", NULL);
+	return (true);
+}
+
+bool	ft_is_space_or_newline(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ' || str[i] != 10)
+			return (false);
+		i++;
+	}
 	return (true);
 }
