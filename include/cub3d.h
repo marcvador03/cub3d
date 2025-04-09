@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:48:16 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:51:25 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:46:09 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	parsing_process(t_data *d);
 char	*file_path_extractor(void *line, int start, t_data *d);
 bool	is_path_existing(char *path);
 void	check_txt_file_existence(t_data *d);
+int		check_cub_file_ext(char *path);
 
 // parsing_utils.c
 void	skip_empty_space(char *line, int *i, bool is_ascending);

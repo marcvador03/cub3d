@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:33:30 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/08 15:24:56 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:47:53 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	parse_cub_file(t_data *d)
 	char	*line;
 
 	head = &d->ln_lst;
-	if (!d->map_path)
-		ftl_err("in map path", d);
+	if (check_cub_file_ext(d->map_path) == -1)
+		ftl_err("map path invalid or extension incorrect", d);
 	fd = open(d->map_path, O_RDONLY);
 	if (fd < 0)
 		ftl_err("in opening file", d);
