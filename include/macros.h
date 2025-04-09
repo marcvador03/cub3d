@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:57:57 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/03 12:57:19 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:36:56 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,8 @@
 
 //bits per pixel
 # define BPP 4
+
+//collision margins
+# define COL_M 0.5
 
 #endif
