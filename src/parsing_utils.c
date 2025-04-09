@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:21:14 by milosz            #+#    #+#             */
-/*   Updated: 2025/04/08 15:04:42 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:56:59 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	color_extractor(char *line, unsigned int color[3], t_data *d)
 
 /**
  * @brief This function will check if the map is in the correct position 
- * in the 'cub' file
+ * in the 'cub' filef
  * 
  * @param d t_data* - the data structure
  * @return void
@@ -100,4 +100,18 @@ void	map_pos_checker(t_data *d)
 				d);
 		temp = temp->next;
 	}
+}
+
+/**
+ * @brief This function will check if the number of arguments is correct
+ * 
+ * @param d t_data* - the data structure
+ * @return void
+ */
+void	is_correct_num_of_args(t_data *d)
+{
+	if (!d->txs->no_tx || !d->txs->so_tx || !d->txs->we_tx || !d->txs->ea_tx)
+		ftl_err("lacks in texture input", d);
+	if (d->txs->f_clr[0] == 256 || d->txs->c_clr[0] == 256)
+		ftl_err("lacks in color input", d);
 }

@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:48:16 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:51:25 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:53:19 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	check_txt_file_existence(t_data *d);
 void	skip_empty_space(char *line, int *i, bool is_ascending);
 void	color_extractor(char *line, unsigned int color[3], t_data *d);
 void	map_pos_checker(t_data *d);
+void	is_correct_num_of_args(t_data *d);
 
 // str_utils.c
 char	*ft_strdup_w_o_nl(char *str, t_data *d);
