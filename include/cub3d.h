@@ -6,7 +6,7 @@
 /*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:59:46 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/09 13:59:47 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:36:18 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@
 # include "../mlx42/include/MLX42/MLX42.h"
 # include "macros.h"
 # include "data.h"
-
-# define FALSE 0
-# define TRUE 1
 
 /* --------------------- utils functions -------------------------------------*/
 // free_utils.c
