@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:55:43 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/08 15:52:52 by mpietrza         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:27:59 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ static void	raycast_dist_to_wall(t_data *d, t_raycast *c, t_player *p)
 static void	raycast_wall_height(t_data *d, t_raycast *c)
 {
 	c->lineheight = (int)(d->win_h / c->walldist);
+	if (c->lineheight < 0)
+		c->lineheight = 0;
 	c->wall_start = -c->lineheight / 2 + d->win_h / 2;
 	if (c->wall_start < 0)
 		c->wall_start = 0;
