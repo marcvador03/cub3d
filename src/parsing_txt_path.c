@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 13:51:31 by mpietrza          #+#    #+#             */
-/*   Updated: 2025/04/09 13:46:36 by mfleury          ###   ########.fr       */
+/*   Updated: 2025/04/09 15:10:20 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	check_txt_file_existence(t_data *d)
 		ftl_err("Wrong texture filepath(s)", d);
 }
 
-int		check_cub_file_ext(char *path)
+int	check_cub_file_ext(char *path)
 {
 	int	len;
 
