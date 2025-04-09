@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfleury <mfleury@student.42barcelona.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 15:48:16 by mfleury           #+#    #+#             */
-/*   Updated: 2025/04/09 13:46:09 by mfleury          ###   ########.fr       */
+/*   Created: 2025/04/09 13:59:46 by mfleury           #+#    #+#             */
+/*   Updated: 2025/04/09 13:59:47 by mfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		check_cub_file_ext(char *path);
 void	skip_empty_space(char *line, int *i, bool is_ascending);
 void	color_extractor(char *line, unsigned int color[3], t_data *d);
 void	map_pos_checker(t_data *d);
+void	is_correct_num_of_args(t_data *d);
 
 // str_utils.c
 char	*ft_strdup_w_o_nl(char *str, t_data *d);
