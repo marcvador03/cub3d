@@ -31,15 +31,13 @@ SRC_NAMES = cub3d.c \
 			structs_free.c \
 			structs_init.c
 
-SRC_NAMES_BONUS = cub3d_bonus.c \
-				  exit_utils.c \
+SRC_NAMES_BONUS = exit_utils.c \
 				  free_utils.c \
 				  hooks.c \
 				  list_utils.c \
 				  map_checks.c \
 				  map_conversion.c \
 				  memory_utils.c \
-				  move_check_pos_bonus.c \
 				  move_player.c \
 				  parsing_utils.c \
 				  parsing.c \
@@ -52,7 +50,9 @@ SRC_NAMES_BONUS = cub3d_bonus.c \
 				  structs_free.c \
 				  structs_init.c
 
-SRC_NAMES_BONUS += mouse_bonus.c
+SRC_NAMES_BONUS += mouse_bonus.c \
+				   move_check_pos_bonus.c \
+				   cub3d_bonus.c
 
 INC_NAMES := cub3d.h
 
@@ -108,7 +108,7 @@ libft:
 	@$(MAKE) -C $(LIBFT_DIR)
 
 libmlx: 
-	cmake -DDEBUG=1 -S $(LIBMLX_DIR) -B $(CUR_DIR)/$(LIB_DIR)
+	cmake -S $(LIBMLX_DIR) -B $(CUR_DIR)/$(LIB_DIR)
 	@$(MAKE) -C $(CUR_DIR)/$(LIB_DIR)
 
 $(OBJ_DIR):
@@ -142,4 +142,4 @@ endif
 ifneq ($(DEPS_BONUS), )
 -include $(DEPS)
 endif
-.PHONY: all flags clean fclean re show libft mlx bonus
+.PHONY: all flags clean fclean re show libft mlx bonus bonus_m
