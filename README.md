@@ -20,7 +20,7 @@ launch in your terminal "./cub3D" with one argument containing the path to a val
 This project uses the MLX Codam graphic library to draw window and pictures (https://github.com/codam-coding-college/MLX42.git). The MLX library from Mar'24 is already shipped with this project, so no need to update it.
 However to compile with MLX you need to ensure you have installed GLFW and CMake on your computer. MLX Codam describes steps to follow here:https://github.com/codam-coding-college/MLX42?tab=readme-ov-file#for-linux.
 
-*Tested on Linux Debian Trixie*
+*Tested on Linux Debian Trixie and Ubuntu*
 
 **Additional information**
 
