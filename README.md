@@ -17,8 +17,10 @@ launch in your terminal "./cub3D" with one argument containing the path to a val
 
 **Dependencies**
 
-This project uses the MLX Codam graphic library to draw window and pictures (https://github.com/codam-coding-college/MLX42.git). The MLX library from Mar'24 is already shipped with this project, so no need to update it.
+- This project uses the MLX Codam graphic library to draw window and pictures (https://github.com/codam-coding-college/MLX42.git). The MLX library from Mar'24 is already shipped with this project, so no need to update it.
 However to compile with MLX you need to ensure you have installed GLFW and CMake on your computer. MLX Codam describes steps to follow here:https://github.com/codam-coding-college/MLX42?tab=readme-ov-file#for-linux.
+
+- My own library "Libft" which was developed as part of the school to mimic C standard functions is shipped with this project. We are restricted by the school in the external functions we can use for each project, but allowed to use our own functions and library such as Libft.
 
 *Tested on Linux Debian Trixie and Ubuntu*
 
@@ -29,3 +31,5 @@ Requirements for the project:
 - have different textures applied to north/south/east/west walls. Textures paths are provided in the map file (.ber extension).
 - move within the map with keyboard
 - in the bonus part, we also added wall collisions and ability to move with the mouse.
+
+*For C Projects, 42 School imposes a norm to follow strictly. Amongst many things, we are restricted to write no more than 25 lines per function, and 5 functions per file. I really do love norms, but just mentioning this to explain why sometimes we split functions and multiply files :)*
